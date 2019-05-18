@@ -2,25 +2,12 @@
   <div>
     <h1>Vehículos</h1>
     <grid>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
-      <card/>
+      <card v-for="(vehicle, index) in vehicles" :key="index" />
     </grid>
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import Grid from '@/components/Grid'
 import Card from '@/components/Card'
 export default {
@@ -28,6 +15,9 @@ export default {
   components: {
     Grid,
     Card
+  },
+  computed: {
+    ...mapState({ vehicles: state => state.vehicles })
   }
 }
 </script>
