@@ -8,11 +8,9 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .card {
-  width: 300px;
-  height: 250px;
-  border-radius: 5px;
+  border-radius: $border-radius;
   background-color: lightgray;
 }
 </style>
