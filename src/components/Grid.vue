@@ -15,7 +15,7 @@ export default {
   display: grid;
   grid-auto-rows: 400px;
   grid-gap: $small-gap;
-  margin: 0 $small-gap;
+  margin: $small-gap;
 }
 
 @media (min-width: 767px) {
@@ -28,7 +28,7 @@ export default {
   .grid {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: $medium-gap;
-    margin: 0 $medium-gap;
+    margin: $medium-gap;
   }
 }
 
