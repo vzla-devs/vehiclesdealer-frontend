@@ -1,5 +1,5 @@
 <template>
-  <div class="vehicles">
+  <div>
     <h1>Vehículos</h1>
     <grid>
       <card/>
