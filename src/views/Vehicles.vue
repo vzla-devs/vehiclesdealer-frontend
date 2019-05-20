@@ -2,7 +2,7 @@
   <div>
     <h1>Vehículos</h1>
     <grid>
-      <card v-for="(vehicle, index) in vehicles" :key="index" />
+      <card v-for="(vehicle, index) in vehicles" :key="index" class="vehicle" />
     </grid>
   </div>
 </template>
