@@ -11,7 +11,6 @@ import { mapState } from 'vuex'
 import Grid from '@/components/Grid'
 import Card from '@/components/Card'
 export default {
-  name: 'Vehicles',
   components: {
     Grid,
     Card
