@@ -8,24 +8,9 @@ localVue.use(Vuex)
 describe('Vehicles.vue', () => {
   test('display the vehicles', () => {
     const vehicles = [
-      {
-        brand: 'anyBrand',
-        model: 'anyModel',
-        year: 'anyYear',
-        imageUrl: 'anyImageUrl'
-      },
-      {
-        brand: 'anyBrand',
-        model: 'anyModel',
-        year: 'anyYear',
-        imageUrl: 'anyImageUrl'
-      },
-      {
-        brand: 'anyBrand',
-        model: 'anyModel',
-        year: 'anyYear',
-        imageUrl: 'anyImageUrl'
-      }
+      givenAVehicle(),
+      givenAVehicle(),
+      givenAVehicle()
     ]
     
     const vehiclesView = AVehiclesBuilder().withVehicles(vehicles).build()
@@ -56,5 +41,14 @@ describe('Vehicles.vue', () => {
       findAll: (element) => wrapper.findAll(element)
     }
     return self
+  }
+
+  function givenAVehicle () {
+    return {
+      brand: 'anyBrand',
+      model: 'anyModel',
+      year: 'anyYear',
+      imageUrl: 'anyImageUrl'
+    }
   }
 })
