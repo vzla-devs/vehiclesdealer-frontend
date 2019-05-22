@@ -9,61 +9,61 @@ export default new Vuex.Store({
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       },
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       },
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       },
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       },
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       },
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       },
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       },
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       },
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       },
       {
         brand: 'audi',
         model: 'a1',
-        year: '2019',
+        year: 2019,
         imageUrl: 'https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg'
       }
     ]

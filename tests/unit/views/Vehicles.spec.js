@@ -7,7 +7,11 @@ localVue.use(Vuex)
 
 describe('Vehicles.vue', () => {
   test('display the vehicles', () => {
-    const vehicles = [ givenAVehicle(), givenAVehicle(), givenAVehicle() ]
+    const vehicles = [
+      givenAVehicle('firstBrand', 'firstModel', 2019, 'firstUrl'),
+      givenAVehicle('secondBrand', 'secondModel', 2019, 'secondUrl'),
+      givenAVehicle('thirdBrand', 'thirdModel', 2019, 'thirdUrl')
+    ]
     
     const vehiclesView = AVehiclesBuilder().withVehicles(vehicles).build()
 
@@ -19,11 +23,9 @@ describe('Vehicles.vue', () => {
   })
 
   function AVehiclesBuilder () {
-    let wrapper
-    const state = {
-      vehicles: []
-    }
+    const state = { vehicles: [] }
     const store = new Vuex.Store({ state })
+    let wrapper
 
     function withVehicles (vehicles) {
       state.vehicles = vehicles
@@ -43,13 +45,8 @@ describe('Vehicles.vue', () => {
     return self
   }
 
-  function givenAVehicle () {
-    return {
-      brand: 'anyBrand',
-      model: 'anyModel',
-      year: 'anyYear',
-      imageUrl: 'anyImageUrl'
-    }
+  function givenAVehicle (brand, model, year, imageUrl) {
+    return { brand, model, year, imageUrl }
   }
 
   function verifyVehicle (vehicleToVerify, expectedVehicle) {

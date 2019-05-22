@@ -15,7 +15,7 @@ export default {
   props: {
     brand: String,
     model: String,
-    year: String,
+    year: Number,
     imageUrl: String
   }
 }
