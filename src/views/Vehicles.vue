@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="vehicles-container">
     <h1>Vehículos</h1>
     <grid>
       <vehicle-card v-for="(vehicle, index) in vehicles" :key="index"
@@ -13,6 +13,7 @@
     </grid>
   </div>
 </template>
+
 <script>
 import { mapState } from 'vuex'
 import Grid from '@/components/Grid'
@@ -27,3 +28,17 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.vehicles-container {
+  height: 100%;
+  background-color: $light-gray;
+  padding-top: $small-space;
+}
+
+@media (min-width: $medium-breakpoint) {
+  .vehicles-container {
+    padding-top: $medium-space;
+  }
+}
+</style>
