@@ -15,7 +15,26 @@ describe('Vehicles.vue', () => {
     
     const vehiclesView = AVehiclesBuilder().withVehicles(vehicles).build()
 
-    expect(vehiclesView.findAll('.vehicle').length).toBe(3)
+    const vehicleCards = vehiclesView.findAll('.vehicle')
+    expect(vehicleCards.length).toBe(3)
+    expect(vehicleCards.at(0).props()).toEqual({
+      brand: vehicles[0].brand,
+      model: vehicles[0].model,
+      year: vehicles[0].year,
+      imageUrl: vehicles[0].imageUrl
+    })
+    expect(vehicleCards.at(1).props()).toEqual({
+      brand: vehicles[1].brand,
+      model: vehicles[1].model,
+      year: vehicles[1].year,
+      imageUrl: vehicles[1].imageUrl
+    })
+    expect(vehicleCards.at(2).props()).toEqual({
+      brand: vehicles[2].brand,
+      model: vehicles[2].model,
+      year: vehicles[2].year,
+      imageUrl: vehicles[2].imageUrl
+    })
   })
 
   function AVehiclesBuilder () {
