@@ -7,34 +7,15 @@ localVue.use(Vuex)
 
 describe('Vehicles.vue', () => {
   test('display the vehicles', () => {
-    const vehicles = [
-      givenAVehicle(),
-      givenAVehicle(),
-      givenAVehicle()
-    ]
+    const vehicles = [ givenAVehicle(), givenAVehicle(), givenAVehicle() ]
     
     const vehiclesView = AVehiclesBuilder().withVehicles(vehicles).build()
 
     const vehicleCards = vehiclesView.findAll('.vehicle')
     expect(vehicleCards.length).toBe(3)
-    expect(vehicleCards.at(0).props()).toEqual({
-      brand: vehicles[0].brand,
-      model: vehicles[0].model,
-      year: vehicles[0].year,
-      imageUrl: vehicles[0].imageUrl
-    })
-    expect(vehicleCards.at(1).props()).toEqual({
-      brand: vehicles[1].brand,
-      model: vehicles[1].model,
-      year: vehicles[1].year,
-      imageUrl: vehicles[1].imageUrl
-    })
-    expect(vehicleCards.at(2).props()).toEqual({
-      brand: vehicles[2].brand,
-      model: vehicles[2].model,
-      year: vehicles[2].year,
-      imageUrl: vehicles[2].imageUrl
-    })
+    verifyVehicle(vehicleCards.at(0), vehicles[0])
+    verifyVehicle(vehicleCards.at(1), vehicles[1])
+    verifyVehicle(vehicleCards.at(2), vehicles[2])
   })
 
   function AVehiclesBuilder () {
@@ -69,5 +50,14 @@ describe('Vehicles.vue', () => {
       year: 'anyYear',
       imageUrl: 'anyImageUrl'
     }
+  }
+
+  function verifyVehicle (vehicleToVerify, expectedVehicle) {
+    expect(vehicleToVerify.props()).toEqual({
+      brand: expectedVehicle.brand,
+      model: expectedVehicle.model,
+      year: expectedVehicle.year,
+      imageUrl: expectedVehicle.imageUrl
+    })
   }
 })
