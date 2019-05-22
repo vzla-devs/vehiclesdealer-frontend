@@ -3,8 +3,8 @@
     <v-img :src="imageUrl" />
     <v-card-title primary-title>
       <div class="description-container">
-        <h3 class="headline description">{{ `${brand} ${model} - ${year}` }}</h3>
-        <div class="price"> {{ `${price} €` }} </div>
+        <h3 class="headline description">{{ formattedDescription }}</h3>
+        <div class="price"> {{ formattedPrice }} </div>
       </div>
     </v-card-title>
   </v-card>
@@ -18,6 +18,10 @@ export default {
     year: Number,
     price: Number,
     imageUrl: String
+  },
+  computed: {
+    formattedDescription () { return `${this.brand} ${this.model} - ${this.year}` },
+    formattedPrice () { return `${this.price} €` }
   }
 }
 </script>
