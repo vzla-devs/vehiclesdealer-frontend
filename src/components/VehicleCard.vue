@@ -1,5 +1,13 @@
 <template>
-  <div class="card"></div>
+  <v-card>
+    <v-img :src="imageUrl" />
+    <v-card-title primary-title>
+      <div>
+        <h3 class="headline">{{ brand }}</h3>
+        <div> {{ year }} </div>
+      </div>
+    </v-card-title>
+  </v-card>
 </template>
 
 <script>
