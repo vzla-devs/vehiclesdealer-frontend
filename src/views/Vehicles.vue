@@ -7,6 +7,7 @@
         :brand="vehicle.brand"
         :model="vehicle.model"
         :year="vehicle.year"
+        :price="vehicle.price"
         :imageUrl="vehicle.imageUrl"
       />
     </grid>

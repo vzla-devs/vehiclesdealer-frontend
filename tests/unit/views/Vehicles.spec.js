@@ -8,9 +8,9 @@ localVue.use(Vuex)
 describe('Vehicles.vue', () => {
   test('display the vehicles', () => {
     const vehicles = [
-      givenAVehicle('firstBrand', 'firstModel', 2019, 'firstUrl'),
-      givenAVehicle('secondBrand', 'secondModel', 2019, 'secondUrl'),
-      givenAVehicle('thirdBrand', 'thirdModel', 2019, 'thirdUrl')
+      givenAVehicle('firstBrand', 'firstModel', 2019, 9999, 'firstUrl'),
+      givenAVehicle('secondBrand', 'secondModel', 2019, 9999, 'secondUrl'),
+      givenAVehicle('thirdBrand', 'thirdModel', 2019, 9999,'thirdUrl')
     ]
     
     const vehiclesView = AVehiclesBuilder().withVehicles(vehicles).build()
@@ -45,8 +45,8 @@ describe('Vehicles.vue', () => {
     return self
   }
 
-  function givenAVehicle (brand, model, year, imageUrl) {
-    return { brand, model, year, imageUrl }
+  function givenAVehicle (brand, model, year, price, imageUrl) {
+    return { brand, model, year, price, imageUrl }
   }
 
   function verifyVehicle (vehicleToVerify, expectedVehicle) {
@@ -54,6 +54,7 @@ describe('Vehicles.vue', () => {
       brand: expectedVehicle.brand,
       model: expectedVehicle.model,
       year: expectedVehicle.year,
+      price: expectedVehicle.price,
       imageUrl: expectedVehicle.imageUrl
     })
   }

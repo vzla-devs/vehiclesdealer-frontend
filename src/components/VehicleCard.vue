@@ -1,10 +1,10 @@
 <template>
-  <v-card>
+  <v-card :hover="true" class="card">
     <v-img :src="imageUrl" />
     <v-card-title primary-title>
-      <div>
-        <h3 class="headline">{{ brand }}</h3>
-        <div> {{ year }} </div>
+      <div class="description-container">
+        <h3 class="headline description">{{ `${brand} ${model} - ${year}` }}</h3>
+        <div class="price"> {{ `${price} €` }} </div>
       </div>
     </v-card-title>
   </v-card>
@@ -16,6 +16,7 @@ export default {
     brand: String,
     model: String,
     year: Number,
+    price: Number,
     imageUrl: String
   }
 }
@@ -24,6 +25,17 @@ export default {
 <style lang="scss" scoped>
 .card {
   border-radius: $border-radius;
-  background-color: lightgray;
+}
+.description-container {
+  width: 100%;
+}
+.description {
+  font: 400 24px roboto;
+  text-transform: uppercase;
+  text-align: justify;
+}
+.price {
+  text-align: end;
+  font: 500 16px roboto;
 }
 </style>
