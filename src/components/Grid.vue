@@ -7,7 +7,6 @@
 <style lang="scss" scoped>
 .grid {
   display: grid;
-  grid-auto-rows: 400px;
   grid-gap: $small-space;
   margin: $small-space;
 }
