@@ -1,7 +1,7 @@
 <template>
   <div class="vehicles-container">
     <h1>Vehículos</h1>
-    <grid>
+    <grid-layout>
       <vehicle-card v-for="(vehicle, index) in vehicles" :key="index"
         class="vehicle"
         :brand="vehicle.brand"
@@ -10,17 +10,17 @@
         :price="vehicle.price"
         :imageUrl="vehicle.imageUrl"
       />
-    </grid>
+    </grid-layout>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import Grid from '@/components/Grid'
+import GridLayout from '@/components/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 export default {
   components: {
-    Grid,
+    GridLayout,
     VehicleCard
   },
   computed: {
