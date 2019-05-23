@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Vehicles from './views/Vehicles.vue'
+import VehiclesView from './views/VehiclesView.vue'
 
 Vue.use(Router)
 
@@ -17,7 +17,7 @@ export default new Router({
     {
       path: '/vehicles',
       name: 'vehicles',
-      component: Vehicles
+      component: VehiclesView
     }
   ]
 })

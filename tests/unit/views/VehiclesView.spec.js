@@ -1,11 +1,11 @@
-import Vehicles from '@/views/Vehicles'
+import VehiclesView from '@/views/VehiclesView'
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
-describe('Vehicles.vue', () => {
+describe('VehiclesView.vue', () => {
   test('display the vehicles', () => {
     const vehicles = [
       givenAVehicle('firstBrand', 'firstModel', 2019, 9999, 'firstUrl'),
@@ -13,7 +13,7 @@ describe('Vehicles.vue', () => {
       givenAVehicle('thirdBrand', 'thirdModel', 2019, 9999,'thirdUrl')
     ]
     
-    const vehiclesView = AVehiclesBuilder().withVehicles(vehicles).build()
+    const vehiclesView = AVehiclesViewBuilder().withVehicles(vehicles).build()
 
     const vehicleCards = vehiclesView.findAll('.vehicle')
     expect(vehicleCards.length).toBe(3)
@@ -22,7 +22,7 @@ describe('Vehicles.vue', () => {
     verifyVehicle(vehicleCards.at(2), vehicles[2])
   })
 
-  function AVehiclesBuilder () {
+  function AVehiclesViewBuilder () {
     const state = { vehicles: [] }
     const store = new Vuex.Store({ state })
     let wrapper
@@ -33,7 +33,7 @@ describe('Vehicles.vue', () => {
     }
 
     function build () {
-      wrapper = shallowMount(Vehicles, { store, localVue })
+      wrapper = shallowMount(VehiclesView, { store, localVue })
       return self
     }
 
