@@ -34,12 +34,14 @@ export default {
   width: 100%;
 }
 .description {
-  font: 400 24px roboto;
   text-transform: uppercase;
   text-align: justify;
+  font-size: 24px;
+  font-weight: 400;
 }
 .price {
   text-align: end;
-  font: 500 16px roboto;
+  font-size: 16px;
+  font-weight: 500;
 }
 </style>
