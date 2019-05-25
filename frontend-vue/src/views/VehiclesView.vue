@@ -31,7 +31,6 @@ export default {
 
 <style lang="scss" scoped>
 .vehicles-container {
-  height: 100%;
   background-color: $light-gray;
   padding-top: $small-space;
 }
