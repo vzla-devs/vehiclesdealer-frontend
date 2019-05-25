@@ -1,4 +1,4 @@
-# vehiclesdealer
+# vehiclesdealer-frontend
 
 ## Project setup
 ```
