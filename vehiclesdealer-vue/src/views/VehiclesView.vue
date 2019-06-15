@@ -3,7 +3,6 @@
     <h1>Vehículos</h1>
     <grid-layout>
       <vehicle-card v-for="(vehicle, index) in vehicles" :key="index"
-        class="vehicle"
         :brand="vehicle.brand"
         :model="vehicle.model"
         :year="vehicle.year"
