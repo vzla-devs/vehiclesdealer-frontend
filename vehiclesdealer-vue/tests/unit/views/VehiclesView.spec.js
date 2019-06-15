@@ -1,13 +1,21 @@
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import VehiclesView from '@/views/VehiclesView'
 import GridLayout from '@/components/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
-import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('VehiclesView.vue', () => {
+  test('do not display a grid when there are no vehicles', () => {
+    const givenVehicles = []
+    const vehiclesView = AVehiclesView().withVehicles(givenVehicles).build()
+
+    const grid = vehiclesView.find(GridLayout)
+    expect(grid.exists()).toBe(false)
+  })
+
   test('display a grid of vehicles', () => {
     const givenVehicles = [givenAVehicle(), givenAVehicle(), givenAVehicle()]
     const vehiclesView = AVehiclesView().withVehicles(givenVehicles).build()

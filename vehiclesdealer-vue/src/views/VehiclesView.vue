@@ -1,7 +1,7 @@
 <template>
   <div id="vehicles-container">
     <h1>Vehículos</h1>
-    <grid-layout>
+    <grid-layout v-if="hasVehices">
       <vehicle-card v-for="(vehicle, index) in vehicles" :key="index"
         :brand="vehicle.brand"
         :model="vehicle.model"
@@ -24,7 +24,10 @@ export default {
     VehicleCard
   },
   computed: {
-    ...mapState({ vehicles: state => state.vehicles })
+    ...mapState({ vehicles: state => state.vehicles }),
+    hasVehices () {
+      return this.vehicles.length > 0
+    }
   }
 }
 </script>
