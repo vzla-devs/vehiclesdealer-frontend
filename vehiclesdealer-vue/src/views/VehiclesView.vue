@@ -1,4 +1,5 @@
 <template>
+<div>
   <div id="vehicles-container">
     <h1>Vehículos</h1>
     <grid-layout v-if="hasVehices">
@@ -10,7 +11,9 @@
         :imageUrl="vehicle.imageUrl"
       />
     </grid-layout>
+    <div v-else id="no-vehicles">No hay vehículos disponibles</div>
   </div>
+</div>
 </template>
 
 <script>
@@ -33,14 +36,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#vehicles-container {
-  background-color: $light-gray;
+h1 {
   padding-top: $small-space;
+  padding-bottom: $small-space;
+}
+
+#no-vehicles {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (min-width: $medium-breakpoint) {
-  #vehicles-container {
+  h1 {
     padding-top: $medium-space;
+    padding-bottom: $medium-space;
   }
 }
 </style>

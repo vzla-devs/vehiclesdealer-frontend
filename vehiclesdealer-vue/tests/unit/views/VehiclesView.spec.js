@@ -8,21 +8,23 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('VehiclesView.vue', () => {
-  test('do not display a grid when there are no vehicles', () => {
+  test('display an empty view when there are no vehicles', () => {
     const givenVehicles = []
     const vehiclesView = AVehiclesView().withVehicles(givenVehicles).build()
 
-    const grid = vehiclesView.find(GridLayout)
-    expect(grid.exists()).toBe(false)
+    expect(vehiclesView.contains(GridLayout)).toBe(false)
+    expect(vehiclesView.contains('#no-vehicles')).toBe(true)
+    expect(vehiclesView.find('#no-vehicles').text()).toBe('No hay vehículos disponibles')
   })
 
   test('display a grid of vehicles', () => {
     const givenVehicles = [givenAVehicle(), givenAVehicle(), givenAVehicle()]
     const vehiclesView = AVehiclesView().withVehicles(givenVehicles).build()
 
+    expect(vehiclesView.contains(GridLayout)).toBe(true)
     const grid = vehiclesView.find(GridLayout)
-    expect(grid.exists()).toBe(true)
     expect(grid.findAll(VehicleCard).length).toBe(3)
+    expect(vehiclesView.contains('#no-vehicles')).toBe(false)
   })
 
   test('display vehicles with their corresponding props', () => {
@@ -58,7 +60,8 @@ describe('VehiclesView.vue', () => {
       withVehicles,
       build,
       find: (element) => wrapper.find(element),
-      findAll: (element) => wrapper.findAll(element)
+      findAll: (element) => wrapper.findAll(element),
+      contains: (element) => wrapper.contains(element)
     }
     return self
   }
