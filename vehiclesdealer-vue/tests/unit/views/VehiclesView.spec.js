@@ -50,7 +50,6 @@ describe('VehiclesView.vue', () => {
       withVehicles,
       build,
       find: (element) => wrapper.find(element),
-      contains: (element) => wrapper.contains(element),
       findAll: (element) => wrapper.findAll(element)
     }
     return self
