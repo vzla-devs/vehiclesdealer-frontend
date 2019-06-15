@@ -6,23 +6,22 @@ const localVue = createLocalVue()
 localVue.use(Vuex)
 
 describe('VehiclesView.vue', () => {
-  test('display the vehicles', () => {
-    const vehicles = [
+  test('display the vehicles with their corresponding props', () => {
+    const givenVehicles = [
       givenAVehicle('firstBrand', 'firstModel', 2019, 9999, 'firstUrl'),
       givenAVehicle('secondBrand', 'secondModel', 2019, 9999, 'secondUrl'),
       givenAVehicle('thirdBrand', 'thirdModel', 2019, 9999,'thirdUrl')
     ]
-    
-    const vehiclesView = AVehiclesViewBuilder().withVehicles(vehicles).build()
+    const vehiclesView = AVehiclesView().withVehicles(givenVehicles).build()
 
-    const vehicleCards = vehiclesView.findAll('.vehicle')
-    expect(vehicleCards.length).toBe(3)
-    verifyVehicle(vehicleCards.at(0), vehicles[0])
-    verifyVehicle(vehicleCards.at(1), vehicles[1])
-    verifyVehicle(vehicleCards.at(2), vehicles[2])
+    const vehicles = vehiclesView.findAll('.vehicle')
+    expect(vehicles.length).toBe(3)
+    verifyVehicleProps(vehicles.at(0), givenVehicles[0])
+    verifyVehicleProps(vehicles.at(1), givenVehicles[1])
+    verifyVehicleProps(vehicles.at(2), givenVehicles[2])
   })
 
-  function AVehiclesViewBuilder () {
+  function AVehiclesView () {
     const state = { vehicles: [] }
     const store = new Vuex.Store({ state })
     let wrapper
@@ -49,7 +48,7 @@ describe('VehiclesView.vue', () => {
     return { brand, model, year, price, imageUrl }
   }
 
-  function verifyVehicle (vehicleToVerify, expectedVehicle) {
+  function verifyVehicleProps (vehicleToVerify, expectedVehicle) {
     expect(vehicleToVerify.props()).toEqual({
       brand: expectedVehicle.brand,
       model: expectedVehicle.model,
