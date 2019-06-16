@@ -1,8 +1,10 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
+import Vuex from 'vuex'
+import { GET_VEHICLES } from '@/store/getters/gettersTypes'
 import VehiclesView from '@/views/VehiclesView'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
-import Vuex from 'vuex'
+
 
 const localVue = createLocalVue()
 localVue.use(Vuex)
@@ -42,16 +44,20 @@ describe('VehiclesView.vue', () => {
   })
 
   function AVehiclesView () {
-    const state = { vehicles: [] }
-    const store = new Vuex.Store({ state })
+    let vehicles = []
+    const getters = {
+      [GET_VEHICLES]: () => vehicles
+    }
+    
     let wrapper
 
-    function withVehicles (vehicles) {
-      state.vehicles = vehicles
+    function withVehicles (newVehicles) {
+      vehicles = newVehicles
       return self
     }
 
     function build () {
+      const store = new Vuex.Store({ getters })
       wrapper = shallowMount(VehiclesView, { store, localVue })
       return self
     }

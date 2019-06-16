@@ -17,7 +17,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
+import { GET_VEHICLES } from '@/store/getters/gettersTypes'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 
@@ -27,7 +28,7 @@ export default {
     VehicleCard
   },
   computed: {
-    ...mapState({ vehicles: state => state.vehicles }),
+    ...mapGetters({ vehicles: GET_VEHICLES }),
     hasVehices () {
       return this.vehicles.length > 0
     }
