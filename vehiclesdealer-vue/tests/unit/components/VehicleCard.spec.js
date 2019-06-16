@@ -10,6 +10,17 @@ describe('VehicleCard.vue', () => {
         expect(vehicleCard.find('img').attributes().src).toBe(url)
     })
 
+    test('displays a description', () => {
+        const brand = 'anyBrand'
+        const model = 'anyModel'
+        const year = 2019
+        const vehicleCard = AVehicleCard().build()
+
+        vehicleCard.setProps({ brand, model, year })
+
+        expect(vehicleCard.find('.description').text()).toBe('anyBrand anyModel - 2019')
+    })
+
     function AVehicleCard () {
         let wrapper
         let imageUrl
@@ -34,7 +45,8 @@ describe('VehicleCard.vue', () => {
         const self = {
             withImageUrl,
             build,
-            find: (element) => wrapper.find(element)
+            find: (element) => wrapper.find(element),
+            setProps: (props) => wrapper.setProps(props)
         }
         return self
     }
