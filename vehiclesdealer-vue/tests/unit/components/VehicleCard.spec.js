@@ -4,10 +4,12 @@ import ImageStub from './stubs/ImageStub'
 
 describe('VehicleCard.vue', () => {
     test('displays an image', () => {
-        const url = 'anyUrl'
-        const vehicleCard = AVehicleCard().withImageUrl(url).build()
+        const imageUrl = 'anyUrl'
+        const vehicleCard = AVehicleCard().build()
 
-        expect(vehicleCard.find('img').attributes().src).toBe(url)
+        vehicleCard.setProps({ imageUrl })
+
+        expect(vehicleCard.find('img').attributes().src).toBe(imageUrl)
     })
 
     test('displays a description', () => {
@@ -32,12 +34,6 @@ describe('VehicleCard.vue', () => {
 
     function AVehicleCard () {
         let wrapper
-        let imageUrl
-
-        function withImageUrl (url) {
-            imageUrl = url
-            return self
-        }
 
         function build () {
             wrapper = shallowMount(VehicleCard, {
@@ -45,14 +41,12 @@ describe('VehicleCard.vue', () => {
                     'v-img': ImageStub,
                     'v-card': true,
                     'v-card-title': true
-                },
-                propsData: { imageUrl }
+                }
             })
             return self
         }
 
         const self = {
-            withImageUrl,
             build,
             find: (element) => wrapper.find(element),
             setProps: (props) => wrapper.setProps(props)
