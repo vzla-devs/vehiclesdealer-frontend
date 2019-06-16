@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import VehiclesView from '@/views/VehiclesView'
-import GridLayout from '@/components/GridLayout'
+import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import Vuex from 'vuex'
 

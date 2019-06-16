@@ -18,7 +18,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import GridLayout from '@/components/GridLayout'
+import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 
 export default {
