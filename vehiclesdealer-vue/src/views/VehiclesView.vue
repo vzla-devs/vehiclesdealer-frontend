@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div id="vehicles-container">
+  <div id="vehicles-view-container">
     <h1>Vehículos</h1>
     <grid-layout v-if="hasVehices">
       <vehicle-card v-for="(vehicle, index) in vehicles" :key="index"
@@ -37,9 +37,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  padding-top: $small-space;
-  padding-bottom: $small-space;
+#vehicles-view-container {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  grid-template-columns: 100%;
+  grid-gap: $small-space;
 }
 
 #no-vehicles {
@@ -50,9 +52,8 @@ h1 {
 }
 
 @media (min-width: $medium-breakpoint) {
-  h1 {
-    padding-top: $medium-space;
-    padding-bottom: $medium-space;
+  #vehicles-view-container {
+    grid-gap: $medium-space;
   }
 }
 </style>
