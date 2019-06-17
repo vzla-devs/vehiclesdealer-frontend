@@ -1,0 +1,14 @@
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\bin\Debug\netcoreapp2.2\VehiclesDealerApi.deps.json
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\bin\Debug\netcoreapp2.2\VehiclesDealerApi.runtimeconfig.json
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\bin\Debug\netcoreapp2.2\VehiclesDealerApi.runtimeconfig.dev.json
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\bin\Debug\netcoreapp2.2\VehiclesDealerApi.dll
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\bin\Debug\netcoreapp2.2\VehiclesDealerApi.pdb
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\obj\Debug\netcoreapp2.2\VehiclesDealerApi.csprojAssemblyReference.cache
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\obj\Debug\netcoreapp2.2\VehiclesDealerApi.csproj.CoreCompileInputs.cache
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\obj\Debug\netcoreapp2.2\VehiclesDealerApi.RazorAssemblyInfo.cache
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\obj\Debug\netcoreapp2.2\VehiclesDealerApi.RazorAssemblyInfo.cs
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\obj\Debug\netcoreapp2.2\VehiclesDealerApi.AssemblyInfoInputs.cache
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\obj\Debug\netcoreapp2.2\VehiclesDealerApi.AssemblyInfo.cs
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\obj\Debug\netcoreapp2.2\VehiclesDealerApi.RazorTargetAssemblyInfo.cache
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\obj\Debug\netcoreapp2.2\VehiclesDealerApi.dll
+C:\Code\learning\vehiclesdealer\vehicledealers-netcore\VehiclesDealerApi\obj\Debug\netcoreapp2.2\VehiclesDealerApi.pdb
