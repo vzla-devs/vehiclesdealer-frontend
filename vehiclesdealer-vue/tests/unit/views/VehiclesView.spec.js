@@ -12,6 +12,7 @@ localVue.use(Vuex)
 describe('VehiclesView.vue', () => {
   test('display an empty view when there are no vehicles', () => {
     const givenVehicles = []
+
     const vehiclesView = AVehiclesView().withVehicles(givenVehicles).build()
 
     expect(vehiclesView.contains(GridLayout)).toBe(false)
@@ -21,11 +22,12 @@ describe('VehiclesView.vue', () => {
 
   test('display a grid of vehicles', () => {
     const givenVehicles = [givenAVehicle(), givenAVehicle(), givenAVehicle()]
+
     const vehiclesView = AVehiclesView().withVehicles(givenVehicles).build()
 
     expect(vehiclesView.contains(GridLayout)).toBe(true)
-    const grid = vehiclesView.find(GridLayout)
-    expect(grid.findAll(VehicleCard).length).toBe(3)
+    const expectedGrid = vehiclesView.find(GridLayout)
+    expect(expectedGrid.findAll(VehicleCard).length).toBe(3)
     expect(vehiclesView.contains('#no-vehicles')).toBe(false)
   })
 
@@ -35,12 +37,13 @@ describe('VehiclesView.vue', () => {
       givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
       givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
     ]
+
     const vehiclesView = AVehiclesView().withVehicles(givenVehicles).build()
 
-    const vehicles = vehiclesView.findAll(VehicleCard)
-    verifyVehicleProps(vehicles.at(0), givenVehicles[0])
-    verifyVehicleProps(vehicles.at(1), givenVehicles[1])
-    verifyVehicleProps(vehicles.at(2), givenVehicles[2])
+    const expectedVehicles = vehiclesView.findAll(VehicleCard)
+    verifyVehicleProps(expectedVehicles.at(0), givenVehicles[0])
+    verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
+    verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
   })
 
   function AVehiclesView () {
@@ -48,7 +51,6 @@ describe('VehiclesView.vue', () => {
     const getters = {
       [GET_VEHICLES]: () => vehicles
     }
-    
     let wrapper
 
     function withVehicles (newVehicles) {
