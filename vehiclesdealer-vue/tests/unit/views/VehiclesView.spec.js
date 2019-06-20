@@ -29,7 +29,7 @@ describe('VehiclesView.vue', () => {
     expect(vehiclesView.contains('#no-vehicles')).toBe(false)
   })
 
-  test('display vehicles with their corresponding props', () => {
+  test('display a grid of vehicles with their corresponding props', () => {
     const givenVehicles = [
       givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
       givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
