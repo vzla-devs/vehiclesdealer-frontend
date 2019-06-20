@@ -17,7 +17,7 @@ describe('vehiclesGetters.js', () => {
     expect(vehiclesFromGetter).not.toBe(givenVehicles)
   })
 
-  function givenAVehicle ({ brand, model, year, price, imageUrl } = {}) {
+  function givenAVehicle ({ brand, model, year, price, imageUrl }) {
     return { brand, model, year, price, imageUrl }
   }
 })
