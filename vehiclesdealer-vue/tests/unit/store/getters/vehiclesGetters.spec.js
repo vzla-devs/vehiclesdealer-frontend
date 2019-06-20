@@ -9,9 +9,9 @@ describe('vehiclesGetters.js', () => {
       givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
       givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
     ]
-    const state = Object.assign({}, initialState, { vehicles: givenVehicles })
+    const givenState = Object.assign({}, initialState, { vehicles: givenVehicles })
   
-    const vehiclesFromGetter = vehiclesGetters[GET_VEHICLES](state)
+    const vehiclesFromGetter = vehiclesGetters[GET_VEHICLES](givenState)
   
     expect(vehiclesFromGetter).toEqual(givenVehicles)
     expect(vehiclesFromGetter).not.toBe(givenVehicles)
