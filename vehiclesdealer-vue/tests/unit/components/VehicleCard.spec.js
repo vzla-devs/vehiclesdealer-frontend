@@ -16,27 +16,27 @@ describe('VehicleCard.vue', () => {
     })
     
     test('displays an image', () => {
-        const imageUrl = 'anyUrl'
+        const givenImageUrl = 'anyUrl'
 
-        wrapper.setProps({ imageUrl })
+        wrapper.setProps({ imageUrl: givenImageUrl })
 
-        expect(wrapper.find('img').attributes().src).toBe(imageUrl)
+        expect(wrapper.find('img').attributes().src).toBe(givenImageUrl)
     })
 
     test('displays a description', () => {
-        const brand = 'anyBrand'
-        const model = 'anyModel'
-        const year = 2019
+        const givenBrand = 'anyBrand'
+        const givenModel = 'anyModel'
+        const givenYear = 2019
 
-        wrapper.setProps({ brand, model, year })
+        wrapper.setProps({ brand: givenBrand, model: givenModel, year: givenYear })
 
         expect(wrapper.find('.description').text()).toBe('anyBrand anyModel - 2019')
     })
 
     test('displays a price', () => {
-        const price = 9999
+        const givenPrice = 9999
 
-        wrapper.setProps({ price })
+        wrapper.setProps({ price: givenPrice })
 
         expect(wrapper.find('.price').text()).toBe('9999 €')
     })
