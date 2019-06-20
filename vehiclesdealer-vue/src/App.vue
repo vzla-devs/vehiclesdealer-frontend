@@ -1,12 +1,26 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Inicio</router-link> |
-      <router-link to="/vehiculos">Vehículos</router-link>
+      <router-link class="home-link" :to="homeRoute">Inicio</router-link> |
+      <router-link class="vehicles-link" :to="vehiclesRoute">Vehículos</router-link>
     </div>
     <router-view id="content"/>
   </div>
 </template>
+
+<script>
+import { HOME_ROUTE, VEHICLES_ROUTE } from './constants/routes'
+export default {
+  computed: {
+    homeRoute () {
+      return HOME_ROUTE
+    },
+    vehiclesRoute () {
+      return VEHICLES_ROUTE
+    }
+  }
+}
+</script>
 
 <style lang="scss">
 body {
