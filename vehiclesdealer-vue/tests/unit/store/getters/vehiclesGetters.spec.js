@@ -12,7 +12,7 @@ describe('vehiclesGetters.js', () => {
     const givenState = Object.assign({}, initialState, { vehicles: givenVehicles })
   
     const vehiclesFromGetter = vehiclesGetters[GET_VEHICLES](givenState)
-  
+
     expect(vehiclesFromGetter).toEqual(givenVehicles)
     expect(vehiclesFromGetter).not.toBe(givenVehicles)
   })
