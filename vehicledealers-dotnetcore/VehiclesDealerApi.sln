@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclesDealerApi", "VehiclesDealerApi\VehiclesDealerApi.csproj", "{D15FF0BC-3390-447E-B252-C7682105CAFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VehiclesDealerApi", "VehiclesDealerApi\VehiclesDealerApi.csproj", "{D15FF0BC-3390-447E-B252-C7682105CAFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queries", "Queries\Queries.csproj", "{C08C9E47-0B5F-4829-95EA-C0487536E786}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D15FF0BC-3390-447E-B252-C7682105CAFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D15FF0BC-3390-447E-B252-C7682105CAFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D15FF0BC-3390-447E-B252-C7682105CAFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C08C9E47-0B5F-4829-95EA-C0487536E786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C08C9E47-0B5F-4829-95EA-C0487536E786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C08C9E47-0B5F-4829-95EA-C0487536E786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C08C9E47-0B5F-4829-95EA-C0487536E786}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

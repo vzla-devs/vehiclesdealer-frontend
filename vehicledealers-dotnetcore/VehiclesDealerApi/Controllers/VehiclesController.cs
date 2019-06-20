@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Queries.Vehicles;
 
 namespace VehiclesDealerApi.Controllers
 {
@@ -12,9 +10,66 @@ namespace VehiclesDealerApi.Controllers
     {
         // GET api/vehicles
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
+        public ActionResult<List<VehicleDto>> Get() {
+            var vehicles = new List<VehicleDto> {
+                new VehicleDto(
+                    "audi",
+                    "a1",
+                    2019,
+                    9999,
+                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
+                ),
+                new VehicleDto(
+                    "audi",
+                    "a1",
+                    2019,
+                    9999,
+                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
+                ),
+                new VehicleDto(
+                    "audi",
+                    "a1",
+                    2019,
+                    9999,
+                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
+                ),
+                new VehicleDto(
+                    "audi",
+                    "a1",
+                    2019,
+                    9999,
+                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
+                ),
+                new VehicleDto(
+                    "audi",
+                    "a1",
+                    2019,
+                    9999,
+                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
+                ),
+                new VehicleDto(
+                    "audi",
+                    "a1",
+                    2019,
+                    9999,
+                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
+                ),
+                new VehicleDto(
+                    "audi",
+                    "a1",
+                    2019,
+                    9999,
+                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
+                ),
+                new VehicleDto(
+                    "audi",
+                    "a1",
+                    2019,
+                    9999,
+                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
+                )
+            };
+            return vehicles;
         }
 
         // GET api/vehicles/5
