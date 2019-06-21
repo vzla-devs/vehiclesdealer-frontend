@@ -5,11 +5,10 @@ import VehiclesView from '@/views/VehiclesView'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 
-
-const localVue = createLocalVue()
-localVue.use(Vuex)
-
 describe('VehiclesView.vue', () => {
+  const localVue = createLocalVue()
+  localVue.use(Vuex)
+  
   test('display an empty view when there are no vehicles', () => {
     const givenVehicles = []
 
