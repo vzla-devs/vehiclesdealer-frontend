@@ -15,7 +15,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import { GET_VEHICLES } from '@/store/getters/gettersTypes'
+import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
@@ -27,7 +27,7 @@ export default {
     NoData
   },
   computed: {
-    ...mapGetters({ vehicles: GET_VEHICLES }),
+    ...mapGetters({ vehicles: GET_AVAILABLE_VEHICLES }),
     hasVehices () {
       return this.vehicles.length > 0
     }

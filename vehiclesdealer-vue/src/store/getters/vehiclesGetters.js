@@ -1,7 +1,7 @@
-import { GET_VEHICLES } from '@/store/getters/gettersTypes'
+import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 
 export default {
-  [GET_VEHICLES]: (state) => {
+  [GET_AVAILABLE_VEHICLES]: (state) => {
     return [ ...state.vehicles ]
   }
 }

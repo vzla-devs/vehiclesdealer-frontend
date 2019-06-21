@@ -1,5 +1,5 @@
 import vehiclesGetters from '@/store/getters/vehiclesGetters'
-import { GET_VEHICLES } from '@/store/getters/gettersTypes'
+import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 import initialState from '@/store/initialState'
 
 describe('vehiclesGetters.js', () => {
@@ -11,7 +11,7 @@ describe('vehiclesGetters.js', () => {
     ]
     const givenState = Object.assign({}, initialState, { vehicles: givenVehicles })
   
-    const vehiclesFromGetter = vehiclesGetters[GET_VEHICLES](givenState)
+    const vehiclesFromGetter = vehiclesGetters[GET_AVAILABLE_VEHICLES](givenState)
 
     expect(vehiclesFromGetter).toEqual(givenVehicles)
     expect(vehiclesFromGetter).not.toBe(givenVehicles)

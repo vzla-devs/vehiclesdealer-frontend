@@ -1,6 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
-import { GET_VEHICLES } from '@/store/getters/gettersTypes'
+import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 import VehiclesContainer from '@/components/VehiclesContainer'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
@@ -47,7 +47,7 @@ describe('VehiclesContainer.vue', () => {
   function AVehiclesContainer () {
     let vehicles = []
     const getters = {
-      [GET_VEHICLES]: () => vehicles
+      [GET_AVAILABLE_VEHICLES]: () => vehicles
     }
     let wrapper
 
