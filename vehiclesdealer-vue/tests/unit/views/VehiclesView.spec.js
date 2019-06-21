@@ -6,7 +6,7 @@ describe('VehiclesView.vue', () => {
   test('display the view corresponding structure', () => {
     const wrapper = shallowMount(VehiclesView)
 
-    expect(wrapper.find('.vehicles-view-title').text()).toBe('Vehículos')
+    expect(wrapper.find('.title').text()).toBe('Vehículos')
     expect(wrapper.find(VehiclesContainer).exists()).toBe(true)
   })
 })

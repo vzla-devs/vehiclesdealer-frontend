@@ -1,7 +1,7 @@
 <template>
 <div>
   <div id="vehicles-view">
-    <h1 class="vehicles-view-title">Vehículos</h1>
+    <h1 class="title">Vehículos</h1>
     <vehicles-container />
   </div>
 </div>
