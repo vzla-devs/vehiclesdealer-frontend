@@ -1,54 +1,28 @@
 <template>
 <div>
-  <div id="vehicles-view-container">
-    <h1>Vehículos</h1>
-    <grid-layout v-if="hasVehices">
-      <vehicle-card v-for="(vehicle, index) in vehicles" :key="index"
-        :brand="vehicle.brand"
-        :model="vehicle.model"
-        :year="vehicle.year"
-        :price="vehicle.price"
-        :imageUrl="vehicle.imageUrl"
-      />
-    </grid-layout>
-    <div v-else id="no-vehicles">No hay vehículos disponibles</div>
+  <div id="vehicles-view">
+    <h1 class="vehicles-view-title">Vehículos</h1>
+    <vehicles-container />
   </div>
 </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import { GET_VEHICLES } from '@/store/getters/gettersTypes'
-import GridLayout from '@/components/basic/GridLayout'
-import VehicleCard from '@/components/VehicleCard'
+import VehiclesContainer from '@/components/VehiclesContainer'
 
 export default {
   components: {
-    GridLayout,
-    VehicleCard
-  },
-  computed: {
-    ...mapGetters({ vehicles: GET_VEHICLES }),
-    hasVehices () {
-      return this.vehicles.length > 0
-    }
+    VehiclesContainer
   }
 }
 </script>
 
 <style lang="scss" scoped>
-#vehicles-view-container {
+#vehicles-view {
   display: grid;
   grid-template-rows: 1fr auto;
   grid-template-columns: 100%;
   grid-gap: $small-space;
-}
-
-#no-vehicles {
-  height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 @media (min-width: $medium-breakpoint) {
