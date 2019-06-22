@@ -24,6 +24,21 @@ describe('vehiclesActions.js', () => {
     expect(context.commit).toHaveBeenCalledWith(SET_VEHICLES, vehicles)
   })
 
+  test('do not commit the corresponding mutation when it gets a failure from the API', async () => {
+    const mockCommit = jest.fn()
+    const context = { 'commit': mockCommit }
+    const reason = 'error'
+    axios.get.mockImplementation(() => Promise.reject(reason))
+
+    const promise = vehiclesActions[GET_VEHICLES](context)
+
+    expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
+    expect(context.commit).not.toHaveBeenCalled()
+    const expectedResponse = await promise
+    expect(context.commit).not.toHaveBeenCalled()
+    expect(expectedResponse).toBe(reason)
+  })
+
   function givenAVehicleFromAPI ({ brand, model, year, price, imageUrl }) {
     return { brand, model, year, price, imageUrl }
   }

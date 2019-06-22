@@ -5,8 +5,12 @@ import axios from 'axios'
 
 export default {
   [GET_VEHICLES]: ({ commit }) => {
-    return axios.get(GET_VEHICLES_URL).then((response) => {
-      commit(SET_VEHICLES, response.data)
-    })
+    return axios.get(GET_VEHICLES_URL)
+      .then((response) => {
+        commit(SET_VEHICLES, response.data)
+      })
+      .catch((error) => {
+        return error
+      })
   }
 }
