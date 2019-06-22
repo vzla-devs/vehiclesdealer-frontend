@@ -3,6 +3,7 @@ import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 import { SET_VEHICLES } from '@/store/mutations/mutationsTypes'
 import { GET_VEHICLES_URL } from '@/constants/serverRoutes'
 import axios from 'axios'
+import flushPromises from 'flush-promises'
 
 jest.mock('axios')
 
@@ -13,12 +14,13 @@ describe('vehiclesActions.js', () => {
     const vehicles = [
       givenAVehicleFromAPI({ brand: 'anyBrand', model: 'anyModel', year: 2019, price: 9999, imageUrl: 'anyUrl' })
     ]
-    axios.get.mockImplementation(() => Promise.resolve(vehicles))
+    axios.get.mockImplementation(() => Promise.resolve({ data: vehicles }))
 
     vehiclesActions[GET_VEHICLES](context)
 
-    expect(context.commit).not.toHaveBeenCalledWith(SET_VEHICLES, vehicles)
-    await expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
+    expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
+    expect(context.commit).not.toHaveBeenCalled()
+    await flushPromises()
     expect(context.commit).toHaveBeenCalledWith(SET_VEHICLES, vehicles)
   })
 

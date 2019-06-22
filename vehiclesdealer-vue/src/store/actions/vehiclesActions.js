@@ -5,9 +5,8 @@ import axios from 'axios'
 
 export default {
   [GET_VEHICLES]: ({ commit }) => {
-    axios.get(GET_VEHICLES_URL)
-      .then((vehicles) => {
-        commit(SET_VEHICLES, vehicles)
-      })
+    return axios.get(GET_VEHICLES_URL).then((response) => {
+      commit(SET_VEHICLES, response.data)
+    })
   }
 }
