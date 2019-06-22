@@ -4,13 +4,13 @@ import { GET_VEHICLES_URL } from '@/constants/serverRoutes'
 import axios from 'axios'
 
 export default {
-  [GET_VEHICLES]: ({ commit }) => {
-    return axios.get(GET_VEHICLES_URL)
-      .then((response) => {
-        commit(SET_VEHICLES, response.data)
-      })
-      .catch((error) => {
-        return error
-      })
+  [GET_VEHICLES]: async ({ commit }) => {
+    try {
+      const response = await axios.get(GET_VEHICLES_URL)
+      commit(SET_VEHICLES, response.data)
+    }
+    catch (error) {
+      return error
+    }
   }
 }
