@@ -14,8 +14,9 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
+import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
@@ -31,6 +32,12 @@ export default {
     hasVehices () {
       return this.vehicles.length > 0
     }
+  },
+  created () {
+    this.getVehicles()
+  },
+  methods: {
+    ...mapActions({ getVehicles: GET_VEHICLES })
   }
 }
 </script>

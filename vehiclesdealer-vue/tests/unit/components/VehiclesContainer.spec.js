@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
+import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 import VehiclesContainer from '@/components/VehiclesContainer'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
@@ -10,9 +11,14 @@ describe('VehiclesContainer.vue', () => {
   const localVue = createLocalVue()
   localVue.use(Vuex)
 
-  test('display an empty view when there are no vehicles', () => {
-    const givenVehicles = []
+  test('call action to get vehicles when creating the component', async () => {
+    const vehiclesContainer = AVehiclesContainer().build()
 
+    expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
+  })
+
+  test('display an empty view when there are no vehicles', async () => {
+    const givenVehicles = []
     const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
 
     expect(vehiclesContainer.contains(GridLayout)).toBe(false)
@@ -49,6 +55,9 @@ describe('VehiclesContainer.vue', () => {
     const getters = {
       [GET_AVAILABLE_VEHICLES]: () => vehicles
     }
+    const actions = {
+      [GET_VEHICLES]: jest.fn()
+    }
     let wrapper
 
     function withVehicles (newVehicles) {
@@ -57,7 +66,7 @@ describe('VehiclesContainer.vue', () => {
     }
 
     function build () {
-      const store = new Vuex.Store({ getters })
+      const store = new Vuex.Store({ getters, actions })
       wrapper = shallowMount(VehiclesContainer, { store, localVue })
       return self
     }
@@ -67,7 +76,8 @@ describe('VehiclesContainer.vue', () => {
       build,
       find: (element) => wrapper.find(element),
       findAll: (element) => wrapper.findAll(element),
-      contains: (element) => wrapper.contains(element)
+      contains: (element) => wrapper.contains(element),
+      getAction: (actionName) => actions[actionName]
     }
     return self
   }
