@@ -10,6 +10,9 @@
     />
   </grid-layout>
   <no-data v-else message="No hay vehículos disponibles" />
+  <v-alert v-if="displayError" :value="true" class="error-alert" dismissible type="error">
+    Ha ocurrido un error
+  </v-alert>
 </div>
 </template>
 
@@ -33,8 +36,17 @@ export default {
       return this.vehicles.length > 0
     }
   },
-  created () {
-    this.getVehicles()
+  data () {
+    return {
+      displayError: false
+    }
+  },
+  async created () {
+    try {
+      await this.getVehicles()
+    } catch (error) {
+      this.displayError = true
+    }
   },
   methods: {
     ...mapActions({ getVehicles: GET_VEHICLES })

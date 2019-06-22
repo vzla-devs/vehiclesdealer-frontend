@@ -6,15 +6,24 @@ import VehiclesContainer from '@/components/VehiclesContainer'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
+import flushPromises from 'flush-promises'
 
 describe('VehiclesContainer.vue', () => {
   const localVue = createLocalVue()
   localVue.use(Vuex)
 
-  test('call action to get vehicles when creating the component', async () => {
+  test('call action to get vehicles when creating the component', () => {
     const vehiclesContainer = AVehiclesContainer().build()
 
     expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
+  })
+
+  test.only('display error message when the action fails', async () => {
+    const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
+
+    expect(vehiclesContainer.find('.error-alert').exists()).toBe(false)
+    await flushPromises()
+    expect(vehiclesContainer.find('.error-alert').exists()).toBe(true)
   })
 
   test('display an empty view when there are no vehicles', async () => {
@@ -65,14 +74,24 @@ describe('VehiclesContainer.vue', () => {
       return self
     }
 
+    function withFailedAction () {
+      actions[GET_VEHICLES] = () => Promise.reject('sssss')
+      return self
+    }
+
     function build () {
       const store = new Vuex.Store({ getters, actions })
-      wrapper = shallowMount(VehiclesContainer, { store, localVue })
+      wrapper = shallowMount(VehiclesContainer, {
+        store,
+        localVue,
+        stubs: ['v-alert']
+      })
       return self
     }
 
     const self = {
       withVehicles,
+      withFailedAction,
       build,
       find: (element) => wrapper.find(element),
       findAll: (element) => wrapper.findAll(element),

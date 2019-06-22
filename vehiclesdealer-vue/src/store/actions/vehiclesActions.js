@@ -8,8 +8,7 @@ export default {
     try {
       const response = await axios.get(GET_VEHICLES_URL)
       commit(SET_VEHICLES, response.data)
-    }
-    catch (error) {
+    } catch (error) {
       return error
     }
   }
