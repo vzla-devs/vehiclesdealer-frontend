@@ -3,7 +3,6 @@ import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 import { SET_VEHICLES } from '@/store/mutations/mutationsTypes'
 import { GET_VEHICLES_URL } from '@/constants/serverRoutes'
 import axios from 'axios'
-import flushPromises from 'flush-promises'
 
 jest.mock('axios')
 
@@ -16,11 +15,11 @@ describe('vehiclesActions.js', () => {
     ]
     axios.get.mockImplementation(() => Promise.resolve({ data: vehicles }))
 
-    vehiclesActions[GET_VEHICLES](context)
+    const promise = vehiclesActions[GET_VEHICLES](context)
 
     expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
     expect(context.commit).not.toHaveBeenCalled()
-    await flushPromises()
+    await promise
     expect(context.commit).toHaveBeenCalledWith(SET_VEHICLES, vehicles)
   })
 
