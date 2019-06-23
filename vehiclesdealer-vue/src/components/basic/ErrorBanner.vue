@@ -1,5 +1,5 @@
 <template>
-  <v-alert v-show="displayError" class="error-banner" :value="true" dismissible type="error">
+  <v-alert class="error-banner" :value="true" dismissible type="error">
     {{ message }}
   </v-alert>
 </template>
