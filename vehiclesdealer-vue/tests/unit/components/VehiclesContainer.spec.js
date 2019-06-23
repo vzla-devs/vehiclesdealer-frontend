@@ -18,12 +18,13 @@ describe('VehiclesContainer.vue', () => {
     expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
   })
 
-  test.only('display error message when the action fails', async () => {
+  test('display error message when the action fails', async () => {
     const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
 
-    expect(vehiclesContainer.find('.error-alert').exists()).toBe(false)
+    expect(vehiclesContainer.find('.error-alert').isVisible()).toBe(false)
     await flushPromises()
-    expect(vehiclesContainer.find('.error-alert').exists()).toBe(true)
+    expect(vehiclesContainer.find('.error-alert').isVisible()).toBe(true)
+    expect(vehiclesContainer.find('.error-alert').text()).toBe('Ha ocurrido un error')
   })
 
   test('display an empty view when there are no vehicles', async () => {

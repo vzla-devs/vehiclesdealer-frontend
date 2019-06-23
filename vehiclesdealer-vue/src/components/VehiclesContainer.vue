@@ -10,7 +10,7 @@
     />
   </grid-layout>
   <no-data v-else message="No hay vehículos disponibles" />
-  <v-alert v-if="displayError" :value="true" class="error-alert" dismissible type="error">
+  <v-alert v-show="displayError" class="error-alert" :value="true" color="error" dismissible type="error">
     Ha ocurrido un error
   </v-alert>
 </div>
