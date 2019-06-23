@@ -9,8 +9,8 @@
       :imageUrl="vehicle.imageUrl"
     />
   </grid-layout>
-  <no-data v-else message="No hay vehículos disponibles" />
-  <v-alert v-show="displayError" class="error-alert" :value="true" color="error" dismissible type="error">
+  <no-data v-if="isDoneLoading && !hasVehices" message="No hay vehículos disponibles" />
+  <v-alert v-show="displayError" class="error-alert" :value="true" dismissible type="error">
     Ha ocurrido un error
   </v-alert>
 </div>
@@ -38,7 +38,8 @@ export default {
   },
   data () {
     return {
-      displayError: false
+      displayError: false,
+      isDoneLoading: false
     }
   },
   async created () {
@@ -47,6 +48,7 @@ export default {
     } catch (error) {
       this.displayError = true
     }
+    this.isDoneLoading = true
   },
   methods: {
     ...mapActions({ getVehicles: GET_VEHICLES })

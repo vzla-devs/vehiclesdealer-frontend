@@ -31,6 +31,8 @@ describe('VehiclesContainer.vue', () => {
     const givenVehicles = []
     const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
 
+    expect(vehiclesContainer.find(NoData).exists()).toBe(false)
+    await flushPromises()
     expect(vehiclesContainer.contains(GridLayout)).toBe(false)
     expect(vehiclesContainer.find(NoData).props().message).toBe('No hay vehículos disponibles')
   })
