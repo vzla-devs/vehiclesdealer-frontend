@@ -10,7 +10,7 @@
     />
   </grid-layout>
   <no-data v-if="isDoneLoading && !hasVehices" message="No hay vehículos disponibles" />
-  <error-banner v-show="displayError" message="Ha ocurrido un error" />
+  <error-banner v-show="showError" message="Ha ocurrido un error" />
 </div>
 </template>
 
@@ -38,7 +38,7 @@ export default {
   },
   data () {
     return {
-      displayError: false,
+      showError: false,
       isDoneLoading: false
     }
   },
@@ -46,7 +46,7 @@ export default {
     try {
       await this.getVehicles()
     } catch (error) {
-      this.displayError = true
+      this.showError = true
     }
     this.isDoneLoading = true
   },

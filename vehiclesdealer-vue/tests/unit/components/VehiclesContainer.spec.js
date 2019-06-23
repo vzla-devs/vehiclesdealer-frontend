@@ -19,7 +19,7 @@ describe('VehiclesContainer.vue', () => {
     expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
   })
 
-  test('display error banner when the action fails', async () => {
+  test('show error banner when the action fails', async () => {
     const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
 
     expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
@@ -28,7 +28,7 @@ describe('VehiclesContainer.vue', () => {
     expect(vehiclesContainer.find(ErrorBanner).props().message).toBe('Ha ocurrido un error')
   })
 
-  test('display an empty view when there are no vehicles', async () => {
+  test('show an empty view when there are no vehicles', async () => {
     const givenVehicles = []
     const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
 
@@ -39,7 +39,7 @@ describe('VehiclesContainer.vue', () => {
     expect(vehiclesContainer.find(NoData).props().message).toBe('No hay vehículos disponibles')
   })
 
-  test('display a grid of vehicles', async () => {
+  test('show a grid of vehicles', async () => {
     const givenVehicles = [givenAVehicle(), givenAVehicle(), givenAVehicle()]
     const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
 
@@ -51,7 +51,7 @@ describe('VehiclesContainer.vue', () => {
     expect(vehiclesContainer.contains(NoData)).toBe(false)
   })
 
-  test('display a grid of vehicles with their corresponding props', async () => {
+  test('show a grid of vehicles with their corresponding props', async () => {
     const givenVehicles = [
       givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
       givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
