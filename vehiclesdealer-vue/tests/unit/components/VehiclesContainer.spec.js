@@ -6,6 +6,7 @@ import VehiclesContainer from '@/components/VehiclesContainer'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
+import ErrorBanner from '@/components/basic/ErrorBanner'
 import flushPromises from 'flush-promises'
 
 describe('VehiclesContainer.vue', () => {
@@ -18,13 +19,13 @@ describe('VehiclesContainer.vue', () => {
     expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
   })
 
-  test('display error message when the action fails', async () => {
+  test('display error banner when the action fails', async () => {
     const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
 
-    expect(vehiclesContainer.find('.error-alert').isVisible()).toBe(false)
+    expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
     await flushPromises()
-    expect(vehiclesContainer.find('.error-alert').isVisible()).toBe(true)
-    expect(vehiclesContainer.find('.error-alert').text()).toBe('Ha ocurrido un error')
+    expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
+    expect(vehiclesContainer.find(ErrorBanner).props().message).toBe('Ha ocurrido un error')
   })
 
   test('display an empty view when there are no vehicles', async () => {

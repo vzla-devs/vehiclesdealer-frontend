@@ -10,9 +10,7 @@
     />
   </grid-layout>
   <no-data v-if="isDoneLoading && !hasVehices" message="No hay vehículos disponibles" />
-  <v-alert v-show="displayError" class="error-alert" :value="true" dismissible type="error">
-    Ha ocurrido un error
-  </v-alert>
+  <error-banner v-show="displayError" message="Ha ocurrido un error" />
 </div>
 </template>
 
@@ -23,12 +21,14 @@ import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
+import ErrorBanner from '@/components/basic/ErrorBanner'
 
 export default {
   components: {
     GridLayout,
     VehicleCard,
-    NoData
+    NoData,
+    ErrorBanner
   },
   computed: {
     ...mapGetters({ vehicles: GET_AVAILABLE_VEHICLES }),
