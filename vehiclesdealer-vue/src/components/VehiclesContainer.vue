@@ -1,6 +1,6 @@
 <template>
 <div>
-  <grid-layout v-if="hasVehices">
+  <grid-layout v-if="isDoneLoading && hasVehices">
     <vehicle-card v-for="(vehicle, index) in vehicles" :key="index"
       :brand="vehicle.brand"
       :model="vehicle.model"

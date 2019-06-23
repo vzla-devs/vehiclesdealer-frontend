@@ -38,17 +38,19 @@ describe('VehiclesContainer.vue', () => {
     expect(vehiclesContainer.find(NoData).props().message).toBe('No hay vehículos disponibles')
   })
 
-  test('display a grid of vehicles', () => {
+  test('display a grid of vehicles', async () => {
     const givenVehicles = [givenAVehicle(), givenAVehicle(), givenAVehicle()]
     const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
 
+    expect(vehiclesContainer.contains(GridLayout)).toBe(false)
+    await flushPromises()
     expect(vehiclesContainer.contains(GridLayout)).toBe(true)
     const expectedGrid = vehiclesContainer.find(GridLayout)
     expect(expectedGrid.findAll(VehicleCard).length).toBe(3)
     expect(vehiclesContainer.contains(NoData)).toBe(false)
   })
 
-  test('display a grid of vehicles with their corresponding props', () => {
+  test('display a grid of vehicles with their corresponding props', async () => {
     const givenVehicles = [
       givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
       givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
@@ -57,6 +59,7 @@ describe('VehiclesContainer.vue', () => {
 
     const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
 
+    await flushPromises()
     const expectedVehicles = vehiclesContainer.findAll(VehicleCard)
     verifyVehicleProps(expectedVehicles.at(0), givenVehicles[0])
     verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
