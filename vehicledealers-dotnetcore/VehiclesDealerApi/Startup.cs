@@ -41,6 +41,7 @@ namespace VehiclesDealerApi
                 app.UseHsts();
             }
 
+            app.UseCors(options => options.AllowAnyOrigin());
             app.UseHttpsRedirection();
             app.UseMvc();
         }
