@@ -1,5 +1,5 @@
 <template>
-  <v-alert class="error-banner" :value="true" dismissible type="error">
+  <v-alert class="error-banner red" :value="true" dismissible type="error">
     {{ message }}
   </v-alert>
 </template>
@@ -11,3 +11,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.error-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+</style>
