@@ -3,6 +3,7 @@ import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 import { SET_VEHICLES } from '@/store/mutations/mutationsTypes'
 import { GET_VEHICLES_URL } from '@/constants/serverRoutes'
 import axios from 'axios'
+
 jest.mock('axios')
 
 describe('vehiclesActions.js', () => {
@@ -16,7 +17,7 @@ describe('vehiclesActions.js', () => {
       givenAVehicleFromAPI({ brand: 'anyBrand', model: 'anyModel', year: 2019, price: 9999, imageUrl: 'anyUrl' })
     ]
     const resolvedPromise = Promise.resolve({ data: vehicles })
-    axios.get.mockImplementation(() => resolvedPromise)
+    mockGetImplementation(resolvedPromise)
 
     const promise = vehiclesActions[GET_VEHICLES](mockedContext)
 
@@ -29,7 +30,7 @@ describe('vehiclesActions.js', () => {
   test('do not commit the corresponding mutation when it gets a failure from the API', async () => {
     const reason = 'error'
     const rejectedPromise = Promise.reject(reason)
-    axios.get.mockImplementation(() => rejectedPromise)
+    mockGetImplementation(rejectedPromise)
 
     const promise = vehiclesActions[GET_VEHICLES](mockedContext)
 
@@ -42,5 +43,9 @@ describe('vehiclesActions.js', () => {
 
   function givenAVehicleFromAPI ({ brand, model, year, price, imageUrl }) {
     return { brand, model, year, price, imageUrl }
+  }
+
+  function mockGetImplementation(promise) {
+    axios.get.mockImplementation(() => promise)
   }
 })
