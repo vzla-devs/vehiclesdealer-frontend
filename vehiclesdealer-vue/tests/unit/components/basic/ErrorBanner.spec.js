@@ -17,4 +17,10 @@ describe('ErrorBanner.vue', () => {
 
     expect(wrapper.find('.error-banner').text()).toBe(message)
   })
+
+  it('emits onClose event when input event is triggered', () => {
+    wrapper.find('.error-banner').vm.$emit('input')
+
+    expect(wrapper.emitted().onClose).toBeTruthy()
+  })
 })

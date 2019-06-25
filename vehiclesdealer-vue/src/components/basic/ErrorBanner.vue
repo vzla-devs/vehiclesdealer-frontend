@@ -1,13 +1,20 @@
 <template>
-  <v-alert class="error-banner red" :value="true" dismissible type="error">
+<div>
+  <v-alert class="error-banner red" :value="true" dismissible type="error" @input="onClose">
     {{ message }}
   </v-alert>
+</div>
 </template>
 
 <script>
 export default {
   props: {
     message: String
+  },
+  methods: {
+    onClose () {
+      this.$emit('onClose')
+    }
   }
 }
 </script>
