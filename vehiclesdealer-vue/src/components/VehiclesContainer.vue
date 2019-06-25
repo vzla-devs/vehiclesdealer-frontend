@@ -10,7 +10,7 @@
     />
   </grid-layout>
   <no-data v-if="isDoneLoading && !hasVehices" message="No hay vehículos disponibles" />
-  <error-banner v-show="showError" message="Ha ocurrido un error" />
+  <error-banner v-show="showError" message="Ha ocurrido un error" @onClose="onCloseErrorBanner" />
 </div>
 </template>
 
@@ -51,7 +51,10 @@ export default {
     this.isDoneLoading = true
   },
   methods: {
-    ...mapActions({ getVehicles: GET_VEHICLES })
+    ...mapActions({ getVehicles: GET_VEHICLES }),
+    onCloseErrorBanner () {
+      this.showError = false
+    }
   }
 }
 </script>

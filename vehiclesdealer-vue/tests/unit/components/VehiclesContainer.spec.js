@@ -74,6 +74,16 @@ describe('VehiclesContainer.vue', () => {
     })
   })
 
+  describe('events', () => {
+    it('hides the error banner when the onClose event is emitted', () => {
+      const vehiclesContainer = AVehiclesContainer().showingErrorBanner().build()
+
+      vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
+  
+      expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
+    })
+  })
+
   function AVehiclesContainer () {
     let vehicles = []
     const getters = {
@@ -81,6 +91,9 @@ describe('VehiclesContainer.vue', () => {
     }
     const actions = {
       [GET_VEHICLES]: jest.fn()
+    }
+    const data = {
+      showError: false
     }
     let wrapper
 
@@ -94,9 +107,15 @@ describe('VehiclesContainer.vue', () => {
       return self
     }
 
+    function showingErrorBanner () {
+      data.showError = true
+      return self
+    }
+
     function build () {
       const store = new Vuex.Store({ getters, actions })
       wrapper = shallowMount(VehiclesContainer, {
+        data () { return data },
         store,
         localVue,
         stubs: ['v-alert']
@@ -107,6 +126,7 @@ describe('VehiclesContainer.vue', () => {
     const self = {
       withVehicles,
       withFailedAction,
+      showingErrorBanner,
       build,
       find: (element) => wrapper.find(element),
       findAll: (element) => wrapper.findAll(element),
