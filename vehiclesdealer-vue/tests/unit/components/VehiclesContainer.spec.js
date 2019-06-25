@@ -18,6 +18,7 @@ describe('VehiclesContainer.vue', () => {
       const givenVehicles = []
       const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
   
+      expect(vehiclesContainer.contains(GridLayout)).toBe(false)
       expect(vehiclesContainer.contains(NoData)).toBe(false)
       await flushPromises()
       expect(vehiclesContainer.contains(GridLayout)).toBe(false)
