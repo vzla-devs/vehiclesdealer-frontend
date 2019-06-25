@@ -44,7 +44,6 @@ describe('VehiclesContainer.vue', () => {
         givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
         givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
-  
       const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
   
       await flushPromises()
@@ -76,7 +75,6 @@ describe('VehiclesContainer.vue', () => {
         expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
         await flushPromises()
         expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
-        expect(vehiclesContainer.find(ErrorBanner).props().message).toBe('Ha ocurrido un error')
       })
     })
   })
@@ -110,7 +108,7 @@ describe('VehiclesContainer.vue', () => {
     }
 
     function withFailedAction () {
-      actions[GET_VEHICLES] = () => Promise.reject('sssss')
+      actions[GET_VEHICLES] = () => Promise.reject()
       return self
     }
 
