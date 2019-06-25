@@ -53,6 +53,13 @@ describe('VehiclesContainer.vue', () => {
       verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
       verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
     })
+
+    it('shows an error banner', () => {
+      const vehiclesContainer = AVehiclesContainer().isShowingErrorBanner().build()
+
+      expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
+      expect(vehiclesContainer.find(ErrorBanner).props().message).toBe('Ha ocurrido un error')
+    })
   })
 
   describe('lifecycle', () => {
@@ -76,7 +83,7 @@ describe('VehiclesContainer.vue', () => {
 
   describe('events', () => {
     it('hides the error banner when the onClose event is emitted', () => {
-      const vehiclesContainer = AVehiclesContainer().showingErrorBanner().build()
+      const vehiclesContainer = AVehiclesContainer().isShowingErrorBanner().build()
 
       vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
   
@@ -107,7 +114,7 @@ describe('VehiclesContainer.vue', () => {
       return self
     }
 
-    function showingErrorBanner () {
+    function isShowingErrorBanner () {
       data.showError = true
       return self
     }
@@ -126,7 +133,7 @@ describe('VehiclesContainer.vue', () => {
     const self = {
       withVehicles,
       withFailedAction,
-      showingErrorBanner,
+      isShowingErrorBanner,
       build,
       find: (element) => wrapper.find(element),
       findAll: (element) => wrapper.findAll(element),
