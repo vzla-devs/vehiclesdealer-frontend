@@ -3,7 +3,7 @@ import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 import initialState from '@/store/initialState'
 
 describe('vehiclesGetters.js', () => {
-  test('get vehicles', () => {
+  it('gets vehicles from the state', () => {
     const givenVehicles = [
       givenAVehicleFromState({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
       givenAVehicleFromState({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),

@@ -7,7 +7,7 @@ describe('App.vue', () => {
   const localVue = createLocalVue()
   localVue.use(VueRouter)
 
-  test('display the corresponding App structure', () => {
+  it('shows the corresponding app structure', () => {
     let wrapper
 
     wrapper = shallowMount(App, { localVue })

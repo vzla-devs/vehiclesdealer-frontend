@@ -13,58 +13,64 @@ describe('VehiclesContainer.vue', () => {
   const localVue = createLocalVue()
   localVue.use(Vuex)
 
-  test('call action to get vehicles when creating the component', () => {
-    const vehiclesContainer = AVehiclesContainer().build()
-
-    expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
+  describe('rendering', () => {
+    it('shows an empty view when there are no vehicles', async () => {
+      const givenVehicles = []
+      const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
+  
+      expect(vehiclesContainer.contains(NoData)).toBe(false)
+      await flushPromises()
+      expect(vehiclesContainer.contains(GridLayout)).toBe(false)
+      expect(vehiclesContainer.contains(NoData)).toBe(true)
+      expect(vehiclesContainer.find(NoData).props().message).toBe('No hay vehículos disponibles')
+    })
+  
+    it('shows a grid of vehicles', async () => {
+      const givenVehicles = [givenAVehicle(), givenAVehicle(), givenAVehicle()]
+      const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
+  
+      expect(vehiclesContainer.contains(GridLayout)).toBe(false)
+      await flushPromises()
+      expect(vehiclesContainer.contains(GridLayout)).toBe(true)
+      const expectedGrid = vehiclesContainer.find(GridLayout)
+      expect(expectedGrid.findAll(VehicleCard).length).toBe(3)
+      expect(vehiclesContainer.contains(NoData)).toBe(false)
+    })
+  
+    it('shows a grid of vehicles with their corresponding props', async () => {
+      const givenVehicles = [
+        givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
+        givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
+        givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
+      ]
+  
+      const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
+  
+      await flushPromises()
+      const expectedVehicles = vehiclesContainer.findAll(VehicleCard)
+      verifyVehicleProps(expectedVehicles.at(0), givenVehicles[0])
+      verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
+      verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
+    })
   })
 
-  test('show error banner when the action fails', async () => {
-    const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
+  describe('lifecycle', () => {
+    describe('when the component is created', () => {
+      it('calls an action to get vehicles', () => {
+        const vehiclesContainer = AVehiclesContainer().build()
+    
+        expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
+      })
 
-    expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
-    await flushPromises()
-    expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
-    expect(vehiclesContainer.find(ErrorBanner).props().message).toBe('Ha ocurrido un error')
-  })
-
-  test('show an empty view when there are no vehicles', async () => {
-    const givenVehicles = []
-    const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
-
-    expect(vehiclesContainer.contains(NoData)).toBe(false)
-    await flushPromises()
-    expect(vehiclesContainer.contains(GridLayout)).toBe(false)
-    expect(vehiclesContainer.contains(NoData)).toBe(true)
-    expect(vehiclesContainer.find(NoData).props().message).toBe('No hay vehículos disponibles')
-  })
-
-  test('show a grid of vehicles', async () => {
-    const givenVehicles = [givenAVehicle(), givenAVehicle(), givenAVehicle()]
-    const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
-
-    expect(vehiclesContainer.contains(GridLayout)).toBe(false)
-    await flushPromises()
-    expect(vehiclesContainer.contains(GridLayout)).toBe(true)
-    const expectedGrid = vehiclesContainer.find(GridLayout)
-    expect(expectedGrid.findAll(VehicleCard).length).toBe(3)
-    expect(vehiclesContainer.contains(NoData)).toBe(false)
-  })
-
-  test('show a grid of vehicles with their corresponding props', async () => {
-    const givenVehicles = [
-      givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
-      givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
-      givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
-    ]
-
-    const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
-
-    await flushPromises()
-    const expectedVehicles = vehiclesContainer.findAll(VehicleCard)
-    verifyVehicleProps(expectedVehicles.at(0), givenVehicles[0])
-    verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
-    verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
+      it('shows an error banner when the action to get vehicles fails', async () => {
+        const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
+    
+        expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
+        await flushPromises()
+        expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
+        expect(vehiclesContainer.find(ErrorBanner).props().message).toBe('Ha ocurrido un error')
+      })
+    })
   })
 
   function AVehiclesContainer () {

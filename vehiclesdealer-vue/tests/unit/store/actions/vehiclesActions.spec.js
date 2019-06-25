@@ -12,8 +12,8 @@ describe('vehiclesActions.js', () => {
     mockedContext = { 'commit': jest.fn() }
   })
 
-  describe('when getting the vehicles from the API', () => {
-    test('commit the corresponding mutation after a successful response', async () => {
+  describe('getting vehicles from the API', () => {
+    it('commits the corresponding mutation after a successful response', async () => {
       const vehicles = [
         givenAVehicleFromAPI({ brand: 'anyBrand', model: 'anyModel', year: 2019, price: 9999, imageUrl: 'anyUrl' })
       ]
@@ -28,7 +28,7 @@ describe('vehiclesActions.js', () => {
       expect(mockedContext.commit).toHaveBeenCalledWith(SET_VEHICLES, vehicles)
     })
   
-    test('do not commit the corresponding mutation after a failed response and return the error', async () => {
+    it('does not commit the corresponding mutation after a failed response and return the error', async () => {
       const reason = 'error'
       const rejectedPromise = Promise.reject(reason)
       mockGetImplementation(rejectedPromise)

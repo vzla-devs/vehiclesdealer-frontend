@@ -15,7 +15,7 @@ describe('VehicleCard.vue', () => {
         })
     })
     
-    test('displays an image', () => {
+    it('shows an image', () => {
         const givenImageUrl = 'anyUrl'
 
         wrapper.setProps({ imageUrl: givenImageUrl })
@@ -23,7 +23,7 @@ describe('VehicleCard.vue', () => {
         expect(wrapper.find('img').attributes().src).toBe(givenImageUrl)
     })
 
-    test('displays a description', () => {
+    it('shows a description', () => {
         const givenBrand = 'anyBrand'
         const givenModel = 'anyModel'
         const givenYear = 2019
@@ -33,7 +33,7 @@ describe('VehicleCard.vue', () => {
         expect(wrapper.find('.description').text()).toBe('anyBrand anyModel - 2019')
     })
 
-    test('displays a price', () => {
+    it('shows a price', () => {
         const givenPrice = 9999
 
         wrapper.setProps({ price: givenPrice })
