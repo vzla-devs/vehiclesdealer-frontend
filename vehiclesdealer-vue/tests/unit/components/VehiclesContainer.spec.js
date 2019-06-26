@@ -18,6 +18,7 @@ describe('VehiclesContainer.vue', () => {
       const givenVehicles = []
       const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
   
+      expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
       expect(vehiclesContainer.contains(GridLayout)).toBe(false)
       expect(vehiclesContainer.contains(NoData)).toBe(false)
       await flushPromises()
@@ -26,10 +27,11 @@ describe('VehiclesContainer.vue', () => {
       expect(vehiclesContainer.find(NoData).props().message).toBe('No hay vehículos disponibles')
     })
   
-    it('shows a grid of vehicles', async () => {
+    it('shows a grid of vehicles when there are vehicles', async () => {
       const givenVehicles = [givenAVehicle(), givenAVehicle(), givenAVehicle()]
       const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
   
+      expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
       expect(vehiclesContainer.contains(GridLayout)).toBe(false)
       await flushPromises()
       expect(vehiclesContainer.contains(GridLayout)).toBe(true)
@@ -52,34 +54,17 @@ describe('VehiclesContainer.vue', () => {
       verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
       verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
     })
+  })
 
-    it('shows an error banner', () => {
-      const vehiclesContainer = AVehiclesContainer().isShowingErrorBanner().build()
-
+  describe('when getting the vehicles', () => {
+    it('shows an error banner when the action to get vehicles fails', async () => {
+      const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
+  
+      expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
+      await flushPromises()
       expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
-      expect(vehiclesContainer.find(ErrorBanner).props().message).toBe('Ha ocurrido un error')
     })
-  })
 
-  describe('lifecycle', () => {
-    describe('when the component is created', () => {
-      it('calls an action to get vehicles', () => {
-        const vehiclesContainer = AVehiclesContainer().build()
-    
-        expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
-      })
-
-      it('shows an error banner when the action to get vehicles fails', async () => {
-        const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
-    
-        expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
-        await flushPromises()
-        expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
-      })
-    })
-  })
-
-  describe('events', () => {
     it('hides the error banner when the onClose event is emitted', () => {
       const vehiclesContainer = AVehiclesContainer().isShowingErrorBanner().build()
 
