@@ -13,7 +13,7 @@ describe('VehiclesContainer.vue', () => {
   const localVue = createLocalVue()
   localVue.use(Vuex)
 
-  describe('rendering', () => {
+  describe('when getting the vehicles', () => {
     it('shows an empty view when there are no vehicles', async () => {
       const givenVehicles = []
       const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
@@ -28,19 +28,6 @@ describe('VehiclesContainer.vue', () => {
     })
   
     it('shows a grid of vehicles when there are vehicles', async () => {
-      const givenVehicles = [givenAVehicle(), givenAVehicle(), givenAVehicle()]
-      const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
-  
-      expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
-      expect(vehiclesContainer.contains(GridLayout)).toBe(false)
-      await flushPromises()
-      expect(vehiclesContainer.contains(GridLayout)).toBe(true)
-      const expectedGrid = vehiclesContainer.find(GridLayout)
-      expect(expectedGrid.findAll(VehicleCard).length).toBe(3)
-      expect(vehiclesContainer.contains(NoData)).toBe(false)
-    })
-  
-    it('shows a grid of vehicles with their corresponding props', async () => {
       const givenVehicles = [
         givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
         givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
@@ -48,15 +35,19 @@ describe('VehiclesContainer.vue', () => {
       ]
       const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
   
+      expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
+      expect(vehiclesContainer.contains(GridLayout)).toBe(false)
       await flushPromises()
-      const expectedVehicles = vehiclesContainer.findAll(VehicleCard)
+      expect(vehiclesContainer.contains(NoData)).toBe(false)
+      expect(vehiclesContainer.contains(GridLayout)).toBe(true)
+      const expectedGrid = vehiclesContainer.find(GridLayout)
+      const expectedVehicles = expectedGrid.findAll(VehicleCard)
+      expect(expectedVehicles.length).toBe(3)
       verifyVehicleProps(expectedVehicles.at(0), givenVehicles[0])
       verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
       verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
     })
-  })
 
-  describe('when getting the vehicles', () => {
     it('shows an error banner when the action to get vehicles fails', async () => {
       const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
   
@@ -64,10 +55,12 @@ describe('VehiclesContainer.vue', () => {
       await flushPromises()
       expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
     })
+  })
 
+  describe('when events trigger callbacks', () => {
     it('hides the error banner when the onClose event is emitted', () => {
       const vehiclesContainer = AVehiclesContainer().isShowingErrorBanner().build()
-
+  
       vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
   
       expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
