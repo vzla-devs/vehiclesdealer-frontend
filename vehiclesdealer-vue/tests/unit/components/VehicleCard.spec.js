@@ -7,11 +7,7 @@ describe('VehicleCard.vue', () => {
     
     beforeEach(() => {
         wrapper = shallowMount(VehicleCard, {
-            stubs: {
-                'v-img': ImageStub,
-                'v-card': true,
-                'v-card-title': true
-            }
+            stubs: { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
         })
     })
     
