@@ -3,7 +3,7 @@ import VehiclesView from '@/views/VehiclesView'
 import VehiclesContainer from '@/components/VehiclesContainer'
 
 describe('VehiclesView.vue', () => {
-  it('shows the corresponding view structure', () => {
+  it('shows the vehicles view', () => {
     const wrapper = shallowMount(VehiclesView)
 
     expect(wrapper.find('.title').text()).toBe('Vehículos')
