@@ -7,10 +7,8 @@ describe('App.vue', () => {
   const localVue = createLocalVue()
   localVue.use(VueRouter)
 
-  it('shows the corresponding app structure', () => {
-    let wrapper
-
-    wrapper = shallowMount(App, { localVue })
+  it('shows the app', () => {
+    const wrapper = shallowMount(App, { localVue })
 
     expect(wrapper.find('.home-link').text()).toBe('Inicio')
     expect(wrapper.find('.home-link').props().to).toBe(HOME_ROUTE)
