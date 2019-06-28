@@ -14,7 +14,7 @@ describe('ErrorBanner.vue', () => {
 
   it('emits onClose event when input event is emitted', () => {
     const wrapper = shallowMount(ErrorBanner, { stubs })
-    
+
     wrapper.find('.error-banner').vm.$emit('input')
 
     expect(wrapper.emitted().onClose).toBeTruthy()

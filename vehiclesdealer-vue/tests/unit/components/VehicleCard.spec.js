@@ -3,16 +3,11 @@ import VehicleCard from '@/components/VehicleCard'
 import ImageStub from './stubs/ImageStub'
 
 describe('VehicleCard.vue', () => {
-    let wrapper
-    
-    beforeEach(() => {
-        wrapper = shallowMount(VehicleCard, {
-            stubs: { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
-        })
-    })
+    const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
     
     it('shows an image', () => {
         const givenImageUrl = 'anyUrl'
+        const wrapper = shallowMount(VehicleCard, { stubs })
 
         wrapper.setProps({ imageUrl: givenImageUrl })
 
@@ -23,6 +18,7 @@ describe('VehicleCard.vue', () => {
         const givenBrand = 'anyBrand'
         const givenModel = 'anyModel'
         const givenYear = 2019
+        const wrapper = shallowMount(VehicleCard, { stubs })
 
         wrapper.setProps({ brand: givenBrand, model: givenModel, year: givenYear })
 
@@ -31,6 +27,7 @@ describe('VehicleCard.vue', () => {
 
     it('shows a price', () => {
         const givenPrice = 9999
+        const wrapper = shallowMount(VehicleCard, { stubs })
 
         wrapper.setProps({ price: givenPrice })
 

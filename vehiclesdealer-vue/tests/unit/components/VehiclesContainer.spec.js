@@ -17,7 +17,7 @@ describe('VehiclesContainer.vue', () => {
     it('shows an empty view when there are no vehicles', async () => {
       const givenVehicles = []
       const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
-  
+
       expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
       expect(vehiclesContainer.contains(GridLayout)).toBe(false)
       expect(vehiclesContainer.contains(NoData)).toBe(false)
@@ -26,7 +26,7 @@ describe('VehiclesContainer.vue', () => {
       expect(vehiclesContainer.contains(NoData)).toBe(true)
       expect(vehiclesContainer.find(NoData).props().message).toBe('No hay vehículos disponibles')
     })
-  
+
     it('shows a grid of vehicles when there are vehicles', async () => {
       const givenVehicles = [
         givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
@@ -34,7 +34,7 @@ describe('VehiclesContainer.vue', () => {
         givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
       const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
-  
+
       expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
       expect(vehiclesContainer.contains(GridLayout)).toBe(false)
       await flushPromises()
@@ -50,7 +50,7 @@ describe('VehiclesContainer.vue', () => {
 
     it('shows an error banner when the action to get vehicles fails', async () => {
       const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
-  
+
       expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
       await flushPromises()
       expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
@@ -60,9 +60,9 @@ describe('VehiclesContainer.vue', () => {
   describe('when events trigger callbacks', () => {
     it('hides the error banner when the onClose event is emitted', () => {
       const vehiclesContainer = AVehiclesContainer().isShowingErrorBanner().build()
-  
+
       vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
-  
+
       expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
     })
   })
