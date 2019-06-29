@@ -14,7 +14,7 @@ describe('VehiclesContainer.vue', () => {
   localVue.use(Vuex)
 
   describe('when getting the vehicles', () => {
-    it('shows an empty view when there are no vehicles', async () => {
+    test('shows an empty view when there are no vehicles', async () => {
       const givenVehicles = []
       const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
 
@@ -27,7 +27,7 @@ describe('VehiclesContainer.vue', () => {
       expect(vehiclesContainer.find(NoData).props().message).toBe('No hay vehículos disponibles')
     })
 
-    it('shows a grid of vehicles when there are vehicles', async () => {
+    test('shows a grid of vehicles when there are vehicles', async () => {
       const givenVehicles = [
         givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
         givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
@@ -48,7 +48,7 @@ describe('VehiclesContainer.vue', () => {
       verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
     })
 
-    it('shows an error banner when the action to get vehicles fails', async () => {
+    test('shows an error banner when the action to get vehicles fails', async () => {
       const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
 
       expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
@@ -58,7 +58,7 @@ describe('VehiclesContainer.vue', () => {
   })
 
   describe('when events trigger callbacks', () => {
-    it('hides the error banner when the onClose event is emitted', () => {
+    test('hides the error banner when the onClose event is emitted', () => {
       const vehiclesContainer = AVehiclesContainer().isShowingErrorBanner().build()
 
       vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
