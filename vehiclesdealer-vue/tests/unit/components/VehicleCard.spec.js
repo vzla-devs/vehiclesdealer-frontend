@@ -9,26 +9,23 @@ describe('VehicleCard.vue', () => {
         const year = 2019
         const price = 9999
         const imageUrl = 'anyUrl'
-        const wrapper = givenAVehicleCard().withProps({ brand, model, year, price, imageUrl }).build()
+        
+        const wrapper = AVehicleCard().withProps({ brand, model, year, price, imageUrl }).build()
 
-        expect(wrapper.find('img').attributes().src).toBe(imageUrl)
-        expect(wrapper.find('.description').text()).toBe('anyBrand anyModel - 2019')
-        expect(wrapper.find('.price').text()).toBe('9999 €')
+        expect(wrapper.element).toMatchSnapshot()
     })
 
-    function givenAVehicleCard () {
-        const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
+    function AVehicleCard () {
         let propsData = {}
-        let wrapper
 
-        function withProps(props) {
+        function withProps (props) {
             propsData = { ...props }
             return self
         }
 
         function build () {
-            wrapper = shallowMount(VehicleCard, { stubs, propsData })
-            return wrapper
+            const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
+            return shallowMount(VehicleCard, { stubs, propsData })
         }
 
         const self = {
