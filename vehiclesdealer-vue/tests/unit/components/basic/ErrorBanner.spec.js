@@ -2,21 +2,39 @@ import { shallowMount } from '@vue/test-utils'
 import ErrorBanner from '@/components/basic/ErrorBanner'
 
 describe('ErrorBanner.vue', () => {
-  const stubs = ['v-alert']
-  it('shows a message', () => {
+  test('renders correctly', () => {
     const message = 'anyMessage'
-    const wrapper = shallowMount(ErrorBanner, { stubs })
 
-    wrapper.setProps({ message })
+    const wrapper = AnErrorBanner().withProps({ message }).build()
 
-    expect(wrapper.find('.error-banner').text()).toBe(message)
+    expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('emits onClose event when input event is emitted', () => {
-    const wrapper = shallowMount(ErrorBanner, { stubs })
+  test('emits onClose event when input event is emitted', () => {
+    const wrapper = AnErrorBanner().build()
 
     wrapper.find('.error-banner').vm.$emit('input')
 
     expect(wrapper.emitted().onClose).toBeTruthy()
   })
+
+  function AnErrorBanner () {
+    let propsData = {}
+
+    function withProps (props) {
+      propsData = { ...props }
+      return self
+    }
+
+    function build () {
+      const stubs = ['v-alert']
+      return shallowMount(ErrorBanner, { stubs, propsData })
+    }
+
+    const self = {
+      withProps,
+      build
+    }
+    return self
+  }
 })

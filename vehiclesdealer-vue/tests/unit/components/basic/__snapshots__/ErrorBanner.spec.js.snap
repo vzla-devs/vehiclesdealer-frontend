@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorBanner.vue shows a message 1`] = `
+<div>
+  <v-alert-stub
+    class="error-banner red"
+    dismissible=""
+    type="error"
+    value="true"
+  >
+    
+    anyMessage
+  
+  </v-alert-stub>
+</div>
+`;
