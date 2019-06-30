@@ -5,13 +5,13 @@ import { createWrapperFactory } from '@/helpers/factoryHelpers'
 describe ('VehiclesView.vue', () => {
 
   it ('should render correctly', () => {
-    const wrapper = factory().build()
+    const wrapper = wrapperFactory().build()
 
     expect(wrapper.find('.title').text()).toBe('Vehículos')
     expect(wrapper.find(VehiclesContainer).exists()).toBe(true)
   })
 
-  function factory () {
+  function wrapperFactory () {
     return createWrapperFactory({ component: VehiclesView })
   }
 })

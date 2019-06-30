@@ -11,12 +11,12 @@ describe ('VehicleCard.vue', () => {
         const price = 9999
         const imageUrl = 'anyUrl'
         
-        const wrapper = factory().withProps({ brand, model, year, price, imageUrl }).build()
+        const wrapper = wrapperFactory().withProps({ brand, model, year, price, imageUrl }).build()
 
         expect(wrapper.element).toMatchSnapshot()
     })
 
-    function factory () {
+    function wrapperFactory () {
         const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
         return createWrapperFactory({ component: VehicleCard, stubs })
     }
