@@ -9,7 +9,7 @@ import NoData from '@/components/basic/NoData'
 import ErrorBanner from '@/components/basic/ErrorBanner'
 import flushPromises from 'flush-promises'
 
-describe('VehiclesContainer.vue', () => {
+describe ('VehiclesContainer.vue', () => {
   const getters = {}
   const actions = {}
   const localVue = createLocalVue()
