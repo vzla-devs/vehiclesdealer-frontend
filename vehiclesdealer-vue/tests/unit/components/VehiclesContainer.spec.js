@@ -10,112 +10,85 @@ import ErrorBanner from '@/components/basic/ErrorBanner'
 import flushPromises from 'flush-promises'
 
 describe('VehiclesContainer.vue', () => {
+  const getters = {}
+  const actions = {}
   const localVue = createLocalVue()
   localVue.use(Vuex)
 
-  describe('when getting the vehicles', () => {
-    test('shows an empty view when there are no vehicles', async () => {
-      const givenVehicles = []
-      const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
+  beforeEach(() => {
+    getters[GET_AVAILABLE_VEHICLES] = () => []
+    actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
+  })
 
-      expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
-      expect(vehiclesContainer.contains(GridLayout)).toBe(false)
-      expect(vehiclesContainer.contains(NoData)).toBe(false)
+  describe ('when getting the vehicles', () => {
+
+    it ('should display an empty view when there are no vehicles', async () => {
+      const wrapper = factory().build()
+  
+      expect(actions[GET_VEHICLES]).toHaveBeenCalled()
+      expect(wrapper.contains(GridLayout)).toBe(false)
+      expect(wrapper.contains(NoData)).toBe(false)
       await flushPromises()
-      expect(vehiclesContainer.contains(GridLayout)).toBe(false)
-      expect(vehiclesContainer.contains(NoData)).toBe(true)
-      expect(vehiclesContainer.find(NoData).props().message).toBe('No hay vehículos disponibles')
+      expect(wrapper.contains(GridLayout)).toBe(false)
+      expect(wrapper.contains(NoData)).toBe(true)
+      expect(wrapper.find(NoData).props().message).toBe('No hay vehículos disponibles')
     })
-
-    test('shows a grid of vehicles when there are vehicles', async () => {
+  
+    it ('should display a grid of vehicles when there are vehicles', async () => {
       const givenVehicles = [
         givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
         givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
         givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
-      const vehiclesContainer = AVehiclesContainer().withVehicles(givenVehicles).build()
-
-      expect(vehiclesContainer.getAction(GET_VEHICLES)).toHaveBeenCalled()
-      expect(vehiclesContainer.contains(GridLayout)).toBe(false)
+      getters[GET_AVAILABLE_VEHICLES] = () => givenVehicles
+      const wrapper = factory().build()
+  
+      expect(actions[GET_VEHICLES]).toHaveBeenCalled()
+      expect(wrapper.contains(GridLayout)).toBe(false)
       await flushPromises()
-      expect(vehiclesContainer.contains(NoData)).toBe(false)
-      expect(vehiclesContainer.contains(GridLayout)).toBe(true)
-      const expectedGrid = vehiclesContainer.find(GridLayout)
+      expect(wrapper.contains(NoData)).toBe(false)
+      expect(wrapper.contains(GridLayout)).toBe(true)
+      const expectedGrid = wrapper.find(GridLayout)
       const expectedVehicles = expectedGrid.findAll(VehicleCard)
       expect(expectedVehicles.length).toBe(3)
       verifyVehicleProps(expectedVehicles.at(0), givenVehicles[0])
       verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
       verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
     })
+  })
 
-    test('shows an error banner when the action to get vehicles fails', async () => {
-      const vehiclesContainer = AVehiclesContainer().withFailedAction().build()
+  describe ('when getting the vehicles fails', () => {
 
-      expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
+    beforeEach(() => {
+      actions[GET_VEHICLES] = jest.fn(() => Promise.reject())
+    })
+
+    it ('should display an error banner', async () => {
+      const wrapper = factory().build()
+  
+      expect(actions[GET_VEHICLES]).toHaveBeenCalled()
+      expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
       await flushPromises()
-      expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(true)
+      expect(wrapper.find(ErrorBanner).isVisible()).toBe(true)
     })
-  })
-
-  describe('when events trigger callbacks', () => {
-    test('hides the error banner when the onClose event is emitted', () => {
-      const vehiclesContainer = AVehiclesContainer().isShowingErrorBanner().build()
-
+  
+    it ('should hide the error banner when the onClose event is emitted', async () => {
+      const vehiclesContainer = factory().build()
+      await flushPromises()
+  
       vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
-
+  
       expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
     })
   })
 
-  function AVehiclesContainer () {
-    let vehicles = []
-    const getters = {
-      [GET_AVAILABLE_VEHICLES]: () => vehicles
-    }
-    const actions = {
-      [GET_VEHICLES]: jest.fn()
-    }
-    const data = {
-      showError: false
-    }
-    let wrapper
-
-    function withVehicles (newVehicles) {
-      vehicles = newVehicles
-      return self
-    }
-
-    function withFailedAction () {
-      actions[GET_VEHICLES] = () => Promise.reject()
-      return self
-    }
-
-    function isShowingErrorBanner () {
-      data.showError = true
-      return self
-    }
-
+  function factory () {
     function build () {
       const store = new Vuex.Store({ getters, actions })
-      wrapper = shallowMount(VehiclesContainer, {
-        data () { return data },
-        store,
-        localVue,
-        stubs: ['v-alert']
-      })
-      return self
+      return shallowMount(VehiclesContainer, { localVue, store, stubs: ['v-alert'] })
     }
 
-    const self = {
-      withVehicles,
-      withFailedAction,
-      isShowingErrorBanner,
-      build,
-      find: (element) => wrapper.find(element),
-      findAll: (element) => wrapper.findAll(element),
-      contains: (element) => wrapper.contains(element),
-      getAction: (actionName) => actions[actionName]
-    }
+    const self = { build }
     return self
   }
 
