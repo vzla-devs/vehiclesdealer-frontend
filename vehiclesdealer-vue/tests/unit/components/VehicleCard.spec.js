@@ -2,20 +2,21 @@ import { shallowMount } from '@vue/test-utils'
 import VehicleCard from '@/components/VehicleCard'
 import ImageStub from './stubs/ImageStub'
 
-describe('VehicleCard.vue', () => {
-    test('renders correctly', () => {
+describe ('VehicleCard.vue', () => {
+
+    it ('should render correctly', () => {
         const brand = 'anyBrand'
         const model = 'anyModel'
         const year = 2019
         const price = 9999
         const imageUrl = 'anyUrl'
         
-        const wrapper = AVehicleCard().withProps({ brand, model, year, price, imageUrl }).build()
+        const wrapper = factory().withProps({ brand, model, year, price, imageUrl }).build()
 
         expect(wrapper.element).toMatchSnapshot()
     })
 
-    function AVehicleCard () {
+    function factory () {
         let propsData = {}
 
         function withProps (props) {
