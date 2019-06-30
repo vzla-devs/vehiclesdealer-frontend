@@ -1,4 +1,4 @@
-import { shallowMount, createLocalVue } from '@vue/test-utils'
+import { createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 import { GET_VEHICLES } from '@/store/actions/actionsTypes'
@@ -8,6 +8,7 @@ import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
 import ErrorBanner from '@/components/basic/ErrorBanner'
 import flushPromises from 'flush-promises'
+import { createWrapperFactory } from '@/helpers/factoryHelpers'
 
 describe ('VehiclesContainer.vue', () => {
   const getters = {}
@@ -23,7 +24,7 @@ describe ('VehiclesContainer.vue', () => {
   describe ('when getting the vehicles', () => {
 
     it ('should display an empty view when there are no vehicles', async () => {
-      const wrapper = factory().build()
+      const wrapper = factory().withStore({ getters, actions }).build()
   
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
@@ -41,7 +42,7 @@ describe ('VehiclesContainer.vue', () => {
         givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
       getters[GET_AVAILABLE_VEHICLES] = () => givenVehicles
-      const wrapper = factory().build()
+      const wrapper = factory().withStore({ getters, actions }).build()
   
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
@@ -64,7 +65,7 @@ describe ('VehiclesContainer.vue', () => {
     })
 
     it ('should display an error banner', async () => {
-      const wrapper = factory().build()
+      const wrapper = factory().withStore({ getters, actions }).build()
   
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
@@ -73,7 +74,7 @@ describe ('VehiclesContainer.vue', () => {
     })
   
     it ('should hide the error banner when the onClose event is emitted', async () => {
-      const vehiclesContainer = factory().build()
+      const vehiclesContainer = factory().withStore({ getters, actions }).build()
       await flushPromises()
   
       vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
@@ -83,13 +84,7 @@ describe ('VehiclesContainer.vue', () => {
   })
 
   function factory () {
-    function build () {
-      const store = new Vuex.Store({ getters, actions })
-      return shallowMount(VehiclesContainer, { localVue, store, stubs: ['v-alert'] })
-    }
-
-    const self = { build }
-    return self
+    return createWrapperFactory({ component: VehiclesContainer, localVue, stubs: ['v-alert'] })
   }
 
   function givenAVehicle ({ brand = 'anyBrand', model = 'anyModel', year = 0, price = 0, imageUrl = 'anyUrl' } = {}) {

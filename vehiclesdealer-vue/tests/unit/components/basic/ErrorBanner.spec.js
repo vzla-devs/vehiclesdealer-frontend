@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils'
 import ErrorBanner from '@/components/basic/ErrorBanner'
+import { createWrapperFactory } from '@/helpers/factoryHelpers'
 
 describe( 'ErrorBanner.vue', () => {
 
@@ -20,22 +20,7 @@ describe( 'ErrorBanner.vue', () => {
   })
 
   function factory () {
-    let propsData = {}
-
-    function withProps (props) {
-      propsData = { ...props }
-      return self
-    }
-
-    function build () {
-      const stubs = ['v-alert']
-      return shallowMount(ErrorBanner, { stubs, propsData })
-    }
-
-    const self = {
-      withProps,
-      build
-    }
-    return self
+    const stubs = ['v-alert']
+    return createWrapperFactory({ component: ErrorBanner, stubs })
   }
 })

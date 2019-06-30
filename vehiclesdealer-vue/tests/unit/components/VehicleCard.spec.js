@@ -1,6 +1,6 @@
-import { shallowMount } from '@vue/test-utils'
 import VehicleCard from '@/components/VehicleCard'
 import ImageStub from './stubs/ImageStub'
+import { createWrapperFactory } from '@/helpers/factoryHelpers'
 
 describe ('VehicleCard.vue', () => {
 
@@ -17,22 +17,7 @@ describe ('VehicleCard.vue', () => {
     })
 
     function factory () {
-        let propsData = {}
-
-        function withProps (props) {
-            propsData = { ...props }
-            return self
-        }
-
-        function build () {
-            const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
-            return shallowMount(VehicleCard, { stubs, propsData })
-        }
-
-        const self = {
-            withProps,
-            build
-        }
-        return self
+        const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
+        return createWrapperFactory({ component: VehicleCard, stubs })
     }
 })
