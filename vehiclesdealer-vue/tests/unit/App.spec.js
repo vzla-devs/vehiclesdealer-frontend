@@ -9,7 +9,7 @@ describe ('App.vue', () => {
   localVue.use(VueRouter)
 
   it ('should render correctly', () => {
-    const wrapper = wrapperFactory().build()
+    const wrapper = wrapperBuilder().build()
 
     expect(wrapper.find('.home-link').text()).toBe('Inicio')
     expect(wrapper.find('.home-link').props().to).toBe(HOME_ROUTE)
@@ -18,7 +18,7 @@ describe ('App.vue', () => {
     expect(wrapper.find('#content').exists()).toBe(true)
   })
 
-  function wrapperFactory () {
+  function wrapperBuilder () {
     return createWrapperFactory({ component: App, localVue })
   }
 })

@@ -24,7 +24,7 @@ describe ('VehiclesContainer.vue', () => {
   describe ('when getting the vehicles', () => {
 
     it ('should display an empty view when there are no vehicles', async () => {
-      const wrapper = wrapperFactory().withStore({ getters, actions }).build()
+      const wrapper = wrapperBuilder().withStore({ getters, actions }).build()
   
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
@@ -42,7 +42,7 @@ describe ('VehiclesContainer.vue', () => {
         givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
       getters[GET_AVAILABLE_VEHICLES] = () => givenVehicles
-      const wrapper = wrapperFactory().withStore({ getters, actions }).build()
+      const wrapper = wrapperBuilder().withStore({ getters, actions }).build()
   
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
@@ -65,7 +65,7 @@ describe ('VehiclesContainer.vue', () => {
     })
 
     it ('should display an error banner', async () => {
-      const wrapper = wrapperFactory().withStore({ getters, actions }).build()
+      const wrapper = wrapperBuilder().withStore({ getters, actions }).build()
   
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
@@ -74,7 +74,7 @@ describe ('VehiclesContainer.vue', () => {
     })
   
     it ('should hide the error banner when the onClose event is emitted', async () => {
-      const vehiclesContainer = wrapperFactory().withStore({ getters, actions }).build()
+      const vehiclesContainer = wrapperBuilder().withStore({ getters, actions }).build()
       await flushPromises()
   
       vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
@@ -83,7 +83,7 @@ describe ('VehiclesContainer.vue', () => {
     })
   })
 
-  function wrapperFactory () {
+  function wrapperBuilder () {
     return createWrapperFactory({ component: VehiclesContainer, localVue, stubs: ['v-alert'] })
   }
 

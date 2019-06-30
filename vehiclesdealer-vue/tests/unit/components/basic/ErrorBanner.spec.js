@@ -6,20 +6,20 @@ describe( 'ErrorBanner.vue', () => {
   it ('should render correctly', () => {
     const message = 'anyMessage'
 
-    const wrapper = wrapperFactory().withProps({ message }).build()
+    const wrapper = wrapperBuilder().withProps({ message }).build()
 
     expect(wrapper.element).toMatchSnapshot()
   })
 
   it ('should emit onClose event when closing the banner', () => {
-    const wrapper = wrapperFactory().build()
+    const wrapper = wrapperBuilder().build()
 
     wrapper.find('.error-banner').vm.$emit('input')
 
     expect(wrapper.emitted().onClose).toBeTruthy()
   })
 
-  function wrapperFactory () {
+  function wrapperBuilder () {
     const stubs = ['v-alert']
     return createWrapperFactory({ component: ErrorBanner, stubs })
   }
