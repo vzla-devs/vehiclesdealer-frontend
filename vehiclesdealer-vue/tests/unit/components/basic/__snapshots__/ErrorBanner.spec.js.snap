@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ErrorBanner.vue shows a message 1`] = `
+exports[`ErrorBanner.vue should render correctly 1`] = `
 <div>
   <v-alert-stub
     class="error-banner red"
