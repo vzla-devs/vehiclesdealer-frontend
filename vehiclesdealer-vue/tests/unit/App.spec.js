@@ -1,5 +1,5 @@
 import { createLocalVue } from '@vue/test-utils'
-import { createWrapperFactory } from '@/helpers/factoryHelpers'
+import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
 import App from '@/App'
 import VueRouter from 'vue-router'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
@@ -19,6 +19,6 @@ describe ('App.vue', () => {
   })
 
   function wrapperBuilder () {
-    return createWrapperFactory({ component: App, localVue })
+    return wrapperBuilderFactory({ component: App, localVue })
   }
 })

@@ -1,7 +1,7 @@
 import { shallowMount } from '@vue/test-utils'
 import Vuex from 'vuex'
 
-export function createWrapperFactory ({ component, localVue, stubs }) {
+export function wrapperBuilderFactory ({ component, localVue, stubs }) {
   let propsData = {}
   let store
 

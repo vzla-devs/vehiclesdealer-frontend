@@ -1,5 +1,5 @@
 import ErrorBanner from '@/components/basic/ErrorBanner'
-import { createWrapperFactory } from '@/helpers/factoryHelpers'
+import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
 
 describe( 'ErrorBanner.vue', () => {
 
@@ -21,6 +21,6 @@ describe( 'ErrorBanner.vue', () => {
 
   function wrapperBuilder () {
     const stubs = ['v-alert']
-    return createWrapperFactory({ component: ErrorBanner, stubs })
+    return wrapperBuilderFactory({ component: ErrorBanner, stubs })
   }
 })

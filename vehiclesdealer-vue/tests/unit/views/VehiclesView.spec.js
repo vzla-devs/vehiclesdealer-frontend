@@ -1,6 +1,6 @@
 import VehiclesView from '@/views/VehiclesView'
 import VehiclesContainer from '@/components/VehiclesContainer'
-import { createWrapperFactory } from '@/helpers/factoryHelpers'
+import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
 
 describe ('VehiclesView.vue', () => {
 
@@ -12,6 +12,6 @@ describe ('VehiclesView.vue', () => {
   })
 
   function wrapperBuilder () {
-    return createWrapperFactory({ component: VehiclesView })
+    return wrapperBuilderFactory({ component: VehiclesView })
   }
 })

@@ -1,6 +1,6 @@
 import VehicleCard from '@/components/VehicleCard'
 import ImageStub from './stubs/ImageStub'
-import { createWrapperFactory } from '@/helpers/factoryHelpers'
+import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
 
 describe ('VehicleCard.vue', () => {
 
@@ -18,6 +18,6 @@ describe ('VehicleCard.vue', () => {
 
     function wrapperBuilder () {
         const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
-        return createWrapperFactory({ component: VehicleCard, stubs })
+        return wrapperBuilderFactory({ component: VehicleCard, stubs })
     }
 })

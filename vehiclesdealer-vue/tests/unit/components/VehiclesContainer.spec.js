@@ -8,7 +8,7 @@ import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
 import ErrorBanner from '@/components/basic/ErrorBanner'
 import flushPromises from 'flush-promises'
-import { createWrapperFactory } from '@/helpers/factoryHelpers'
+import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
 
 describe ('VehiclesContainer.vue', () => {
   const getters = {}
@@ -84,7 +84,7 @@ describe ('VehiclesContainer.vue', () => {
   })
 
   function wrapperBuilder () {
-    return createWrapperFactory({ component: VehiclesContainer, localVue, stubs: ['v-alert'] })
+    return wrapperBuilderFactory({ component: VehiclesContainer, localVue, stubs: ['v-alert'] })
   }
 
   function givenAVehicle ({ brand = 'anyBrand', model = 'anyModel', year = 0, price = 0, imageUrl = 'anyUrl' } = {}) {
