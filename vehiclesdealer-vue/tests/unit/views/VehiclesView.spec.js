@@ -5,13 +5,13 @@ import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
 describe ('VehiclesView.vue', () => {
 
   it ('should render correctly', () => {
-    const wrapper = wrapperBuilder().build()
+    const wrapper = vehiclesViewBuilder().build()
 
     expect(wrapper.find('.title').text()).toBe('Vehículos')
     expect(wrapper.find(VehiclesContainer).exists()).toBe(true)
   })
 
-  function wrapperBuilder () {
+  function vehiclesViewBuilder () {
     return wrapperBuilderFactory({ component: VehiclesView })
   }
 })

@@ -11,12 +11,12 @@ describe ('VehicleCard.vue', () => {
         const price = 9999
         const imageUrl = 'anyUrl'
         
-        const wrapper = wrapperBuilder().withProps({ brand, model, year, price, imageUrl }).build()
+        const wrapper = vehicleCardBuilder().withProps({ brand, model, year, price, imageUrl }).build()
 
         expect(wrapper.element).toMatchSnapshot()
     })
 
-    function wrapperBuilder () {
+    function vehicleCardBuilder () {
         const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
         return wrapperBuilderFactory({ component: VehicleCard, stubs })
     }

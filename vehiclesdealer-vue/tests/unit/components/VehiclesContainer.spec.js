@@ -24,7 +24,7 @@ describe ('VehiclesContainer.vue', () => {
   describe ('when getting the vehicles', () => {
 
     it ('should display an empty view when there are no vehicles', async () => {
-      const wrapper = wrapperBuilder().withStore({ getters, actions }).build()
+      const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
   
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
@@ -42,7 +42,8 @@ describe ('VehiclesContainer.vue', () => {
         givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
       getters[GET_AVAILABLE_VEHICLES] = () => givenVehicles
-      const wrapper = wrapperBuilder().withStore({ getters, actions }).build()
+
+      const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
   
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
@@ -65,8 +66,8 @@ describe ('VehiclesContainer.vue', () => {
     })
 
     it ('should display an error banner', async () => {
-      const wrapper = wrapperBuilder().withStore({ getters, actions }).build()
-  
+      const wrapper = vehiclesContainerBuilder().withActions(actions).build()
+
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
       await flushPromises()
@@ -74,7 +75,7 @@ describe ('VehiclesContainer.vue', () => {
     })
   
     it ('should hide the error banner when the onClose event is emitted', async () => {
-      const vehiclesContainer = wrapperBuilder().withStore({ getters, actions }).build()
+      const vehiclesContainer = vehiclesContainerBuilder().withActions(actions).build()
       await flushPromises()
   
       vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
@@ -83,8 +84,39 @@ describe ('VehiclesContainer.vue', () => {
     })
   })
 
-  function wrapperBuilder () {
-    return wrapperBuilderFactory({ component: VehiclesContainer, localVue, stubs: ['v-alert'] })
+  function vehiclesContainerBuilder () {
+    let builderGetters = getters
+    let builderActions = actions
+
+    function withGetters (newGetters) {
+      builderGetters = {
+        ...builderGetters,
+        ...newGetters
+      }
+      return self
+    }
+
+    function withActions (newActions) {
+      builderActions = {
+        ...builderActions,
+        ...newActions
+      }
+      return self
+    }
+
+    function build () {
+      return wrapperBuilderFactory({ component: VehiclesContainer, localVue, stubs: ['v-alert'] })
+        .withStore({ getters: builderGetters, actions: builderActions })
+        .build()
+    }
+
+    const self = {
+      withGetters,
+      withActions,
+      build
+    }
+
+    return self
   }
 
   function givenAVehicle ({ brand = 'anyBrand', model = 'anyModel', year = 0, price = 0, imageUrl = 'anyUrl' } = {}) {
