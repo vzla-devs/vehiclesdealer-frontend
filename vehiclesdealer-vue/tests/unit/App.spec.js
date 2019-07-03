@@ -9,16 +9,29 @@ describe ('App.vue', () => {
   localVue.use(VueRouter)
 
   it ('should render correctly', () => {
-    const wrapper = wrapperBuilder().build()
+    const app = appBuilder().build()
 
-    expect(wrapper.find('.home-link').text()).toBe('Inicio')
-    expect(wrapper.find('.home-link').props().to).toBe(HOME_ROUTE)
-    expect(wrapper.find('.vehicles-link').text()).toBe('Vehículos')
-    expect(wrapper.find('.vehicles-link').props().to).toBe(VEHICLES_ROUTE)
-    expect(wrapper.find('#content').exists()).toBe(true)
+    expect(app.homeLink().text()).toBe('Inicio')
+    expect(app.homeLink().props().to).toBe(HOME_ROUTE)
+    expect(app.vehiclesLink().text()).toBe('Vehículos')
+    expect(app.vehiclesLink().props().to).toBe(VEHICLES_ROUTE)
+    expect(app.content().exists()).toBe(true)
   })
 
-  function wrapperBuilder () {
-    return wrapperBuilderFactory({ component: App, localVue })
+  function appBuilder () {
+    let wrapper
+
+    function build () {
+      wrapper = wrapperBuilderFactory({ component: App, localVue }).build()
+      return self
+    }
+
+    const self = {
+      build,
+      homeLink: () => wrapper.find('.home-link'),
+      vehiclesLink: () => wrapper.find('.vehicles-link'),
+      content: () => wrapper.find('#content')
+    }
+    return self
   }
 })
