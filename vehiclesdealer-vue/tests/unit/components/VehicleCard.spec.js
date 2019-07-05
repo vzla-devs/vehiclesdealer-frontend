@@ -3,7 +3,6 @@ import ImageStub from './stubs/ImageStub'
 import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
 
 describe ('VehicleCard.vue', () => {
-
     it ('should render correctly', () => {
         const brand = 'anyBrand'
         const model = 'anyModel'

@@ -1,7 +1,3 @@
-import { createLocalVue } from '@vue/test-utils'
-import Vuex from 'vuex'
-import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
-import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 import VehiclesContainer from '@/components/VehiclesContainer'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
@@ -9,12 +5,12 @@ import NoData from '@/components/basic/NoData'
 import ErrorBanner from '@/components/basic/ErrorBanner'
 import flushPromises from 'flush-promises'
 import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
+import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
+import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 
 describe ('VehiclesContainer.vue', () => {
   const getters = {}
   const actions = {}
-  const localVue = createLocalVue()
-  localVue.use(Vuex)
 
   beforeEach(() => {
     getters[GET_AVAILABLE_VEHICLES] = () => []
@@ -22,9 +18,8 @@ describe ('VehiclesContainer.vue', () => {
   })
 
   describe ('when getting the vehicles', () => {
-
     it ('should display an empty view when there are no vehicles', async () => {
-      const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
+      const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
   
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
@@ -43,8 +38,8 @@ describe ('VehiclesContainer.vue', () => {
       ]
       getters[GET_AVAILABLE_VEHICLES] = () => givenVehicles
 
-      const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
-  
+      const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
+
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
       await flushPromises()
@@ -60,13 +55,12 @@ describe ('VehiclesContainer.vue', () => {
   })
 
   describe ('when getting the vehicles fails', () => {
-
     beforeEach(() => {
       actions[GET_VEHICLES] = jest.fn(() => Promise.reject())
     })
 
     it ('should display an error banner', async () => {
-      const wrapper = vehiclesContainerBuilder().withActions(actions).build()
+      const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
@@ -75,48 +69,17 @@ describe ('VehiclesContainer.vue', () => {
     })
   
     it ('should hide the error banner when the onClose event is emitted', async () => {
-      const vehiclesContainer = vehiclesContainerBuilder().withActions(actions).build()
+      const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
       await flushPromises()
-  
-      vehiclesContainer.find(ErrorBanner).vm.$emit('onClose')
-  
-      expect(vehiclesContainer.find(ErrorBanner).isVisible()).toBe(false)
+
+      wrapper.find(ErrorBanner).vm.$emit('onClose')
+
+      expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
     })
   })
 
   function vehiclesContainerBuilder () {
-    let builderGetters = getters
-    let builderActions = actions
-
-    function withGetters (newGetters) {
-      builderGetters = {
-        ...builderGetters,
-        ...newGetters
-      }
-      return self
-    }
-
-    function withActions (newActions) {
-      builderActions = {
-        ...builderActions,
-        ...newActions
-      }
-      return self
-    }
-
-    function build () {
-      return wrapperBuilderFactory({ component: VehiclesContainer, localVue, stubs: ['v-alert'] })
-        .withStore({ getters: builderGetters, actions: builderActions })
-        .build()
-    }
-
-    const self = {
-      withGetters,
-      withActions,
-      build
-    }
-
-    return self
+    return wrapperBuilderFactory({ component: VehiclesContainer, stubs: ['v-alert'] })
   }
 
   function givenAVehicle ({ brand = 'anyBrand', model = 'anyModel', year = 0, price = 0, imageUrl = 'anyUrl' } = {}) {

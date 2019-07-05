@@ -5,7 +5,8 @@ import VueRouter from 'vue-router'
 export function wrapperBuilderFactory ({ component, stubs }) {
   const localVue = createLocalVue()
   let propsData = {}
-  let store
+  let getters
+  let actions
 
   function withProps (props) {
     propsData = { ...props }
@@ -17,20 +18,30 @@ export function wrapperBuilderFactory ({ component, stubs }) {
     return self
   }
 
-  function withStore (newStore) {
-    store = newStore
+  function withGetters (newGetters) {
+    getters = newGetters
+    return self
+  }
+
+  function withActions (newActions) {
+    actions = newActions
     return self
   }
 
   function build () {
-    store = store ? new Vuex.Store({ ...store }) : undefined
+    let store
+    if (getters || actions) {
+      localVue.use(Vuex)
+      store = new Vuex.Store({ getters, actions })
+    }
     return shallowMount(component, { localVue, stubs, propsData, store })
   }
 
   const self = {
     withProps,
     withRouter,
-    withStore,
+    withGetters,
+    withActions,
     build
   }
   return self

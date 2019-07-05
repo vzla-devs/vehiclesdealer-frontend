@@ -3,7 +3,6 @@ import VehiclesContainer from '@/components/VehiclesContainer'
 import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
 
 describe ('VehiclesView.vue', () => {
-
   it ('should render correctly', () => {
     const wrapper = vehiclesViewBuilder().build()
 
