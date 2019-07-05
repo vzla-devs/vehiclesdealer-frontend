@@ -1,12 +1,19 @@
-import { shallowMount } from '@vue/test-utils'
+import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
+import VueRouter from 'vue-router'
 
-export function wrapperBuilderFactory ({ component, localVue, stubs }) {
+export function wrapperBuilderFactory ({ component, stubs }) {
+  const localVue = createLocalVue()
   let propsData = {}
   let store
 
   function withProps (props) {
     propsData = { ...props }
+    return self
+  }
+
+  function withRouter () {
+    localVue.use(VueRouter)
     return self
   }
 
@@ -22,6 +29,7 @@ export function wrapperBuilderFactory ({ component, localVue, stubs }) {
 
   const self = {
     withProps,
+    withRouter,
     withStore,
     build
   }

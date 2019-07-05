@@ -1,13 +1,8 @@
-import { createLocalVue } from '@vue/test-utils'
 import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
 import App from '@/App'
-import VueRouter from 'vue-router'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 
 describe ('App.vue', () => {
-  const localVue = createLocalVue()
-  localVue.use(VueRouter)
-
   it ('should render correctly', () => {
     const app = appBuilder().build()
 
@@ -22,7 +17,7 @@ describe ('App.vue', () => {
     let wrapper
 
     function build () {
-      wrapper = wrapperBuilderFactory({ component: App, localVue }).build()
+      wrapper = wrapperBuilderFactory({ component: App }).withRouter().build()
       return self
     }
 
