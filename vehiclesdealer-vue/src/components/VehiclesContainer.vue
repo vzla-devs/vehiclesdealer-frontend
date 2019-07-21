@@ -1,6 +1,6 @@
 <template>
 <div>
-  <grid-layout v-if="isDoneLoading && hasVehices">
+  <grid-layout v-if="thereAreVehicles">
     <vehicle-card v-for="(vehicle, index) in vehicles" :key="index"
       :brand="vehicle.brand"
       :model="vehicle.model"
@@ -9,7 +9,7 @@
       :imageUrl="vehicle.imageUrl"
     />
   </grid-layout>
-  <no-data v-if="isDoneLoading && !hasVehices" message="No hay vehículos disponibles" />
+  <no-data v-if="thereAreNoVehicles" message="No hay vehículos disponibles" />
   <error-banner v-show="showError" message="Ha ocurrido un error" @onClose="onCloseErrorBanner" />
 </div>
 </template>
@@ -30,16 +30,22 @@ export default {
     NoData,
     ErrorBanner
   },
-  computed: {
-    ...mapGetters({ vehicles: GET_AVAILABLE_VEHICLES }),
-    hasVehices () {
-      return this.vehicles.length > 0
-    }
-  },
   data () {
     return {
       showError: false,
       isDoneLoading: false
+    }
+  },
+  computed: {
+    ...mapGetters({ vehicles: GET_AVAILABLE_VEHICLES }),
+    hasVehices () {
+      return this.vehicles.length > 0
+    },
+    thereAreVehicles () {
+      return this.isDoneLoading && this.hasVehices
+    },
+    thereAreNoVehicles () {
+      return this.isDoneLoading && !this.hasVehices
     }
   },
   async created () {

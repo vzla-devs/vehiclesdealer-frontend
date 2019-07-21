@@ -12,16 +12,15 @@ describe ('VehiclesContainer.vue', () => {
   const getters = {}
   const actions = {}
 
-  beforeEach(() => {
-    getters[GET_AVAILABLE_VEHICLES] = () => []
-    actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
-  })
-
   describe ('when getting the vehicles', () => {
+    beforeEach(() => {
+      actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
+    })
+
     it ('should display an empty view when there are no vehicles', async () => {
+      getters[GET_AVAILABLE_VEHICLES] = () => []
       const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
   
-      expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
       expect(wrapper.contains(NoData)).toBe(false)
       await flushPromises()
@@ -40,7 +39,6 @@ describe ('VehiclesContainer.vue', () => {
 
       const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
-      expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.contains(GridLayout)).toBe(false)
       await flushPromises()
       expect(wrapper.contains(NoData)).toBe(false)
@@ -56,13 +54,13 @@ describe ('VehiclesContainer.vue', () => {
 
   describe ('when getting the vehicles fails', () => {
     beforeEach(() => {
+      getters[GET_AVAILABLE_VEHICLES] = () => []
       actions[GET_VEHICLES] = jest.fn(() => Promise.reject())
     })
 
     it ('should display an error banner', async () => {
       const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
-      expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
       await flushPromises()
       expect(wrapper.find(ErrorBanner).isVisible()).toBe(true)
