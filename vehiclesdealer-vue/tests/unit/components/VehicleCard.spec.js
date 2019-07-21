@@ -1,6 +1,6 @@
 import VehicleCard from '@/components/VehicleCard'
-import ImageStub from './stubs/ImageStub'
-import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
+import ImageStub from '@tests/components/stubs/ImageStub'
+import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 
 describe ('VehicleCard.vue', () => {
     it ('should render correctly', () => {

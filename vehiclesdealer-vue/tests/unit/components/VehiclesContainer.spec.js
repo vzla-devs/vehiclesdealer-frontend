@@ -4,7 +4,7 @@ import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
 import ErrorBanner from '@/components/basic/ErrorBanner'
 import flushPromises from 'flush-promises'
-import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
+import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 

@@ -1,4 +1,4 @@
-import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
+import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import App from '@/App'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 

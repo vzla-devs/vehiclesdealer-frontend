@@ -1,7 +1,7 @@
 import ErrorBanner from '@/components/basic/ErrorBanner'
-import { wrapperBuilderFactory } from '@/helpers/factoryHelpers'
+import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 
-describe( 'ErrorBanner.vue', () => {
+describe ('ErrorBanner.vue', () => {
   it ('should render correctly', () => {
     const message = 'anyMessage'
 
