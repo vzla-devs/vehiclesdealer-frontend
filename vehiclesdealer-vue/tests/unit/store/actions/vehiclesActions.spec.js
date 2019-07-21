@@ -24,9 +24,8 @@ describe ('vehiclesActions.js', () => {
   
       const promise = vehiclesActions[GET_VEHICLES](mockedContext)
   
-      expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
-      expect(mockedContext.commit).not.toHaveBeenCalled()
       await promise
+      expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
       expect(mockedContext.commit).toHaveBeenCalledWith(SET_VEHICLES, vehicles)
     })
   
@@ -37,9 +36,8 @@ describe ('vehiclesActions.js', () => {
   
       const promise = vehiclesActions[GET_VEHICLES](mockedContext)
   
-      expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
-      expect(mockedContext.commit).not.toHaveBeenCalled()
       const expectedResponse = await promise
+      expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
       expect(mockedContext.commit).not.toHaveBeenCalled()
       expect(expectedResponse).toBe(reason)
     })
