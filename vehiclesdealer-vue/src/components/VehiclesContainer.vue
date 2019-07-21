@@ -9,8 +9,13 @@
       :imageUrl="vehicle.imageUrl"
     />
   </grid-layout>
-  <no-data v-if="thereAreNoVehicles" message="No hay vehículos disponibles" />
-  <error-banner v-show="showError" message="Ha ocurrido un error" @onClose="onCloseErrorBanner" />
+  <no-data v-if="thereAreNoVehicles"
+    message="No hay vehículos disponibles"
+  />
+  <error-banner v-show="showError"
+    message="Ha ocurrido un error"
+    @onClose="onCloseErrorBanner"
+  />
 </div>
 </template>
 
@@ -48,13 +53,10 @@ export default {
       return this.isDoneLoading && !this.hasVehices
     }
   },
-  async created () {
-    try {
-      await this.getVehicles()
-    } catch (error) {
-      this.showError = true
-    }
-    this.isDoneLoading = true
+  created () {
+    this.getVehicles()
+      .catch(() => this.showError = true)
+      .finally(() => this.isDoneLoading = true)
   },
   methods: {
     ...mapActions({ getVehicles: GET_VEHICLES }),
