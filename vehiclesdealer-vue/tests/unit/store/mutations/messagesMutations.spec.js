@@ -4,13 +4,17 @@ import messagesTypes from '@/enums/messagesTypes'
 
 describe('messagesMutations.js', () => {
   test('should mutate the state with a new error message', () => {
-    const givenState = { messages: { error: { show: false, message: '' } } }
     const type = messagesTypes().error
-    const message = 'anyMessage'
+    const givenState = { messages: aMessageFromState({ type }) }
+    const givenMessage = 'anyMessage'
 
-    messagesMutations[SET_MESSAGE](givenState, { type, message })
+    messagesMutations[SET_MESSAGE](givenState, { type, message: givenMessage })
 
-    const expectedState = { messages: { error: { show: true, message } } }
+    const expectedState = { messages: aMessageFromState({ type, show: true, message: givenMessage }) }
     expect(givenState).toEqual(expectedState)
   })
+
+  function aMessageFromState ({ type, show = false, message = '' }) {
+    return { [type]: { show, message } }
+  }
 })
