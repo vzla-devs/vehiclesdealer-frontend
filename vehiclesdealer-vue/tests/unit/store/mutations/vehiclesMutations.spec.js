@@ -1,9 +1,8 @@
 import VehiclesMutations from '@/store/mutations/vehiclesMutations'
 import { SET_VEHICLES } from '@/store/mutations/mutationsTypes'
 
-describe ('vehiclesMutations.js', () => {
-  
-  it ('should mutate the state with vehicles', () => {
+describe('vehiclesMutations.js', () => {
+  it('should mutate the state with vehicles', () => {
     const givenState = { vehicles: [] }
     const givenVehicles = [
       givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),

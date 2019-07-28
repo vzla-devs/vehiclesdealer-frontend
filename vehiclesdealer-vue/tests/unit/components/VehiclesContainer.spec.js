@@ -8,19 +8,19 @@ import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 import { GET_VEHICLES } from '@/store/actions/actionsTypes'
 
-describe ('VehiclesContainer.vue', () => {
+describe('VehiclesContainer.vue', () => {
   const getters = {}
   const actions = {}
 
-  describe ('when getting the vehicles', () => {
+  describe('when getting the vehicles', () => {
     beforeEach(() => {
       actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
     })
 
-    it ('should display an empty view when there are no vehicles', async () => {
+    it('should display an empty view when there are no vehicles', async () => {
       getters[GET_AVAILABLE_VEHICLES] = () => []
       const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
-  
+
       expect(wrapper.contains(GridLayout)).toBe(false)
       expect(wrapper.contains(NoData)).toBe(false)
       await flushPromises()
@@ -28,11 +28,11 @@ describe ('VehiclesContainer.vue', () => {
       expect(wrapper.contains(NoData)).toBe(true)
       expect(wrapper.find(NoData).props().message).toBe('No hay vehículos disponibles')
     })
-  
-    it ('should display a grid of vehicles when there are vehicles', async () => {
+
+    it('should display a grid of vehicles when there are vehicles', async () => {
       const givenVehicles = [
         givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
-        givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year:  2019, price: 9999, imageUrl: 'secondUrl' }),
+        givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }),
         givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
       getters[GET_AVAILABLE_VEHICLES] = () => givenVehicles
@@ -52,21 +52,21 @@ describe ('VehiclesContainer.vue', () => {
     })
   })
 
-  describe ('when getting the vehicles fails', () => {
+  describe('when getting the vehicles fails', () => {
     beforeEach(() => {
       getters[GET_AVAILABLE_VEHICLES] = () => []
-      actions[GET_VEHICLES] = jest.fn(() => Promise.reject())
+      actions[GET_VEHICLES] = jest.fn(() => Promise.reject(new Error('anyError')))
     })
 
-    it ('should display an error banner', async () => {
+    it('should display an error banner', async () => {
       const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
       expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
       await flushPromises()
       expect(wrapper.find(ErrorBanner).isVisible()).toBe(true)
     })
-  
-    it ('should hide the error banner when the onClose event is emitted', async () => {
+
+    it('should hide the error banner when the onClose event is emitted', async () => {
       const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
       await flushPromises()
 

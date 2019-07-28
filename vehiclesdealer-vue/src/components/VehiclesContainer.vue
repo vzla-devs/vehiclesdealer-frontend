@@ -55,8 +55,8 @@ export default {
   },
   created () {
     this.getVehicles()
-      .catch(() => this.showError = true)
-      .finally(() => this.isDoneLoading = true)
+      .catch(() => { this.showError = true })
+      .finally(() => { this.isDoneLoading = true })
   },
   methods: {
     ...mapActions({ getVehicles: GET_VEHICLES }),

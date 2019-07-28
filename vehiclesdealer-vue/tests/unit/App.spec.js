@@ -2,8 +2,8 @@ import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import App from '@/App'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 
-describe ('App.vue', () => {
-  it ('should render correctly', () => {
+describe('App.vue', () => {
+  it('should render correctly', () => {
     const app = appBuilder().build()
 
     expect(app.homeLink().text()).toBe('Inicio')

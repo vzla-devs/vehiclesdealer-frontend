@@ -2,21 +2,21 @@ import VehicleCard from '@/components/VehicleCard'
 import ImageStub from '@tests/components/stubs/ImageStub'
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 
-describe ('VehicleCard.vue', () => {
-    it ('should render correctly', () => {
-        const brand = 'anyBrand'
-        const model = 'anyModel'
-        const year = 2019
-        const price = 9999
-        const imageUrl = 'anyUrl'
-        
-        const wrapper = vehicleCardBuilder().withProps({ brand, model, year, price, imageUrl }).build()
+describe('VehicleCard.vue', () => {
+  it('should render correctly', () => {
+    const brand = 'anyBrand'
+    const model = 'anyModel'
+    const year = 2019
+    const price = 9999
+    const imageUrl = 'anyUrl'
 
-        expect(wrapper.element).toMatchSnapshot()
-    })
+    const wrapper = vehicleCardBuilder().withProps({ brand, model, year, price, imageUrl }).build()
 
-    function vehicleCardBuilder () {
-        const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
-        return wrapperBuilderFactory({ component: VehicleCard, stubs })
-    }
+    expect(wrapper.element).toMatchSnapshot()
+  })
+
+  function vehicleCardBuilder () {
+    const stubs = { 'v-img': ImageStub, 'v-card': true, 'v-card-title': true }
+    return wrapperBuilderFactory({ component: VehicleCard, stubs })
+  }
 })
