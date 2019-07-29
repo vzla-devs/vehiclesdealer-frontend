@@ -4,7 +4,7 @@ import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
 import flushPromises from 'flush-promises'
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
-import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
+import { AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionsTypes'
 import MessagesTypes from '@/enums/MessagesTypes'
 import ExpectHelpers from '@tests/helpers/expectHelpers'
@@ -14,7 +14,7 @@ describe('VehiclesContainer.vue', () => {
   const actions = {}
 
   beforeEach(() => {
-    getters[GET_AVAILABLE_VEHICLES] = () => []
+    getters[AVAILABLE_VEHICLES] = () => []
     actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
     actions[SHOW_MESSAGE] = jest.fn()
   })
@@ -28,7 +28,7 @@ describe('VehiclesContainer.vue', () => {
     })
 
     it('should display an empty view when there are no vehicles', async () => {
-      getters[GET_AVAILABLE_VEHICLES] = () => []
+      getters[AVAILABLE_VEHICLES] = () => []
       const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
       expect(wrapper.contains(GridLayout)).toBe(false)
@@ -45,7 +45,7 @@ describe('VehiclesContainer.vue', () => {
         givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }),
         givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
-      getters[GET_AVAILABLE_VEHICLES] = () => givenVehicles
+      getters[AVAILABLE_VEHICLES] = () => givenVehicles
 
       const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 

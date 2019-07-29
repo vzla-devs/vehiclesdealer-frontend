@@ -20,7 +20,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
+import { AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
 import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionsTypes'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
@@ -39,7 +39,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ vehicles: GET_AVAILABLE_VEHICLES }),
+    ...mapGetters({ vehicles: AVAILABLE_VEHICLES }),
     hasVehices () {
       return this.vehicles.length > 0
     },
