@@ -20,8 +20,8 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
-import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionsTypes'
+import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
+import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'

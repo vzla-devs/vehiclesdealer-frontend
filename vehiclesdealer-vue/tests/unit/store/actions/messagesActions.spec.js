@@ -1,6 +1,6 @@
 import messagesActions from '@/store/actions/messagesActions'
-import { SHOW_MESSAGE, CLEAR_MESSAGE } from '@/store/actions/actionsTypes'
-import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationsTypes'
+import { SHOW_MESSAGE, CLEAR_MESSAGE } from '@/store/actions/actionTypes'
+import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
 import messagesTypes from '@/enums/messagesTypes'
 
 describe('messagesActions.js', () => {

@@ -1,5 +1,5 @@
 import messagesMutations from '@/store/mutations/messagesMutations'
-import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationsTypes'
+import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
 import messagesTypes from '@/enums/messagesTypes'
 
 describe('messagesMutations.js', () => {

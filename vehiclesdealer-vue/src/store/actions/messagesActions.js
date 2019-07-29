@@ -1,5 +1,5 @@
-import { SHOW_MESSAGE, CLEAR_MESSAGE } from '@/store/actions/actionsTypes'
-import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationsTypes'
+import { SHOW_MESSAGE, CLEAR_MESSAGE } from '@/store/actions/actionTypes'
+import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
 
 export default {
   [SHOW_MESSAGE]: ({ commit }, { type, message }) => {

@@ -1,4 +1,4 @@
-import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationsTypes'
+import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
 
 export default {
   [SET_MESSAGE]: (state, { type, message }) => {

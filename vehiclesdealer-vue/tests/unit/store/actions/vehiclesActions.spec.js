@@ -1,6 +1,6 @@
 import vehiclesActions from '@/store/actions/vehiclesActions'
-import { GET_VEHICLES } from '@/store/actions/actionsTypes'
-import { SET_VEHICLES } from '@/store/mutations/mutationsTypes'
+import { GET_VEHICLES } from '@/store/actions/actionTypes'
+import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
 import { GET_VEHICLES_URL } from '@/constants/serverRoutes'
 import axios from 'axios'
 

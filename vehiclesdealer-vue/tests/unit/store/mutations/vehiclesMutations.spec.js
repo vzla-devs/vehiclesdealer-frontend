@@ -1,5 +1,5 @@
 import VehiclesMutations from '@/store/mutations/vehiclesMutations'
-import { SET_VEHICLES } from '@/store/mutations/mutationsTypes'
+import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
 
 describe('vehiclesMutations.js', () => {
   it('should mutate the state with vehicles', () => {

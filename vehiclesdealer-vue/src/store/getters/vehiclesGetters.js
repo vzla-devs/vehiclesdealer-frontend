@@ -1,4 +1,4 @@
-import { AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
+import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 
 export default {
   [AVAILABLE_VEHICLES]: (state) => {

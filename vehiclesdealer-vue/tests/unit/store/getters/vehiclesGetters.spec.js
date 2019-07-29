@@ -1,5 +1,5 @@
 import Getters from '@/store/getters/vehiclesGetters'
-import { AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
+import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import initialState from '@/store/initialState'
 
 describe('vehiclesGetters.js', () => {
