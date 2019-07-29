@@ -14,7 +14,6 @@ describe('vehiclesGetters.js', () => {
     const vehiclesFromGetter = Getters[AVAILABLE_VEHICLES](givenState)
 
     expect(vehiclesFromGetter).toEqual(givenVehicles)
-    expect(vehiclesFromGetter).not.toBe(givenVehicles)
   })
 
   function givenAVehicleFromState ({ brand, model, year, price, imageUrl }) {
