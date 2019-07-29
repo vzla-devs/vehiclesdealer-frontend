@@ -2,19 +2,29 @@ import VehiclesContainer from '@/components/VehiclesContainer'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
-import ErrorBanner from '@/components/basic/ErrorBanner'
 import flushPromises from 'flush-promises'
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
-import { GET_VEHICLES } from '@/store/actions/actionsTypes'
+import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionsTypes'
+import MessagesTypes from '@/enums/MessagesTypes'
+import ExpectHelpers from '@tests/helpers/expectHelpers'
 
 describe('VehiclesContainer.vue', () => {
   const getters = {}
   const actions = {}
 
+  beforeEach(() => {
+    getters[GET_AVAILABLE_VEHICLES] = () => []
+    actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
+    actions[SHOW_MESSAGE] = jest.fn()
+  })
+
   describe('when getting the vehicles', () => {
-    beforeEach(() => {
-      actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
+    it('should call action to get the vehicles', async () => {
+      vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
+
+      await flushPromises()
+      expect(actions[GET_VEHICLES]).toHaveBeenCalled()
     })
 
     it('should display an empty view when there are no vehicles', async () => {
@@ -53,26 +63,13 @@ describe('VehiclesContainer.vue', () => {
   })
 
   describe('when getting the vehicles fails', () => {
-    beforeEach(() => {
-      getters[GET_AVAILABLE_VEHICLES] = () => []
+    it('should show an error message', async () => {
       actions[GET_VEHICLES] = jest.fn(() => Promise.reject(new Error('anyError')))
-    })
+      vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
-    it('should display an error banner', async () => {
-      const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
-
-      expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
       await flushPromises()
-      expect(wrapper.find(ErrorBanner).isVisible()).toBe(true)
-    })
-
-    it('should hide the error banner when the onClose event is emitted', async () => {
-      const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
-      await flushPromises()
-
-      wrapper.find(ErrorBanner).vm.$emit('onClose')
-
-      expect(wrapper.find(ErrorBanner).isVisible()).toBe(false)
+      const type = MessagesTypes().error
+      ExpectHelpers().actionToHaveBeenCalledWith(actions[SHOW_MESSAGE], { type, message: 'Ha ocurrido un error' })
     })
   })
 

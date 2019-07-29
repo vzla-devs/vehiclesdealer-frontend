@@ -15,33 +15,26 @@
       v-if="thereAreNoVehicles"
       message="No hay vehículos disponibles"
     />
-    <error-banner
-      v-show="showError"
-      message="Ha ocurrido un error"
-      @onClose="onCloseErrorBanner"
-    />
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { GET_AVAILABLE_VEHICLES } from '@/store/getters/gettersTypes'
-import { GET_VEHICLES } from '@/store/actions/actionsTypes'
+import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionsTypes'
 import GridLayout from '@/components/basic/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
-import ErrorBanner from '@/components/basic/ErrorBanner'
+import MessagesTypes from '@/enums/MessagesTypes'
 
 export default {
   components: {
     GridLayout,
     VehicleCard,
-    NoData,
-    ErrorBanner
+    NoData
   },
   data () {
     return {
-      showError: false,
       isDoneLoading: false
     }
   },
@@ -59,13 +52,18 @@ export default {
   },
   created () {
     this.getVehicles()
-      .catch(() => { this.showError = true })
+      .catch(this.showErrorMessage)
       .finally(() => { this.isDoneLoading = true })
   },
   methods: {
-    ...mapActions({ getVehicles: GET_VEHICLES }),
-    onCloseErrorBanner () {
-      this.showError = false
+    ...mapActions({
+      getVehicles: GET_VEHICLES,
+      showMessage: SHOW_MESSAGE
+    }),
+    showErrorMessage () {
+      const type = MessagesTypes().error
+      const message = 'Ha ocurrido un error'
+      this.showMessage({ type, message })
     }
   }
 }
