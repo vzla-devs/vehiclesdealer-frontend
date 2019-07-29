@@ -1,10 +1,20 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link class="home-link" :to="homeRoute">Inicio</router-link> |
-      <router-link class="vehicles-link" :to="vehiclesRoute">Vehículos</router-link>
+      <router-link
+        class="home-link"
+        :to="homeRoute"
+      >
+        Inicio
+      </router-link> |
+      <router-link
+        class="vehicles-link"
+        :to="vehiclesRoute"
+      >
+        Vehículos
+      </router-link>
     </div>
-    <router-view id="content"/>
+    <router-view id="content" />
   </div>
 </template>
 

@@ -1,10 +1,17 @@
 <template>
-  <v-card :hover="true" class="card">
+  <v-card
+    :hover="true"
+    class="card"
+  >
     <v-img :src="imageUrl" />
     <v-card-title primary-title>
       <div class="description-container">
-        <h3 class="headline description">{{ formattedDescription }}</h3>
-        <div class="price">{{ formattedPrice }}</div>
+        <h3 class="headline description">
+          {{ formattedDescription }}
+        </h3>
+        <div class="price">
+          {{ formattedPrice }}
+        </div>
       </div>
     </v-card-title>
   </v-card>
@@ -13,11 +20,11 @@
 <script>
 export default {
   props: {
-    brand: String,
-    model: String,
-    year: Number,
-    price: Number,
-    imageUrl: String
+    brand: { type: String, required: true },
+    model: { type: String, required: true },
+    year: { type: Number, required: true },
+    price: { type: Number, required: true },
+    imageUrl: { type: String, required: true }
   },
   computed: {
     formattedDescription () { return `${this.brand} ${this.model} - ${this.year}` },

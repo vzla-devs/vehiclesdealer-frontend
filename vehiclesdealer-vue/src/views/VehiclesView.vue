@@ -1,10 +1,12 @@
 <template>
-<div>
-  <div id="vehicles-view">
-    <h1 class="title">Vehículos</h1>
-    <vehicles-container />
+  <div>
+    <div id="vehicles-view">
+      <h1 class="title">
+        Vehículos
+      </h1>
+      <vehicles-container />
+    </div>
   </div>
-</div>
 </template>
 
 <script>

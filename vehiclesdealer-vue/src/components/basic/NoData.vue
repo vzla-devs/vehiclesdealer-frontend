@@ -1,13 +1,15 @@
 <template>
-<div>
-  <div id="no-data">{{ message }}</div>
-</div>
+  <div>
+    <div id="no-data">
+      {{ message }}
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
-    message: String
+    message: { type: String, required: true }
   }
 }
 </script>

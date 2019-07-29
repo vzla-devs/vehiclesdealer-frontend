@@ -1,22 +1,26 @@
 <template>
-<div>
-  <grid-layout v-if="thereAreVehicles">
-    <vehicle-card v-for="(vehicle, index) in vehicles" :key="index"
-      :brand="vehicle.brand"
-      :model="vehicle.model"
-      :year="vehicle.year"
-      :price="vehicle.price"
-      :imageUrl="vehicle.imageUrl"
+  <div>
+    <grid-layout v-if="thereAreVehicles">
+      <vehicle-card
+        v-for="(vehicle, index) in vehicles"
+        :key="index"
+        :brand="vehicle.brand"
+        :model="vehicle.model"
+        :year="vehicle.year"
+        :price="vehicle.price"
+        :image-url="vehicle.imageUrl"
+      />
+    </grid-layout>
+    <no-data
+      v-if="thereAreNoVehicles"
+      message="No hay vehículos disponibles"
     />
-  </grid-layout>
-  <no-data v-if="thereAreNoVehicles"
-    message="No hay vehículos disponibles"
-  />
-  <error-banner v-show="showError"
-    message="Ha ocurrido un error"
-    @onClose="onCloseErrorBanner"
-  />
-</div>
+    <error-banner
+      v-show="showError"
+      message="Ha ocurrido un error"
+      @onClose="onCloseErrorBanner"
+    />
+  </div>
 </template>
 
 <script>
