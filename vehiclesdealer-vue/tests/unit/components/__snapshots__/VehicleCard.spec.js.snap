@@ -18,13 +18,17 @@ exports[`VehicleCard.vue should render correctly 1`] = `
       <h3
         class="headline description"
       >
+        
         anyBrand anyModel - 2019
+      
       </h3>
        
       <div
         class="price"
       >
+        
         9999 €
+      
       </div>
     </div>
   </v-card-title-stub>

@@ -2,16 +2,17 @@ import ErrorBanner from '@/components/basic/ErrorBanner'
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 
 describe('ErrorBanner.vue', () => {
+  const stubs = ['v-alert']
   it('should render correctly', () => {
     const message = 'anyMessage'
 
-    const wrapper = errorBannerBuilder().withProps({ message }).build()
+    const wrapper = errorBannerBuilder().withStubs(stubs).withProps({ message }).build()
 
     expect(wrapper.element).toMatchSnapshot()
   })
 
   it('should emit onClose event when closing the banner', () => {
-    const wrapper = errorBannerBuilder().build()
+    const wrapper = errorBannerBuilder().withStubs(stubs).withProps({ message: '' }).build()
 
     wrapper.find('.error-banner').vm.$emit('input')
 
@@ -19,6 +20,6 @@ describe('ErrorBanner.vue', () => {
   })
 
   function errorBannerBuilder () {
-    return wrapperBuilderFactory({ component: ErrorBanner, stubs: ['v-alert'] })
+    return wrapperBuilderFactory({ component: ErrorBanner })
   }
 })
