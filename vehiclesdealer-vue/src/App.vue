@@ -15,13 +15,34 @@
       </router-link>
     </div>
     <router-view id="content" />
+    <error-banner
+      v-if="showError"
+      class="error-message"
+      :message="errorMessage"
+    />
   </div>
 </template>
 
 <script>
-import { HOME_ROUTE, VEHICLES_ROUTE } from './constants/routes'
+import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
+import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
+import { mapGetters } from 'vuex'
+import ErrorBanner from '@/components/basic/ErrorBanner'
+
 export default {
+  components: {
+    ErrorBanner
+  },
   computed: {
+    ...mapGetters({
+      error: ERROR_MESSAGE
+    }),
+    errorMessage () {
+      return this.error.message
+    },
+    showError () {
+      return this.error.show
+    },
     homeRoute () {
       return HOME_ROUTE
     },

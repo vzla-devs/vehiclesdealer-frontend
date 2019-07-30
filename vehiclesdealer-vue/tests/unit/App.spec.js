@@ -1,17 +1,38 @@
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import App from '@/App'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
+import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
+import VueRouter from 'vue-router'
 
 describe('App.vue', () => {
-  it('should render correctly', () => {
-    const app = appBuilder().build()
+  const router = new VueRouter()
+  let getters = {}
 
-    expect(app.homeLink().text()).toBe('Inicio')
-    expect(app.homeLink().props().to).toBe(HOME_ROUTE)
-    expect(app.vehiclesLink().text()).toBe('Vehículos')
-    expect(app.vehiclesLink().props().to).toBe(VEHICLES_ROUTE)
-    expect(app.content().exists()).toBe(true)
+  beforeEach(() => {
+    getters[ERROR_MESSAGE] = () => ({ show: false, message: '' })
   })
+
+  it('should render correctly', () => {
+    // const wrapper = appBuilder().withGetters(getters).build()
+
+    // expect(wrapper.homeLink().text()).toBe('Inicio')
+    // expect(wrapper.homeLink().props().to).toBe(HOME_ROUTE)
+    // expect(wrapper.vehiclesLink().text()).toBe('Vehículos')
+    // expect(wrapper.vehiclesLink().props().to).toBe(VEHICLES_ROUTE)
+    // expect(wrapper.content().exists()).toBe(true)
+  })
+
+  it('should show an error message when there is an error', () => {
+    getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
+    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).build()
+
+    expect(wrapper.find('.error-message').exists()).toBe(true)
+    expect(wrapper.find('.error-message').props().message).toBe('anErrorMessage')
+  })
+
+  function wrapperBuilder () {
+    return wrapperBuilderFactory({ component: App })
+  }
 
   function appBuilder () {
     let wrapper
@@ -25,7 +46,8 @@ describe('App.vue', () => {
       build,
       homeLink: () => wrapper.find('.home-link'),
       vehiclesLink: () => wrapper.find('.vehicles-link'),
-      content: () => wrapper.find('#content')
+      content: () => wrapper.find('#content'),
+      errorMessage: () => wrapper.find('.error-banner')
     }
     return self
   }
