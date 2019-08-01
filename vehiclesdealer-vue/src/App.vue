@@ -16,9 +16,9 @@
     </div>
     <router-view id="content" />
     <error-banner
-      v-if="showError"
       class="error-message"
       :message="errorMessage"
+      @onClose="onCloseErrorMessage"
     />
   </div>
 </template>
@@ -26,7 +26,9 @@
 <script>
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
-import { mapGetters } from 'vuex'
+import { CLEAR_MESSAGE, SHOW_MESSAGE } from '@/store/actions/actionTypes'
+import { mapGetters, mapActions } from 'vuex'
+import messagesTypes from '@/enums/messagesTypes'
 import ErrorBanner from '@/components/basic/ErrorBanner'
 
 export default {
@@ -48,6 +50,15 @@ export default {
     },
     vehiclesRoute () {
       return VEHICLES_ROUTE
+    }
+  },
+  methods: {
+    ...mapActions({
+      clearMessage: CLEAR_MESSAGE,
+      showMessage: SHOW_MESSAGE
+    }),
+    onCloseErrorMessage () {
+      this.clearMessage(messagesTypes().error)
     }
   }
 }
