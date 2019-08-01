@@ -29,6 +29,13 @@ describe('App.vue', () => {
     expect(wrapper.find('#content').exists()).toBe(true)
   })
 
+  it('should not show an error message when there is no error', () => {
+    getters[ERROR_MESSAGE] = () => ({ show: false, message: '' })
+    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
+
+    expect(wrapper.find('.error-message').exists()).toBe(false)
+  })
+
   it('should show an error message when there is an error', async () => {
     getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
     const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()

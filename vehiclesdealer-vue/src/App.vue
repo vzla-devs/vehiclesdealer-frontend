@@ -16,6 +16,7 @@
     </div>
     <router-view id="content" />
     <error-banner
+      v-if="showError"
       class="error-message"
       :message="errorMessage"
       @onClose="onCloseErrorMessage"
