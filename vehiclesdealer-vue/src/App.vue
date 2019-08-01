@@ -29,7 +29,7 @@ import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { CLEAR_MESSAGE, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import { mapGetters, mapActions } from 'vuex'
-import messagesTypes from '@/enums/messagesTypes'
+import MessageTypes from '@/enums/MessageTypes'
 import ErrorBanner from '@/components/basic/ErrorBanner'
 
 export default {
@@ -59,7 +59,7 @@ export default {
       showMessage: SHOW_MESSAGE
     }),
     onCloseErrorMessage () {
-      this.clearMessage(messagesTypes().error)
+      this.clearMessage(MessageTypes.error)
     }
   }
 }

@@ -6,7 +6,7 @@ import flushPromises from 'flush-promises'
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
-import MessagesTypes from '@/enums/MessagesTypes'
+import MessageTypes from '@/enums/MessageTypes'
 import ExpectHelpers from '@tests/helpers/expectHelpers'
 
 describe('VehiclesContainer.vue', () => {
@@ -68,7 +68,7 @@ describe('VehiclesContainer.vue', () => {
       vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
       await flushPromises()
-      const type = MessagesTypes().error
+      const type = MessageTypes.error
       ExpectHelpers().actionToHaveBeenCalledWith(actions[SHOW_MESSAGE], { type, message: 'Ha ocurrido un error' })
     })
   })

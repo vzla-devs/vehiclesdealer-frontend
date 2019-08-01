@@ -5,7 +5,7 @@ import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { CLEAR_MESSAGE, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import VueRouter from 'vue-router'
 import ExpectHelpers from '@tests/helpers/expectHelpers'
-import messagesTypes from '@/enums/messagesTypes'
+import MessageTypes from '@/enums/MessageTypes'
 import flushPromises from 'flush-promises'
 
 describe('App.vue', () => {
@@ -52,7 +52,7 @@ describe('App.vue', () => {
 
     wrapper.find('.error-message').vm.$emit('onClose')
 
-    ExpectHelpers().actionToHaveBeenCalledWith(actions[CLEAR_MESSAGE], messagesTypes().error)
+    ExpectHelpers().actionToHaveBeenCalledWith(actions[CLEAR_MESSAGE], MessageTypes.error)
   })
 
   function wrapperBuilder () {
