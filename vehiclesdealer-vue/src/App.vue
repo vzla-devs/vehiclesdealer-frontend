@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <div id="nav">
       <router-link
         class="home-link"
@@ -21,7 +21,7 @@
       :message="errorMessage"
       @onClose="onCloseErrorMessage"
     />
-  </div>
+  </v-app>
 </template>
 
 <script>
