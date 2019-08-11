@@ -6,7 +6,6 @@ import { CLEAR_MESSAGE, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import VueRouter from 'vue-router'
 import ExpectHelpers from '@tests/helpers/expectHelpers'
 import MessageTypes from '@/enums/MessageTypes'
-import flushPromises from 'flush-promises'
 
 describe('App.vue', () => {
   const router = new VueRouter()
@@ -44,6 +43,15 @@ describe('App.vue', () => {
     wrapper.find('.error-message').vm.$emit('onClose')
 
     ExpectHelpers().actionToHaveBeenCalledWith(actions[CLEAR_MESSAGE], MessageTypes.error)
+  })
+
+  it('should navigate to the home view when the corresponding option is clicked', () => {
+    router.push = jest.fn()
+    const wrapper = wrapperBuilder().withStubs(stubs).withRouter(router).withGetters(getters).withActions(actions).build()
+
+    wrapper.find('.home-option').vm.$emit('click')
+
+    expect(router.push).toHaveBeenCalledWith(HOME_ROUTE)
   })
 
   function wrapperBuilder () {

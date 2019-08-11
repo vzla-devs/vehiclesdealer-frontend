@@ -6,7 +6,10 @@
       app
     >
       <v-list dense>
-        <v-list-tile @click="() => {}">
+        <v-list-tile
+          class="home-option"
+          @click="onNavigate(homeRoute)"
+        >
           <v-list-tile-action>
             <v-icon>home</v-icon>
           </v-list-tile-action>
@@ -98,6 +101,9 @@ export default {
     }),
     onCloseErrorMessage () {
       this.clearMessage(MessageTypes.error)
+    },
+    onNavigate (route) {
+      this.$router.push(route)
     }
   }
 }
