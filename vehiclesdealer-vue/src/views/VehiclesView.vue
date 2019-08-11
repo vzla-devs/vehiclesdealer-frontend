@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h1 class="title">
-      Vehículos
-    </h1>
+    <h1>Vehículos</h1>
     <vehicles-container />
   </div>
 </template>

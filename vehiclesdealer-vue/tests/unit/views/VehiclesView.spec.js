@@ -6,7 +6,7 @@ describe('VehiclesView.vue', () => {
   it('should render correctly', () => {
     const wrapper = vehiclesViewBuilder().build()
 
-    expect(wrapper.find('.title').text()).toBe('Vehículos')
+    expect(wrapper.find('h1').text()).toBe('Vehículos')
     expect(wrapper.find(VehiclesContainer).exists()).toBe(true)
   })
 
