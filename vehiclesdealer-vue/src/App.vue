@@ -5,6 +5,16 @@
       fixed
       app
     >
+      <v-toolbar flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title>
+              <h1>Vehicles Dealer</h1>
+            </v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+      <v-divider />
       <v-list dense>
         <v-list-tile
           class="home-option"
@@ -31,13 +41,11 @@
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
-      color="primary"
-      dark
       fixed
       app
+      color="primary"
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Vehicles Dealer</v-toolbar-title>
     </v-toolbar>
     <v-content>
       <router-view id="content" />

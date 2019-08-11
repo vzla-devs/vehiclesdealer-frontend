@@ -9,7 +9,7 @@ import MessageTypes from '@/enums/MessageTypes'
 
 describe('App.vue', () => {
   const router = new VueRouter()
-  const stubs = ['v-app', 'v-navigation-drawer', 'v-list', 'v-list-tile-action', 'v-list-tile', 'v-list-tile-action', 'v-content', 'v-toolbar', 'v-toolbar-title', 'v-toolbar-side-icon', 'v-list-tile-title', 'v-list-tile-content', 'v-icon']
+  const stubs = ['v-app', 'v-navigation-drawer', 'v-list', 'v-divider', 'v-list-tile-action', 'v-list-tile', 'v-list-tile-action', 'v-content', 'v-toolbar', 'v-toolbar-title', 'v-toolbar-side-icon', 'v-list-tile-title', 'v-list-tile-content', 'v-icon']
   let getters = {}
   let actions = {}
 
