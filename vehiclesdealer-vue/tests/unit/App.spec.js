@@ -54,6 +54,15 @@ describe('App.vue', () => {
     expect(router.push).toHaveBeenCalledWith(HOME_ROUTE)
   })
 
+  it('should navigate to the vehicles view when the corresponding option is clicked', () => {
+    router.push = jest.fn()
+    const wrapper = wrapperBuilder().withStubs(stubs).withRouter(router).withGetters(getters).withActions(actions).build()
+
+    wrapper.find('.vehicles-option').vm.$emit('click')
+
+    expect(router.push).toHaveBeenCalledWith(VEHICLES_ROUTE)
+  })
+
   function wrapperBuilder () {
     return wrapperBuilderFactory({ component: App })
   }
