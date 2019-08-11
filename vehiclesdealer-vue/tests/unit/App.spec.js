@@ -10,6 +10,7 @@ import flushPromises from 'flush-promises'
 
 describe('App.vue', () => {
   const router = new VueRouter()
+  const stubs = ['v-app', 'v-navigation-drawer', 'v-list', 'v-list-tile-action', 'v-list-tile', 'v-list-tile-action', 'v-content', 'v-toolbar', 'v-toolbar-title', 'v-toolbar-side-icon', 'v-list-tile-title', 'v-list-tile-content', 'v-icon']
   let getters = {}
   let actions = {}
 
@@ -19,27 +20,17 @@ describe('App.vue', () => {
     actions[CLEAR_MESSAGE] = jest.fn()
   })
 
-  it('should render correctly', () => {
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
-
-    expect(wrapper.find('.home-link').text()).toBe('Inicio')
-    expect(wrapper.find('.home-link').props().to).toBe(HOME_ROUTE)
-    expect(wrapper.find('.vehicles-link').text()).toBe('Vehículos')
-    expect(wrapper.find('.vehicles-link').props().to).toBe(VEHICLES_ROUTE)
-    expect(wrapper.find('#content').exists()).toBe(true)
-  })
-
   it('should not show an error message when there is no error', () => {
     getters[ERROR_MESSAGE] = () => ({ show: false, message: '' })
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
+    const wrapper = wrapperBuilder().withStubs(stubs).withRouter(router).withGetters(getters).withActions(actions).build()
 
     expect(wrapper.find('.error-message').exists()).toBe(false)
   })
 
-  it('should show an error message when there is an error', async () => {
+  it('should show an error message when there is an error', () => {
     getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
-    await flushPromises()
+    const wrapper = wrapperBuilder().withStubs(stubs).withRouter(router).withGetters(getters).withActions(actions).build()
+
     wrapper.find('.error-message').vm.$emit('onClose')
 
     expect(wrapper.find('.error-message').exists()).toBe(true)
@@ -48,7 +39,7 @@ describe('App.vue', () => {
 
   it('should clear the error message when its corresponding close button is clicked', () => {
     getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
+    const wrapper = wrapperBuilder().withStubs(stubs).withRouter(router).withGetters(getters).withActions(actions).build()
 
     wrapper.find('.error-message').vm.$emit('onClose')
 

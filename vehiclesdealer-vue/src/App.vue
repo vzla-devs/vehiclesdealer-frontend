@@ -1,26 +1,61 @@
 <template>
   <v-app id="app">
-    <div id="nav">
-      <router-link
-        class="home-link"
-        :to="homeRoute"
-      >
-        Inicio
-      </router-link> |
-      <router-link
-        class="vehicles-link"
-        :to="vehiclesRoute"
-      >
-        Vehículos
-      </router-link>
-    </div>
-    <router-view id="content" />
-    <error-banner
-      v-if="showError"
-      class="error-message"
-      :message="errorMessage"
-      @onClose="onCloseErrorMessage"
-    />
+    <v-navigation-drawer
+      v-model="drawer"
+      fixed
+      app
+    >
+      <v-list dense>
+        <v-list-tile @click="() => {}">
+          <v-list-tile-action>
+            <v-icon>home</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Inicio</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile @click="() => {}">
+          <v-list-tile-action>
+            <v-icon>directions_car</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>Vehículos</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar
+      color="primary"
+      dark
+      fixed
+      app
+    >
+      <v-toolbar-side-icon @click.stop="drawer = !drawer" />
+      <v-toolbar-title>Vehicles Dealer</v-toolbar-title>
+    </v-toolbar>
+    <v-content>
+      <div id="nav">
+        <router-link
+          class="home-link"
+          :to="homeRoute"
+        >
+          Inicio
+        </router-link> |
+        <router-link
+          class="vehicles-link"
+          :to="vehiclesRoute"
+        >
+          Vehículos
+        </router-link>
+      </div>
+      <router-view id="content" />
+      <error-banner
+        v-if="showError"
+        class="error-message"
+        :message="errorMessage"
+        @onClose="onCloseErrorMessage"
+      />
+    </v-content>
   </v-app>
 </template>
 
@@ -36,6 +71,9 @@ export default {
   components: {
     ErrorBanner
   },
+  data: () => ({
+    drawer: null
+  }),
   computed: {
     ...mapGetters({
       error: ERROR_MESSAGE
