@@ -3,7 +3,7 @@ import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 
 describe('ErrorBanner.vue', () => {
   const stubs = ['v-alert']
-  it('should render correctly', () => {
+  it('should show an error message', () => {
     const message = 'anyMessage'
 
     const wrapper = errorBannerBuilder().withStubs(stubs).withProps({ message }).build()
