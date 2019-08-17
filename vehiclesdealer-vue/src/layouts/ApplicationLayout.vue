@@ -16,18 +16,21 @@
       </v-toolbar>
       <v-divider />
       <v-list dense>
-        <v-list-tile
+        <div
           v-for="(option, index) in drawerOptions"
           :key="index"
-          class="option"
-          @click="onHomePage"
         >
-          <v-list-tile-content>
-            <v-list-tile-title class="option-title">
-              {{ option.title }}
-            </v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          <v-list-tile
+            class="option"
+            @click="$emit(option.event)"
+          >
+            <v-list-tile-content>
+              <v-list-tile-title class="option-title">
+                {{ option.title }}
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </div>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
