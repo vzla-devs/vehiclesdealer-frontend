@@ -20,9 +20,6 @@
           class="home-option"
           @click="onHomePage"
         >
-          <v-list-tile-action>
-            <v-icon>home</v-icon>
-          </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Inicio</v-list-tile-title>
           </v-list-tile-content>
@@ -31,9 +28,6 @@
           class="vehicles-option"
           @click="onVehiclesPage"
         >
-          <v-list-tile-action>
-            <v-icon>directions_car</v-icon>
-          </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title>Vehículos</v-list-tile-title>
           </v-list-tile-content>
@@ -57,6 +51,9 @@
 
 <script>
 export default {
+  props: {
+    drawerOptions: { type: Array, required: true }
+  },
   data: () => ({
     drawer: false
   }),

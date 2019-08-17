@@ -19,6 +19,11 @@ export function wrapperBuilderFactory ({ component }) {
     return self
   }
 
+  function withData (newData) {
+    options.data = () => (newData)
+    return self
+  }
+
   function withRouter (newRouter) {
     localVue.use(VueRouter)
     options.router = newRouter
@@ -52,6 +57,7 @@ export function wrapperBuilderFactory ({ component }) {
   const self = {
     withStubs,
     withProps,
+    withData,
     withRouter,
     withGetters,
     withActions,

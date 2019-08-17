@@ -19,6 +19,16 @@ describe('App.vue', () => {
     actions[CLEAR_MESSAGE] = jest.fn()
   })
 
+  it('should render correctly', () => {
+    const drawerOptions = [{ title: 'Inicio', event: 'onHomePage' }, { title: 'Vehículos', event: 'onVehiclesPage' }]
+
+    const wrapper = wrapperBuilder().withData({ drawerOptions }).withRouter(router).withGetters(getters).withActions(actions).build()
+
+    expect(wrapper.find(ApplicationLayout).props().drawerOptions).toBe(drawerOptions)
+    expect(wrapper.find(ApplicationLayout).contains('#content'))
+    expect(wrapper.find(ApplicationLayout).contains('.error-message'))
+  })
+
   it('should not show an error message when there is no error', () => {
     getters[ERROR_MESSAGE] = () => ({ show: false, message: '' })
     const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()

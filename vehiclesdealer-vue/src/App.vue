@@ -1,5 +1,6 @@
 <template>
   <application-layout
+    :drawer-options="drawerOptions"
     @onHomePage="onNavigate(homeRoute)"
     @onVehiclesPage="onNavigate(vehiclesRoute)"
   >
@@ -27,6 +28,12 @@ export default {
     ApplicationLayout,
     ErrorBanner
   },
+  data: () => ({
+    drawerOptions: [
+      { title: 'Inicio', event: 'onHomePage' },
+      { title: 'Vehículos', event: 'onVehiclesPage' }
+    ]
+  }),
   computed: {
     ...mapGetters({
       error: ERROR_MESSAGE
