@@ -22,7 +22,7 @@
 import { mapGetters, mapActions } from 'vuex'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
-import GridLayout from '@/components/basic/GridLayout'
+import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
 import MessageTypes from '@/enums/MessageTypes'

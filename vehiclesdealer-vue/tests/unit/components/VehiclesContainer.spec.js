@@ -1,5 +1,5 @@
 import VehiclesContainer from '@/components/VehiclesContainer'
-import GridLayout from '@/components/basic/GridLayout'
+import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
 import flushPromises from 'flush-promises'
