@@ -1,64 +1,16 @@
 <template>
-  <v-app id="app">
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-toolbar flat>
-        <v-list>
-          <v-list-tile>
-            <v-list-tile-title>
-              <h1>Opciones</h1>
-            </v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-toolbar>
-      <v-divider />
-      <v-list dense>
-        <v-list-tile
-          class="home-option"
-          @click="onNavigate(homeRoute)"
-        >
-          <v-list-tile-action>
-            <v-icon>home</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Inicio</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile
-          class="vehicles-option"
-          @click="onNavigate(vehiclesRoute)"
-        >
-          <v-list-tile-action>
-            <v-icon>directions_car</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Vehículos</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar
-      fixed
-      app
-      color="primary"
-      dark
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>VehiclesDealer</v-toolbar-title>
-    </v-toolbar>
-    <v-content>
-      <router-view id="content" />
-      <error-banner
-        v-if="showError"
-        class="error-message"
-        :message="errorMessage"
-        @onClose="onCloseErrorMessage"
-      />
-    </v-content>
-  </v-app>
+  <application-layout
+    @onHomePage="onNavigate(homeRoute)"
+    @onVehiclesPage="onNavigate(vehiclesRoute)"
+  >
+    <router-view id="content" />
+    <error-banner
+      v-if="showError"
+      class="error-message"
+      :message="errorMessage"
+      @onClose="onCloseErrorMessage"
+    />
+  </application-layout>
 </template>
 
 <script>
@@ -68,14 +20,13 @@ import { CLEAR_MESSAGE, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import { mapGetters, mapActions } from 'vuex'
 import MessageTypes from '@/enums/MessageTypes'
 import ErrorBanner from '@/components/basic/ErrorBanner'
+import ApplicationLayout from '@/layouts/ApplicationLayout'
 
 export default {
   components: {
+    ApplicationLayout,
     ErrorBanner
   },
-  data: () => ({
-    drawer: null
-  }),
   computed: {
     ...mapGetters({
       error: ERROR_MESSAGE
@@ -117,17 +68,6 @@ body {
   color: #2c3e50;
   h1 {
     text-align: center;
-  }
-}
-#nav {
-  text-align: center;
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
   }
 }
 #content {

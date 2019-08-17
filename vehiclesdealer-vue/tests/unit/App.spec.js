@@ -1,5 +1,6 @@
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import App from '@/App'
+import ApplicationLayout from '@/layouts/ApplicationLayout'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { CLEAR_MESSAGE, SHOW_MESSAGE } from '@/store/actions/actionTypes'
@@ -45,20 +46,20 @@ describe('App.vue', () => {
     ExpectHelpers().actionToHaveBeenCalledWith(actions[CLEAR_MESSAGE], MessageTypes.error)
   })
 
-  it('should navigate to the home view when the corresponding option is clicked', () => {
+  it('should navigate to the home page when the corresponding option is clicked', () => {
     router.push = jest.fn()
     const wrapper = wrapperBuilder().withStubs(stubs).withRouter(router).withGetters(getters).withActions(actions).build()
 
-    wrapper.find('.home-option').vm.$emit('click')
+    wrapper.find(ApplicationLayout).vm.$emit('onHomePage')
 
     expect(router.push).toHaveBeenCalledWith(HOME_ROUTE)
   })
 
-  it('should navigate to the vehicles view when the corresponding option is clicked', () => {
+  it('should navigate to the vehicles page when the corresponding option is clicked', () => {
     router.push = jest.fn()
     const wrapper = wrapperBuilder().withStubs(stubs).withRouter(router).withGetters(getters).withActions(actions).build()
 
-    wrapper.find('.vehicles-option').vm.$emit('click')
+    wrapper.find(ApplicationLayout).vm.$emit('onVehiclesPage')
 
     expect(router.push).toHaveBeenCalledWith(VEHICLES_ROUTE)
   })
