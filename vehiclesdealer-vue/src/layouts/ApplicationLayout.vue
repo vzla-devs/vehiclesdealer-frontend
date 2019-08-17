@@ -66,3 +66,23 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+body {
+  margin: 0;
+}
+#app {
+  font-family: roboto, sans-serif;
+  color: #2c3e50;
+  h1 {
+    text-align: center;
+    margin-top: $small-space;
+  }
+}
+
+@media (min-width: $medium-breakpoint) {
+  h1 {
+    margin-top: $medium-space;
+  }
+}
+</style>
