@@ -9,7 +9,7 @@
         <v-list>
           <v-list-tile>
             <v-list-tile-title>
-              <h1>Vehicles Dealer</h1>
+              <h1>Opciones</h1>
             </v-list-tile-title>
           </v-list-tile>
         </v-list>
@@ -44,8 +44,10 @@
       fixed
       app
       color="primary"
+      dark
     >
       <v-toolbar-side-icon @click.stop="drawer = !drawer" />
+      <v-toolbar-title>VehiclesDealer</v-toolbar-title>
     </v-toolbar>
     <v-content>
       <router-view id="content" />

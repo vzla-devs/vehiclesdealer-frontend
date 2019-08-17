@@ -1,4 +1,4 @@
-import VehiclesPage from '@/views/VehiclesPage'
+import VehiclesPage from '@/pages/VehiclesPage'
 import VehiclesContainer from '@/components/VehiclesContainer'
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 
