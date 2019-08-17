@@ -17,19 +17,15 @@
       <v-divider />
       <v-list dense>
         <v-list-tile
-          class="home-option"
+          v-for="(option, index) in drawerOptions"
+          :key="index"
+          class="option"
           @click="onHomePage"
         >
           <v-list-tile-content>
-            <v-list-tile-title>Inicio</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile
-          class="vehicles-option"
-          @click="onVehiclesPage"
-        >
-          <v-list-tile-content>
-            <v-list-tile-title>Vehículos</v-list-tile-title>
+            <v-list-tile-title class="option-title">
+              {{ option.title }}
+            </v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
