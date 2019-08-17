@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomeView from './views/HomeView.vue'
-import VehiclesView from './views/VehiclesView.vue'
+import HomePage from './pages/HomePage.vue'
+import VehiclesPage from './pages/VehiclesPage.vue'
 
 Vue.use(Router)
 
@@ -12,12 +12,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomePage
     },
     {
       path: '/vehiculos',
       name: 'vehicles',
-      component: VehiclesView
+      component: VehiclesPage
     }
   ]
 })

@@ -1,16 +1,16 @@
-import VehiclesView from '@/views/VehiclesView'
+import VehiclesPage from '@/views/VehiclesPage'
 import VehiclesContainer from '@/components/VehiclesContainer'
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 
-describe('VehiclesView.vue', () => {
+describe('VehiclesPage.vue', () => {
   it('should render correctly', () => {
-    const wrapper = vehiclesViewBuilder().build()
+    const wrapper = vehiclesPageBuilder().build()
 
     expect(wrapper.find('h1').text()).toBe('Vehículos')
     expect(wrapper.find(VehiclesContainer).exists()).toBe(true)
   })
 
-  function vehiclesViewBuilder () {
-    return wrapperBuilderFactory({ component: VehiclesView })
+  function vehiclesPageBuilder () {
+    return wrapperBuilderFactory({ component: VehiclesPage })
   }
 })
