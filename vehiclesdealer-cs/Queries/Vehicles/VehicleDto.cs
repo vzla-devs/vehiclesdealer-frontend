@@ -2,24 +2,18 @@
 
 namespace Queries.Vehicles {
     public class VehicleDto {
-        [JsonProperty("brand")]
+        public string Id { get; }
         public string Brand { get; }
-        [JsonProperty("model")]
         public string Model { get; }
-        [JsonProperty("year")]
         public int Year { get; }
-        [JsonProperty("price")]
         public float Price { get; }
-        [JsonProperty("imageUrl")]
-        public string ImageUrl { get; }
 
-        public VehicleDto(string brand, string model, int year, float price, string imageUrl)
-        {
+        public VehicleDto(string id, string brand, string model, int year, float price) {
+            Id = id;
             Brand = brand;
             Model = model;
             Year = year;
             Price = price;
-            ImageUrl = imageUrl;
         }
     }
 }

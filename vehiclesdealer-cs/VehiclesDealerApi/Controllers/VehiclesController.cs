@@ -12,62 +12,16 @@ namespace VehiclesDealerApi.Controllers
         [HttpGet]
         public ActionResult<List<VehicleDto>> Get() {
             var vehicles = new List<VehicleDto> {
-                new VehicleDto(
-                    "audi",
-                    "a1",
-                    2019,
-                    9999,
-                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
-                ),
-                new VehicleDto(
-                    "audi",
-                    "a1",
-                    2019,
-                    9999,
-                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
-                ),
-                new VehicleDto(
-                    "audi",
-                    "a1",
-                    2019,
-                    9999,
-                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
-                ),
-                new VehicleDto(
-                    "audi",
-                    "a1",
-                    2019,
-                    9999,
-                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
-                ),
-                new VehicleDto(
-                    "audi",
-                    "a1",
-                    2019,
-                    9999,
-                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
-                ),
-                new VehicleDto(
-                    "audi",
-                    "a1",
-                    2019,
-                    9999,
-                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
-                ),
-                new VehicleDto(
-                    "audi",
-                    "a1",
-                    2019,
-                    9999,
-                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
-                ),
-                new VehicleDto(
-                    "audi",
-                    "a1",
-                    2019,
-                    9999,
-                    "https://images.pexels.com/photos/38637/car-audi-auto-automotive-38637.jpeg?cs=srgb&dl=asphalt-audi-automobile-38637.jpg&fm=jpg"
-                )
+                new VehicleDto("1","audi","a1",2019,9999),
+                new VehicleDto("2","audi","a1",2019,9999),
+                new VehicleDto("3","audi","a1",2019,9999),
+                new VehicleDto("4","audi","a1",2019,9999),
+                new VehicleDto("5","audi","a1",2019,9999),
+                new VehicleDto("6","audi","a1",2019,9999),
+                new VehicleDto("7","audi","a1",2019,9999),
+                new VehicleDto("8","audi","a1",2019,9999),
+                new VehicleDto("9","audi","a1",2019,9999),
+                new VehicleDto("10","audi","a1",2019,9999)
             };
             return vehicles;
         }
