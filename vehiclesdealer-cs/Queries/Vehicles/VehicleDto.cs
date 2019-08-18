@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Queries.Vehicles {
+﻿namespace VehiclesDealer.Application.Queries.Vehicles {
     public class VehicleDto {
         public string Id { get; }
         public string Brand { get; }

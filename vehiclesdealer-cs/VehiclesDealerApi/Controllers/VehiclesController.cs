@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Queries.Vehicles;
+using VehiclesDealer.Application.Queries.Vehicles;
 
-namespace VehiclesDealerApi.Controllers
+namespace VehiclesDealer.WebApplication.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
