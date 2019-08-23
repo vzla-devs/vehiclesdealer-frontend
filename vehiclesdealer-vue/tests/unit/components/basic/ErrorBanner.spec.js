@@ -2,7 +2,7 @@ import ErrorBanner from '@/components/basic/ErrorBanner'
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 
 describe('ErrorBanner.vue', () => {
-  const stubs = ['v-alert']
+  const stubs = { 'v-alert': true }
   it('should show an error message', () => {
     const message = 'anyMessage'
 

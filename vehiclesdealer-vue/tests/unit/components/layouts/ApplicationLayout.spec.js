@@ -2,7 +2,20 @@ import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import ApplicationLayout from '@/layouts/ApplicationLayout'
 
 describe('ApplicationLayout.vue', () => {
-  const stubs = ['v-app', 'v-navigation-drawer', 'v-divider', 'v-list', 'v-list-tile', 'v-list-tile-content', 'v-toolbar', 'v-toolbar-title', 'v-toolbar-side-icon', 'v-content', 'v-list-tile-title', 'v-list-title']
+  const stubs = {
+    'v-app': true,
+    'v-navigation-drawer': true,
+    'v-divider': true,
+    'v-list': true,
+    'v-list-tile': true,
+    'v-list-tile-content': true,
+    'v-toolbar': true,
+    'v-toolbar-title': true,
+    'v-toolbar-side-icon': true,
+    'v-content': true,
+    'v-list-tile-title': true,
+    'v-list-title': true
+  }
 
   it('should render the drawer options correctly', () => {
     const drawerOptions = [{ title: 'first option', event: 'firstEvent' }, { title: 'second option', event: 'secondEvent' }]
