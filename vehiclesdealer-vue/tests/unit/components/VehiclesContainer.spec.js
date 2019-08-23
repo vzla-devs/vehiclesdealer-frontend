@@ -21,7 +21,9 @@ describe('VehiclesContainer.vue', () => {
 
   describe('when getting the vehicles', () => {
     it('should call action to get the vehicles', async () => {
-      vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
+      actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
+
+      vehiclesContainerBuilder().withActions(actions).build()
 
       await flushPromises()
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
@@ -29,7 +31,8 @@ describe('VehiclesContainer.vue', () => {
 
     it('should display an empty view when there are no vehicles', async () => {
       getters[AVAILABLE_VEHICLES] = () => []
-      const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
+
+      const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
 
       expect(wrapper.contains(GridLayout)).toBe(false)
       expect(wrapper.contains(NoData)).toBe(false)
@@ -47,7 +50,7 @@ describe('VehiclesContainer.vue', () => {
       ]
       getters[AVAILABLE_VEHICLES] = () => givenVehicles
 
-      const wrapper = vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
+      const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
 
       expect(wrapper.contains(GridLayout)).toBe(false)
       await flushPromises()
@@ -65,7 +68,7 @@ describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles fails', () => {
     it('should show an error message', async () => {
       actions[GET_VEHICLES] = jest.fn(() => Promise.reject(new Error('anyError')))
-      vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
+      vehiclesContainerBuilder().withActions(actions).build()
 
       await flushPromises()
       const type = MessageTypes.error
@@ -74,7 +77,7 @@ describe('VehiclesContainer.vue', () => {
   })
 
   function vehiclesContainerBuilder () {
-    return wrapperBuilderFactory(VehiclesContainer)
+    return wrapperBuilderFactory(VehiclesContainer).withGetters(getters).withActions(actions)
   }
 
   function givenAVehicle ({ brand = 'anyBrand', model = 'anyModel', year = 0, price = 0, imageUrl = 'anyUrl' } = {}) {

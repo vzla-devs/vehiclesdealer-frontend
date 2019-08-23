@@ -20,25 +20,29 @@ describe('App.vue', () => {
   })
 
   it('should render correctly', () => {
-    const drawerOptions = [{ title: 'Inicio', event: 'onHomePage' }, { title: 'Vehículos', event: 'onVehiclesPage' }]
+    const drawerOptions = [
+      { title: 'Inicio', event: 'onHomePage' },
+      { title: 'Vehículos', event: 'onVehiclesPage' }
+    ]
 
-    const wrapper = wrapperBuilder().withData({ drawerOptions }).withRouter(router).withGetters(getters).withActions(actions).build()
+    const wrapper = wrapperBuilder().withData({ drawerOptions }).build()
 
     expect(wrapper.find(ApplicationLayout).props().drawerOptions).toBe(drawerOptions)
-    expect(wrapper.find(ApplicationLayout).contains('#content'))
-    expect(wrapper.find(ApplicationLayout).contains('.error-message'))
+    expect(wrapper.find(ApplicationLayout).contains('#content')).toBe(true)
+    expect(wrapper.find(ApplicationLayout).contains('.error-message')).toBe(false)
   })
 
   it('should not show an error message when there is no error', () => {
     getters[ERROR_MESSAGE] = () => ({ show: false, message: '' })
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
+
+    const wrapper = wrapperBuilder().withGetters(getters).build()
 
     expect(wrapper.find('.error-message').exists()).toBe(false)
   })
 
   it('should show an error message when there is an error', () => {
     getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
+    const wrapper = wrapperBuilder().withGetters(getters).build()
 
     wrapper.find('.error-message').vm.$emit('onClose')
 
@@ -48,7 +52,7 @@ describe('App.vue', () => {
 
   it('should clear the error message when its corresponding close button is clicked', () => {
     getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
+    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).build()
 
     wrapper.find('.error-message').vm.$emit('onClose')
 
@@ -57,7 +61,7 @@ describe('App.vue', () => {
 
   it('should navigate to the home page when the corresponding option is clicked', () => {
     router.push = jest.fn()
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
+    const wrapper = wrapperBuilder().withRouter(router).build()
 
     wrapper.find(ApplicationLayout).vm.$emit('onHomePage')
 
@@ -66,7 +70,7 @@ describe('App.vue', () => {
 
   it('should navigate to the vehicles page when the corresponding option is clicked', () => {
     router.push = jest.fn()
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).withActions(actions).build()
+    const wrapper = wrapperBuilder().withRouter(router).build()
 
     wrapper.find(ApplicationLayout).vm.$emit('onVehiclesPage')
 
@@ -74,6 +78,6 @@ describe('App.vue', () => {
   })
 
   function wrapperBuilder () {
-    return wrapperBuilderFactory(App)
+    return wrapperBuilderFactory(App).withRouter(router).withGetters(getters).withActions(actions)
   }
 })
