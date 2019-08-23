@@ -53,8 +53,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      clearMessage: CLEAR_MESSAGE,
-      showMessage: SHOW_MESSAGE
+      clearMessage: CLEAR_MESSAGE
     }),
     onCloseErrorMessage () {
       this.clearMessage(MessageTypes.error)

@@ -3,11 +3,11 @@ import App from '@/App'
 import ApplicationLayout from '@/layouts/ApplicationLayout'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
-import { CLEAR_MESSAGE, SHOW_MESSAGE } from '@/store/actions/actionTypes'
+import { CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import VueRouter from 'vue-router'
 import ExpectHelpers from '@tests/helpers/expectHelpers'
 import MessageTypes from '@/enums/MessageTypes'
-// TODO: test that we're calling the actions correctly
+
 describe('App.vue', () => {
   const router = new VueRouter()
   let getters = {}
@@ -15,7 +15,6 @@ describe('App.vue', () => {
 
   beforeEach(() => {
     getters[ERROR_MESSAGE] = () => ({ show: false, message: '' })
-    actions[SHOW_MESSAGE] = jest.fn()
     actions[CLEAR_MESSAGE] = jest.fn()
   })
 
@@ -42,9 +41,8 @@ describe('App.vue', () => {
 
   it('should show an error message when there is an error', () => {
     getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
-    const wrapper = wrapperBuilder().withGetters(getters).build()
 
-    wrapper.find('.error-message').vm.$emit('onClose')
+    const wrapper = wrapperBuilder().withGetters(getters).build()
 
     expect(wrapper.find('.error-message').exists()).toBe(true)
     expect(wrapper.find('.error-message').props().message).toBe('anErrorMessage')
@@ -52,7 +50,8 @@ describe('App.vue', () => {
 
   it('should clear the error message when its corresponding close button is clicked', () => {
     getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
-    const wrapper = wrapperBuilder().withRouter(router).withGetters(getters).build()
+    actions[CLEAR_MESSAGE] = jest.fn()
+    const wrapper = wrapperBuilder().withGetters(getters).withActions(actions).build()
 
     wrapper.find('.error-message').vm.$emit('onClose')
 
