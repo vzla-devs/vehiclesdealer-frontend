@@ -7,7 +7,7 @@ import { CLEAR_MESSAGE, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import VueRouter from 'vue-router'
 import ExpectHelpers from '@tests/helpers/expectHelpers'
 import MessageTypes from '@/enums/MessageTypes'
-
+// TODO: test that we're calling the actions correctly
 describe('App.vue', () => {
   const router = new VueRouter()
   let getters = {}
