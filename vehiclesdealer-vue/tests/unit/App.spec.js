@@ -74,6 +74,6 @@ describe('App.vue', () => {
   })
 
   function wrapperBuilder () {
-    return wrapperBuilderFactory({ component: App })
+    return wrapperBuilderFactory(App)
   }
 })

@@ -11,6 +11,6 @@ describe('VehiclesPage.vue', () => {
   })
 
   function vehiclesPageBuilder () {
-    return wrapperBuilderFactory({ component: VehiclesPage })
+    return wrapperBuilderFactory(VehiclesPage)
   }
 })

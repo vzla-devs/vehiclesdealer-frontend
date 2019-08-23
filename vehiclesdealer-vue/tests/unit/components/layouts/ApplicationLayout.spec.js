@@ -38,6 +38,6 @@ describe('ApplicationLayout.vue', () => {
   })
 
   function wrapperBuilder () {
-    return wrapperBuilderFactory({ component: ApplicationLayout })
+    return wrapperBuilderFactory(ApplicationLayout)
   }
 })

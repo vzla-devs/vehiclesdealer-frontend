@@ -74,7 +74,7 @@ describe('VehiclesContainer.vue', () => {
   })
 
   function vehiclesContainerBuilder () {
-    return wrapperBuilderFactory({ component: VehiclesContainer, stubs: ['v-alert'] })
+    return wrapperBuilderFactory(VehiclesContainer)
   }
 
   function givenAVehicle ({ brand = 'anyBrand', model = 'anyModel', year = 0, price = 0, imageUrl = 'anyUrl' } = {}) {

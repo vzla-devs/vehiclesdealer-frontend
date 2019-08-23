@@ -20,6 +20,6 @@ describe('ErrorBanner.vue', () => {
   })
 
   function errorBannerBuilder () {
-    return wrapperBuilderFactory({ component: ErrorBanner })
+    return wrapperBuilderFactory(ErrorBanner)
   }
 })

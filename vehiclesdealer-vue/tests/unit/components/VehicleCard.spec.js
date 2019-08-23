@@ -17,6 +17,6 @@ describe('VehicleCard.vue', () => {
   })
 
   function vehicleCardBuilder () {
-    return wrapperBuilderFactory({ component: VehicleCard })
+    return wrapperBuilderFactory(VehicleCard)
   }
 })

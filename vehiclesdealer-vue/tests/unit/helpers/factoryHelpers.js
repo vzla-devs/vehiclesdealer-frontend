@@ -2,7 +2,7 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 
-export function wrapperBuilderFactory ({ component }) {
+export function wrapperBuilderFactory (component) {
   const localVue = createLocalVue()
   const options = { component }
   let data
