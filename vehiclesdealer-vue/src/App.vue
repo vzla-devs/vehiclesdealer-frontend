@@ -17,7 +17,7 @@
 <script>
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
-import { CLEAR_MESSAGE, SHOW_MESSAGE } from '@/store/actions/actionTypes'
+import { CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import { mapGetters, mapActions } from 'vuex'
 import MessageTypes from '@/enums/MessageTypes'
 import ErrorBanner from '@/components/basic/ErrorBanner'
