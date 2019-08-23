@@ -5,24 +5,10 @@ import VueRouter from 'vue-router'
 export function wrapperBuilderFactory ({ component }) {
   const localVue = createLocalVue()
   const options = { component }
+  let data
   let state
   let getters
   let actions
-
-  function withStubs (newStubs) {
-    options.stubs = newStubs
-    return self
-  }
-
-  function withProps (newProps) {
-    options.propsData = newProps
-    return self
-  }
-
-  function withData (newData) {
-    options.data = () => (newData)
-    return self
-  }
 
   function withRouter (newRouter) {
     localVue.use(VueRouter)
@@ -30,18 +16,33 @@ export function wrapperBuilderFactory ({ component }) {
     return self
   }
 
+  function withStubs (newStubs) {
+    options.stubs = { ...options.stubs, ...newStubs }
+    return self
+  }
+
+  function withProps (newProps) {
+    options.propsData = { ...options.propsData, ...newProps }
+    return self
+  }
+
+  function withData (newData) {
+    data = { ...data, ...newData }
+    return self
+  }
+
   function withGetters (newGetters) {
-    getters = newGetters
+    getters = { ...getters, ...newGetters }
     return self
   }
 
   function withActions (newActions) {
-    actions = newActions
+    actions = { ...actions, ...newActions }
     return self
   }
 
   function withState (newState) {
-    state = newState
+    state = { ...state, ...newState }
     return self
   }
 
@@ -51,6 +52,7 @@ export function wrapperBuilderFactory ({ component }) {
       options.store = new Vuex.Store({ state, getters, actions })
     }
     options.localVue = localVue
+    if (data) options.data = () => ({ ...data })
     return shallowMount(component, options)
   }
 
