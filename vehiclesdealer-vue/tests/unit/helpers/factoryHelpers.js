@@ -11,7 +11,6 @@ export function wrapperBuilderFactory (component) {
   let actions
 
   function withRouter (newRouter) {
-    localVue.use(VueRouter)
     options.router = newRouter
     return self
   }
@@ -47,12 +46,17 @@ export function wrapperBuilderFactory (component) {
   }
 
   function build () {
+    if (data) {
+      options.data = () => ({ ...data })
+    }
+    if (options.router) {
+      localVue.use(VueRouter)
+    }
     if (state || getters || actions) {
       localVue.use(Vuex)
       options.store = new Vuex.Store({ state, getters, actions })
     }
     options.localVue = localVue
-    if (data) options.data = () => ({ ...data })
     return shallowMount(component, options)
   }
 
