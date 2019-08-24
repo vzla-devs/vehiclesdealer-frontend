@@ -3,7 +3,10 @@ import ApplicationLayout from '@/layouts/ApplicationLayout'
 
 describe('ApplicationLayout.vue', () => {
   it('should render the drawer options correctly', () => {
-    const drawerOptions = [{ title: 'first option', event: 'firstEvent' }, { title: 'second option', event: 'secondEvent' }]
+    const drawerOptions = [
+      { title: 'first option', event: 'firstEvent' },
+      { title: 'second option', event: 'secondEvent' }
+    ]
 
     const wrapper = wrapperBuilder().withProps({ drawerOptions }).build()
 
@@ -14,7 +17,10 @@ describe('ApplicationLayout.vue', () => {
   })
 
   it('should emit event when the corresponding option is clicked', () => {
-    const drawerOptions = [{ title: 'first option', event: 'firstEvent' }, { title: 'second option', event: 'secondEvent' }]
+    const drawerOptions = [
+      { title: 'first option', event: 'firstEvent' },
+      { title: 'second option', event: 'secondEvent' }
+    ]
     const wrapper = wrapperBuilder().withProps({ drawerOptions }).build()
 
     wrapper.findAll('.option').at(1).vm.$emit('click')

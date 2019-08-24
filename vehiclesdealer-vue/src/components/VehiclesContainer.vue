@@ -39,7 +39,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({ vehicles: AVAILABLE_VEHICLES }),
+    ...mapGetters({
+      vehicles: AVAILABLE_VEHICLES
+    }),
     hasVehices () {
       return this.vehicles.length > 0
     },

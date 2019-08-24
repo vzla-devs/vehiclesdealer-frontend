@@ -10,27 +10,26 @@ import MessageTypes from '@/constants/MessageTypes'
 import ExpectHelpers from '@tests/helpers/expectHelpers'
 
 describe('VehiclesContainer.vue', () => {
-  const getters = {}
-  const actions = {}
-
-  beforeEach(() => {
-    getters[AVAILABLE_VEHICLES] = () => []
-    actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
-    actions[SHOW_MESSAGE] = jest.fn()
-  })
-
   describe('when getting the vehicles', () => {
     it('should call action to get the vehicles', async () => {
-      actions[GET_VEHICLES] = jest.fn(() => Promise.resolve())
+      const getters = {
+        AVAILABLE_VEHICLES: jest.fn(() => [])
+      }
+      const actions = {
+        GET_VEHICLES: jest.fn(() => Promise.resolve())
+      }
 
-      vehiclesContainerBuilder().withActions(actions).build()
+      vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
       await flushPromises()
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
+      expect(getters[AVAILABLE_VEHICLES]).toHaveBeenCalled()
     })
 
     it('should display an empty view when there are no vehicles', async () => {
-      getters[AVAILABLE_VEHICLES] = () => []
+      const getters = {
+        AVAILABLE_VEHICLES: () => []
+      }
 
       const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
 
@@ -48,7 +47,9 @@ describe('VehiclesContainer.vue', () => {
         givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }),
         givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
-      getters[AVAILABLE_VEHICLES] = () => givenVehicles
+      const getters = {
+        AVAILABLE_VEHICLES: () => givenVehicles
+      }
 
       const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
 
@@ -67,7 +68,11 @@ describe('VehiclesContainer.vue', () => {
 
   describe('when getting the vehicles fails', () => {
     it('should show an error message', async () => {
-      actions[GET_VEHICLES] = jest.fn(() => Promise.reject(new Error('anyError')))
+      const actions = {
+        GET_VEHICLES: jest.fn(() => Promise.reject(new Error('anyError'))),
+        SHOW_MESSAGE: jest.fn()
+      }
+
       vehiclesContainerBuilder().withActions(actions).build()
 
       await flushPromises()
@@ -79,6 +84,14 @@ describe('VehiclesContainer.vue', () => {
   })
 
   function vehiclesContainerBuilder () {
+    const getters = {
+      AVAILABLE_VEHICLES: () => []
+    }
+    const actions = {
+      GET_VEHICLES: jest.fn(() => Promise.resolve()),
+      SHOW_MESSAGE: jest.fn()
+    }
+
     return wrapperBuilderFactory(VehiclesContainer).withGetters(getters).withActions(actions)
   }
 

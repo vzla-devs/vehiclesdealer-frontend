@@ -9,15 +9,6 @@ import ExpectHelpers from '@tests/helpers/expectHelpers'
 import MessageTypes from '@/constants/MessageTypes'
 
 describe('App.vue', () => {
-  const router = new VueRouter()
-  let getters = {}
-  let actions = {}
-
-  beforeEach(() => {
-    getters[ERROR_MESSAGE] = () => ({ show: false, message: '' })
-    actions[CLEAR_MESSAGE] = jest.fn()
-  })
-
   it('should render correctly', () => {
     const drawerOptions = [
       { title: 'Inicio', event: 'onHomePage' },
@@ -32,7 +23,9 @@ describe('App.vue', () => {
   })
 
   it('should not show an error message when there is no error', () => {
-    getters[ERROR_MESSAGE] = () => ({ show: false, message: '' })
+    const getters = {
+      ERROR_MESSAGE: () => ({ show: false, message: '' })
+    }
 
     const wrapper = wrapperBuilder().withGetters(getters).build()
 
@@ -40,7 +33,9 @@ describe('App.vue', () => {
   })
 
   it('should show an error message when there is an error', () => {
-    getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
+    const getters = {
+      ERROR_MESSAGE: () => ({ show: true, message: 'anErrorMessage' })
+    }
 
     const wrapper = wrapperBuilder().withGetters(getters).build()
 
@@ -49,8 +44,12 @@ describe('App.vue', () => {
   })
 
   it('should clear the error message when its corresponding close button is clicked', () => {
-    getters[ERROR_MESSAGE] = () => ({ show: true, message: 'anErrorMessage' })
-    actions[CLEAR_MESSAGE] = jest.fn()
+    const getters = {
+      ERROR_MESSAGE: () => ({ show: true, message: 'anErrorMessage' })
+    }
+    const actions = {
+      CLEAR_MESSAGE: jest.fn()
+    }
     const wrapper = wrapperBuilder().withGetters(getters).withActions(actions).build()
 
     wrapper.find('.error-message').vm.$emit('onClose')
@@ -59,6 +58,7 @@ describe('App.vue', () => {
   })
 
   it('should navigate to the home page when the corresponding option is clicked', () => {
+    const router = new VueRouter()
     router.push = jest.fn()
     const wrapper = wrapperBuilder().withRouter(router).build()
 
@@ -68,6 +68,7 @@ describe('App.vue', () => {
   })
 
   it('should navigate to the vehicles page when the corresponding option is clicked', () => {
+    const router = new VueRouter()
     router.push = jest.fn()
     const wrapper = wrapperBuilder().withRouter(router).build()
 
@@ -77,6 +78,13 @@ describe('App.vue', () => {
   })
 
   function wrapperBuilder () {
+    const router = new VueRouter()
+    const getters = {
+      ERROR_MESSAGE: () => ({ show: false, message: '' })
+    }
+    const actions = {
+      CLEAR_MESSAGE: jest.fn()
+    }
     return wrapperBuilderFactory(App).withRouter(router).withGetters(getters).withActions(actions)
   }
 })
