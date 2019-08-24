@@ -10,13 +10,17 @@ import MessageTypes from '@/constants/MessageTypes'
 
 describe('App.vue', () => {
   it('should render correctly', () => {
+    const getters = {
+      ERROR_MESSAGE: jest.fn(() => ({ show: false, message: '' }))
+    }
     const drawerOptions = [
       { title: 'Inicio', event: 'onHomePage' },
       { title: 'Vehículos', event: 'onVehiclesPage' }
     ]
 
-    const wrapper = wrapperBuilder().withData({ drawerOptions }).build()
+    const wrapper = wrapperBuilder().withData({ drawerOptions }).withGetters(getters).build()
 
+    expect(getters[ERROR_MESSAGE]).toHaveBeenCalled()
     expect(wrapper.find(ApplicationLayout).props().drawerOptions).toBe(drawerOptions)
     expect(wrapper.find(ApplicationLayout).contains('#content')).toBe(true)
     expect(wrapper.find(ApplicationLayout).contains('.error-message')).toBe(false)
