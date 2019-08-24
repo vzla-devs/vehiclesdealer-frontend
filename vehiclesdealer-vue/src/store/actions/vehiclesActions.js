@@ -1,12 +1,11 @@
 import { GET_VEHICLES } from '@/store/actions/actionTypes'
 import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
-import { GET_VEHICLES_URL } from '@/constants/serverRoutes'
-import axios from 'axios'
+import { VehiclesClient } from '@/clients/clientsFactory'
 
 export default {
   [GET_VEHICLES]: async ({ commit }) => {
     try {
-      const response = await axios.get(GET_VEHICLES_URL)
+      const response = await VehiclesClient.get()
       commit(SET_VEHICLES, response.data)
     } catch (error) {
       return error
