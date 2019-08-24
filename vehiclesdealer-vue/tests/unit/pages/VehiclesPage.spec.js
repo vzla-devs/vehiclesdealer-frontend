@@ -1,16 +1,16 @@
 import VehiclesPage from '@/pages/VehiclesPage'
 import VehiclesContainer from '@/components/VehiclesContainer'
-import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
+import { componentBuilder } from '@tests/helpers/builderHelpers'
 
 describe('VehiclesPage.vue', () => {
   it('should render correctly', () => {
-    const wrapper = vehiclesPageBuilder().build()
+    const wrapper = aVehiclesPage().build()
 
     expect(wrapper.find('h1').text()).toBe('Vehículos')
     expect(wrapper.find(VehiclesContainer).exists()).toBe(true)
   })
 
-  function vehiclesPageBuilder () {
-    return wrapperBuilderFactory(VehiclesPage)
+  function aVehiclesPage () {
+    return componentBuilder(VehiclesPage)
   }
 })

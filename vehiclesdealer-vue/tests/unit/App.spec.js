@@ -1,4 +1,4 @@
-import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
+import { componentBuilder } from '@tests/helpers/builderHelpers'
 import App from '@/App'
 import ApplicationLayout from '@/layouts/ApplicationLayout'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
@@ -17,7 +17,7 @@ describe('App.vue', () => {
       { title: 'Vehículos', event: 'onVehiclesPage' }
     ]
 
-    const wrapper = wrapperBuilder().withData({ drawerOptions }).withGetters(getters).build()
+    const wrapper = anApp().withData({ drawerOptions }).withGetters(getters).build()
 
     expect(getters[ERROR_MESSAGE]).toHaveBeenCalled()
     expect(wrapper.find(ApplicationLayout).props().drawerOptions).toBe(drawerOptions)
@@ -30,7 +30,7 @@ describe('App.vue', () => {
       ERROR_MESSAGE: () => ({ show: false, message: '' })
     }
 
-    const wrapper = wrapperBuilder().withGetters(getters).build()
+    const wrapper = anApp().withGetters(getters).build()
 
     expect(wrapper.find('.error-message').exists()).toBe(false)
   })
@@ -40,7 +40,7 @@ describe('App.vue', () => {
       ERROR_MESSAGE: () => ({ show: true, message: 'anErrorMessage' })
     }
 
-    const wrapper = wrapperBuilder().withGetters(getters).build()
+    const wrapper = anApp().withGetters(getters).build()
 
     expect(wrapper.find('.error-message').exists()).toBe(true)
     expect(wrapper.find('.error-message').props().message).toBe('anErrorMessage')
@@ -53,7 +53,7 @@ describe('App.vue', () => {
     const actions = {
       CLEAR_MESSAGE: jest.fn()
     }
-    const wrapper = wrapperBuilder().withGetters(getters).withActions(actions).build()
+    const wrapper = anApp().withGetters(getters).withActions(actions).build()
 
     wrapper.find('.error-message').vm.$emit('onClose')
 
@@ -64,7 +64,7 @@ describe('App.vue', () => {
     const router = {
       push: jest.fn()
     }
-    const wrapper = wrapperBuilder().withRouter(router).build()
+    const wrapper = anApp().withRouter(router).build()
 
     wrapper.find(ApplicationLayout).vm.$emit('onHomePage')
 
@@ -75,20 +75,20 @@ describe('App.vue', () => {
     const router = {
       push: jest.fn()
     }
-    const wrapper = wrapperBuilder().withRouter(router).build()
+    const wrapper = anApp().withRouter(router).build()
 
     wrapper.find(ApplicationLayout).vm.$emit('onVehiclesPage')
 
     expect(router.push).toHaveBeenCalledWith(VEHICLES_ROUTE)
   })
 
-  function wrapperBuilder () {
+  function anApp () {
     const getters = {
       ERROR_MESSAGE: () => ({ show: false, message: '' })
     }
     const actions = {
       CLEAR_MESSAGE: jest.fn()
     }
-    return wrapperBuilderFactory(App).withRouter().withGetters(getters).withActions(actions)
+    return componentBuilder(App).withRouter().withGetters(getters).withActions(actions)
   }
 })

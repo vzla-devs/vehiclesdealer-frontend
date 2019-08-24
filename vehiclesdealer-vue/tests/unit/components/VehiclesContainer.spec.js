@@ -2,7 +2,7 @@ import VehiclesContainer from '@/components/VehiclesContainer'
 import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
-import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
+import { componentBuilder } from '@tests/helpers/builderHelpers'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import MessageTypes from '@/constants/MessageTypes'
@@ -23,7 +23,7 @@ describe('VehiclesContainer.vue', () => {
         GET_VEHICLES: resolvedPromise()
       }
 
-      vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
+      aVehiclesContainer().withGetters(getters).withActions(actions).build()
 
       await resolveAllPromises()
       expect(getters[AVAILABLE_VEHICLES]).toHaveBeenCalled()
@@ -35,7 +35,7 @@ describe('VehiclesContainer.vue', () => {
         AVAILABLE_VEHICLES: () => []
       }
 
-      const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
+      const wrapper = aVehiclesContainer().withGetters(getters).build()
 
       expect(wrapper.contains(GridLayout)).toBe(false)
       expect(wrapper.contains(NoData)).toBe(false)
@@ -55,7 +55,7 @@ describe('VehiclesContainer.vue', () => {
         AVAILABLE_VEHICLES: () => givenVehicles
       }
 
-      const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
+      const wrapper = aVehiclesContainer().withGetters(getters).build()
 
       expect(wrapper.contains(GridLayout)).toBe(false)
       await resolveAllPromises()
@@ -75,7 +75,7 @@ describe('VehiclesContainer.vue', () => {
         SHOW_MESSAGE: jest.fn()
       }
 
-      vehiclesContainerBuilder().withActions(actions).build()
+      aVehiclesContainer().withActions(actions).build()
 
       await resolveAllPromises()
       actionToHaveBeenCalledWith(actions[SHOW_MESSAGE], {
@@ -85,7 +85,7 @@ describe('VehiclesContainer.vue', () => {
     })
   })
 
-  function vehiclesContainerBuilder () {
+  function aVehiclesContainer () {
     const getters = {
       AVAILABLE_VEHICLES: () => []
     }
@@ -93,7 +93,7 @@ describe('VehiclesContainer.vue', () => {
       GET_VEHICLES: resolvedPromise(),
       SHOW_MESSAGE: jest.fn()
     }
-    return wrapperBuilderFactory(VehiclesContainer).withGetters(getters).withActions(actions)
+    return componentBuilder(VehiclesContainer).withGetters(getters).withActions(actions)
   }
 
   function givenAVehicle ({ brand = 'anyBrand', model = 'anyModel', year = 0, price = 0, imageUrl = 'anyUrl' } = {}) {

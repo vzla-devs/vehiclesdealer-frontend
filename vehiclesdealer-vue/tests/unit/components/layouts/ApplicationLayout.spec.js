@@ -1,4 +1,4 @@
-import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
+import { componentBuilder } from '@tests/helpers/builderHelpers'
 import ApplicationLayout from '@/layouts/ApplicationLayout'
 
 describe('ApplicationLayout.vue', () => {
@@ -8,7 +8,7 @@ describe('ApplicationLayout.vue', () => {
       { title: 'second option', event: 'secondEvent' }
     ]
 
-    const wrapper = wrapperBuilder().withProps({ drawerOptions }).build()
+    const wrapper = anApplicationLayout().withProps({ drawerOptions }).build()
 
     expect(wrapper.findAll('.option').length).toBe(2)
     const expectedOptions = wrapper.findAll('.option')
@@ -21,14 +21,14 @@ describe('ApplicationLayout.vue', () => {
       { title: 'first option', event: 'firstEvent' },
       { title: 'second option', event: 'secondEvent' }
     ]
-    const wrapper = wrapperBuilder().withProps({ drawerOptions }).build()
+    const wrapper = anApplicationLayout().withProps({ drawerOptions }).build()
 
     wrapper.findAll('.option').at(1).vm.$emit('click')
 
     expect(wrapper.emitted().secondEvent).toBeTruthy()
   })
 
-  function wrapperBuilder () {
+  function anApplicationLayout () {
     const stubs = {
       'v-app': true,
       'v-navigation-drawer': true,
@@ -43,6 +43,6 @@ describe('ApplicationLayout.vue', () => {
       'v-list-tile-title': true,
       'v-list-title': true
     }
-    return wrapperBuilderFactory(ApplicationLayout).withStubs(stubs)
+    return componentBuilder(ApplicationLayout).withStubs(stubs)
   }
 })
