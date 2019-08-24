@@ -1,4 +1,4 @@
-import VehiclesMutations from '@/store/mutations/vehiclesMutations'
+import Mutations from '@/store/mutations/vehiclesMutations'
 import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
 import { buildState } from '@tests/helpers/builderHelpers'
 
@@ -10,7 +10,7 @@ describe('vehiclesMutations.js', () => {
       givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' })
     ]
 
-    VehiclesMutations[SET_VEHICLES](givenState, givenVehicles)
+    Mutations[SET_VEHICLES](givenState, givenVehicles)
 
     const expectedState = buildState({ vehicles: givenVehicles })
     expect(givenState).toEqual(expectedState)

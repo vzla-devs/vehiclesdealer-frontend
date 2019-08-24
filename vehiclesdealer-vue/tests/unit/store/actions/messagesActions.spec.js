@@ -1,4 +1,4 @@
-import messagesActions from '@/store/actions/messagesActions'
+import Actions from '@/store/actions/messagesActions'
 import { SHOW_MESSAGE, CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
 import MessageTypes from '@/constants/MessageTypes'
@@ -16,7 +16,7 @@ describe('messagesActions.js', () => {
       message: 'anyMessage'
     }
 
-    messagesActions[SHOW_MESSAGE](mockedContext, givenPayload)
+    Actions[SHOW_MESSAGE](mockedContext, givenPayload)
 
     expect(mockedContext.commit).toHaveBeenCalledWith(SET_MESSAGE, givenPayload)
   })
@@ -24,7 +24,7 @@ describe('messagesActions.js', () => {
   test('should commit the corresponding mutation to clear an error message', () => {
     const givenType = MessageTypes.ERROR
 
-    messagesActions[CLEAR_MESSAGE](mockedContext, givenType)
+    Actions[CLEAR_MESSAGE](mockedContext, givenType)
 
     expect(mockedContext.commit).toHaveBeenCalledWith(RESET_MESSAGE, givenType)
   })

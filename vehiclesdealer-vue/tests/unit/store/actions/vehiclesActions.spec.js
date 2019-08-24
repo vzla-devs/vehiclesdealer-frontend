@@ -1,4 +1,4 @@
-import vehiclesActions from '@/store/actions/vehiclesActions'
+import Actions from '@/store/actions/vehiclesActions'
 import { GET_VEHICLES } from '@/store/actions/actionTypes'
 import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
 import { GET_VEHICLES_URL } from '@/constants/serverRoutes'
@@ -21,7 +21,7 @@ describe('vehiclesActions.js', () => {
       const resolvedPromise = Promise.resolve({ data: vehicles })
       mockGetImplementation(resolvedPromise)
 
-      const promise = vehiclesActions[GET_VEHICLES](mockedContext)
+      const promise = Actions[GET_VEHICLES](mockedContext)
 
       await promise
       expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
@@ -33,7 +33,7 @@ describe('vehiclesActions.js', () => {
       const rejectedPromise = Promise.reject(reason)
       mockGetImplementation(rejectedPromise)
 
-      const promise = vehiclesActions[GET_VEHICLES](mockedContext)
+      const promise = Actions[GET_VEHICLES](mockedContext)
 
       const expectedResponse = await promise
       expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
