@@ -4,28 +4,28 @@ import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
 import MessageTypes from '@/constants/MessageTypes'
 
 describe('messagesActions.js', () => {
-  let mockedContext
+  let context
 
   beforeEach(() => {
-    mockedContext = { 'commit': jest.fn() }
+    context = { 'commit': jest.fn() }
   })
 
   test('should commit the corresponding mutation to show an error message', () => {
-    const givenPayload = {
+    const payload = {
       type: MessageTypes.ERROR,
       message: 'anyMessage'
     }
 
-    Actions[SHOW_MESSAGE](mockedContext, givenPayload)
+    Actions[SHOW_MESSAGE](context, payload)
 
-    expect(mockedContext.commit).toHaveBeenCalledWith(SET_MESSAGE, givenPayload)
+    expect(context.commit).toHaveBeenCalledWith(SET_MESSAGE, payload)
   })
 
   test('should commit the corresponding mutation to clear an error message', () => {
-    const givenType = MessageTypes.ERROR
+    const type = MessageTypes.ERROR
 
-    Actions[CLEAR_MESSAGE](mockedContext, givenType)
+    Actions[CLEAR_MESSAGE](context, type)
 
-    expect(mockedContext.commit).toHaveBeenCalledWith(RESET_MESSAGE, givenType)
+    expect(context.commit).toHaveBeenCalledWith(RESET_MESSAGE, type)
   })
 })

@@ -20,7 +20,7 @@ describe('VehiclesContainer.vue', () => {
         AVAILABLE_VEHICLES: jest.fn(() => [])
       }
       const actions = {
-        GET_VEHICLES: resolvedPromise()
+        GET_VEHICLES: jest.fn(() => resolvedPromise())
       }
 
       aVehiclesContainer().withGetters(getters).withActions(actions).build()
@@ -71,7 +71,7 @@ describe('VehiclesContainer.vue', () => {
 
     it('should show an error message when it fails getting the vehicles', async () => {
       const actions = {
-        GET_VEHICLES: rejectedPromise('anyError'),
+        GET_VEHICLES: jest.fn(() => rejectedPromise('anyError')),
         SHOW_MESSAGE: jest.fn()
       }
 
@@ -90,8 +90,8 @@ describe('VehiclesContainer.vue', () => {
       AVAILABLE_VEHICLES: () => []
     }
     const actions = {
-      GET_VEHICLES: resolvedPromise(),
-      SHOW_MESSAGE: jest.fn()
+      GET_VEHICLES: () => resolvedPromise(),
+      SHOW_MESSAGE: () => {}
     }
     return componentBuilder(VehiclesContainer).withGetters(getters).withActions(actions)
   }

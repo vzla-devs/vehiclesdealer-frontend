@@ -5,11 +5,11 @@ export function resolveAllPromises () {
 }
 
 export function resolvedPromise (promiseResult) {
-  return jest.fn(() => Promise.resolve(promiseResult))
+  return Promise.resolve(promiseResult)
 }
 
 export function rejectedPromise (promiseError) {
-  return jest.fn(() => Promise.reject(promiseError))
+  return Promise.reject(promiseError)
 }
 
 export function actionToHaveBeenCalledWith (action, payload) {

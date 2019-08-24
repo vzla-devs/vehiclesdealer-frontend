@@ -87,7 +87,7 @@ describe('App.vue', () => {
       ERROR_MESSAGE: () => ({ show: false, message: '' })
     }
     const actions = {
-      CLEAR_MESSAGE: jest.fn()
+      CLEAR_MESSAGE: () => {}
     }
     return componentBuilder(App).withRouter().withGetters(getters).withActions(actions)
   }
