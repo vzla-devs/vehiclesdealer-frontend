@@ -16,9 +16,8 @@ describe('vehiclesActions.js', () => {
       ]
       mockGetImplementation(resolvedPromise({ data: vehicles }))
 
-      const promise = Actions[GET_VEHICLES](context)
+      await Actions[GET_VEHICLES](context)
 
-      await promise
       expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
       expect(context.commit).toHaveBeenCalledWith(SET_VEHICLES, vehicles)
     })
@@ -28,12 +27,11 @@ describe('vehiclesActions.js', () => {
       const reason = 'error'
       mockGetImplementation(rejectedPromise(reason))
 
-      const promise = Actions[GET_VEHICLES](context)
+      const response = await Actions[GET_VEHICLES](context)
 
-      const expectedResponse = await promise
       expect(axios.get).toHaveBeenCalledWith(GET_VEHICLES_URL)
       expect(context.commit).not.toHaveBeenCalled()
-      expect(expectedResponse).toBe(reason)
+      expect(response).toBe(reason)
     })
   })
 
