@@ -1,6 +1,6 @@
 import flushPromises from 'flush-promises'
 
-export function resolvePromises () {
+export function resolveAllPromises () {
   return flushPromises()
 }
 
