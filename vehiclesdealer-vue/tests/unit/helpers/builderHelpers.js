@@ -1,6 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
+import initialState from '@/store/initialState'
 
 export function componentBuilder (component) {
   const localVue = createLocalVue()
@@ -73,4 +74,8 @@ export function componentBuilder (component) {
     build
   }
   return self
+}
+
+export function buildState (state) {
+  return Object.assign({}, initialState, state)
 }
