@@ -6,7 +6,12 @@ import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import MessageTypes from '@/constants/MessageTypes'
-import { resolveAllPromises, actionToHaveBeenCalledWith } from '@tests/helpers/testHelpers'
+import {
+  resolveAllPromises,
+  actionToHaveBeenCalledWith,
+  resolvedPromise,
+  rejectedPromise
+} from '@tests/helpers/testHelpers'
 
 describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles', () => {
@@ -15,7 +20,7 @@ describe('VehiclesContainer.vue', () => {
         AVAILABLE_VEHICLES: jest.fn(() => [])
       }
       const actions = {
-        GET_VEHICLES: jest.fn(() => Promise.resolve())
+        GET_VEHICLES: resolvedPromise()
       }
 
       vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
@@ -66,7 +71,7 @@ describe('VehiclesContainer.vue', () => {
 
     it('should show an error message when it fails getting the vehicles', async () => {
       const actions = {
-        GET_VEHICLES: jest.fn(() => Promise.reject(new Error('anyError'))),
+        GET_VEHICLES: rejectedPromise('anyError'),
         SHOW_MESSAGE: jest.fn()
       }
 
@@ -85,7 +90,7 @@ describe('VehiclesContainer.vue', () => {
       AVAILABLE_VEHICLES: () => []
     }
     const actions = {
-      GET_VEHICLES: jest.fn(() => Promise.resolve()),
+      GET_VEHICLES: resolvedPromise(),
       SHOW_MESSAGE: jest.fn()
     }
     return wrapperBuilderFactory(VehiclesContainer).withGetters(getters).withActions(actions)
