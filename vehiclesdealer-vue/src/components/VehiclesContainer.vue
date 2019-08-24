@@ -25,7 +25,7 @@ import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
-import MessageTypes from '@/enums/MessageTypes'
+import MessageTypes from '@/constants/MessageTypes'
 
 export default {
   components: {
@@ -61,9 +61,8 @@ export default {
       showMessage: SHOW_MESSAGE
     }),
     showErrorMessage () {
-      const type = MessageTypes.error
       const message = 'Ha ocurrido un error'
-      this.showMessage({ type, message })
+      this.showMessage({ message, type: MessageTypes.ERROR })
     }
   }
 }

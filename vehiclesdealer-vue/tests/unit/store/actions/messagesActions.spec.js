@@ -1,7 +1,7 @@
 import messagesActions from '@/store/actions/messagesActions'
 import { SHOW_MESSAGE, CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
-import MessageTypes from '@/enums/MessageTypes'
+import MessageTypes from '@/constants/MessageTypes'
 
 describe('messagesActions.js', () => {
   let mockedContext
@@ -12,7 +12,7 @@ describe('messagesActions.js', () => {
 
   test('should commit the corresponding mutation to show an error message', () => {
     const givenPayload = {
-      type: MessageTypes.error,
+      type: MessageTypes.ERROR,
       message: 'anyMessage'
     }
 
@@ -22,7 +22,7 @@ describe('messagesActions.js', () => {
   })
 
   test('should commit the corresponding mutation to clear an error message', () => {
-    const givenType = MessageTypes.error
+    const givenType = MessageTypes.ERROR
 
     messagesActions[CLEAR_MESSAGE](mockedContext, givenType)
 

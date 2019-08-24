@@ -6,7 +6,7 @@ import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import VueRouter from 'vue-router'
 import ExpectHelpers from '@tests/helpers/expectHelpers'
-import MessageTypes from '@/enums/MessageTypes'
+import MessageTypes from '@/constants/MessageTypes'
 
 describe('App.vue', () => {
   const router = new VueRouter()
@@ -55,7 +55,7 @@ describe('App.vue', () => {
 
     wrapper.find('.error-message').vm.$emit('onClose')
 
-    ExpectHelpers().actionToHaveBeenCalledWith(actions[CLEAR_MESSAGE], MessageTypes.error)
+    ExpectHelpers().actionToHaveBeenCalledWith(actions[CLEAR_MESSAGE], MessageTypes.ERROR)
   })
 
   it('should navigate to the home page when the corresponding option is clicked', () => {
