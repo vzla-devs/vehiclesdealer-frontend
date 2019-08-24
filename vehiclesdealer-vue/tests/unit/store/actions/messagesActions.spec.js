@@ -1,7 +1,7 @@
 import Actions from '@/store/actions/messagesActions'
 import { SHOW_MESSAGE, CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
-import MessageTypes from '@/constants/MessageTypes'
+import { MESSAGE_TYPES } from '@/constants/enums'
 
 describe('messagesActions.js', () => {
   let context
@@ -12,7 +12,7 @@ describe('messagesActions.js', () => {
 
   test('should commit the corresponding mutation to show an error message', () => {
     const payload = {
-      type: MessageTypes.ERROR,
+      type: MESSAGE_TYPES.ERROR,
       message: 'anyMessage'
     }
 
@@ -22,7 +22,7 @@ describe('messagesActions.js', () => {
   })
 
   test('should commit the corresponding mutation to clear an error message', () => {
-    const type = MessageTypes.ERROR
+    const type = MESSAGE_TYPES.ERROR
 
     Actions[CLEAR_MESSAGE](context, type)
 

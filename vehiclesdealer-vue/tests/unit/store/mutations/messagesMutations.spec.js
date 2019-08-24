@@ -1,11 +1,11 @@
 import Mutations from '@/store/mutations/messagesMutations'
 import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
-import MessageTypes from '@/constants/MessageTypes'
+import { MESSAGE_TYPES } from '@/constants/enums'
 import { buildStateWith } from '@tests/helpers/builderHelpers'
 
 describe('messagesMutations.js', () => {
   test('should mutate the state with a new error message', () => {
-    const type = MessageTypes.ERROR
+    const type = MESSAGE_TYPES.ERROR
     const givenState = buildStateWith({ messages: aMessageFromState({ type }) })
     const givenMessage = 'anyMessage'
 
@@ -16,7 +16,7 @@ describe('messagesMutations.js', () => {
   })
 
   test('should mutate the state resetting an error message', () => {
-    const type = MessageTypes.ERROR
+    const type = MESSAGE_TYPES.ERROR
     const givenState = buildStateWith({ messages: aMessageFromState({ type, show: true, message: 'anyMessage' }) })
 
     Mutations[RESET_MESSAGE](givenState, type)

@@ -5,7 +5,7 @@ import NoData from '@/components/basic/NoData'
 import { componentBuilder } from '@tests/helpers/builderHelpers'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
-import MessageTypes from '@/constants/MessageTypes'
+import { MESSAGE_TYPES } from '@/constants/enums'
 import {
   resolveAllPromises,
   actionToHaveBeenCalledWith,
@@ -79,7 +79,7 @@ describe('VehiclesContainer.vue', () => {
 
       await resolveAllPromises()
       actionToHaveBeenCalledWith(actions[SHOW_MESSAGE], {
-        type: MessageTypes.ERROR,
+        type: MESSAGE_TYPES.ERROR,
         message: 'Ha ocurrido un error'
       })
     })

@@ -19,7 +19,7 @@ import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import { mapGetters, mapActions } from 'vuex'
-import MessageTypes from '@/constants/MessageTypes'
+import { MESSAGE_TYPES } from '@/constants/enums'
 import ErrorBanner from '@/components/basic/ErrorBanner'
 import ApplicationLayout from '@/layouts/ApplicationLayout'
 
@@ -56,7 +56,7 @@ export default {
       clearMessage: CLEAR_MESSAGE
     }),
     onCloseErrorMessage () {
-      this.clearMessage(MessageTypes.ERROR)
+      this.clearMessage(MESSAGE_TYPES.ERROR)
     },
     onNavigate (route) {
       this.$router.push(route)

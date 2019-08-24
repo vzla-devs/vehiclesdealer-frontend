@@ -5,7 +5,7 @@ import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import { actionToHaveBeenCalledWith } from '@tests/helpers/testHelpers'
-import MessageTypes from '@/constants/MessageTypes'
+import { MESSAGE_TYPES } from '@/constants/enums'
 
 describe('App.vue', () => {
   it('should render correctly', () => {
@@ -57,7 +57,7 @@ describe('App.vue', () => {
 
     wrapper.find('.error-message').vm.$emit('onClose')
 
-    actionToHaveBeenCalledWith(actions[CLEAR_MESSAGE], MessageTypes.ERROR)
+    actionToHaveBeenCalledWith(actions[CLEAR_MESSAGE], MESSAGE_TYPES.ERROR)
   })
 
   it('should navigate to the home page when the corresponding option is clicked', () => {
