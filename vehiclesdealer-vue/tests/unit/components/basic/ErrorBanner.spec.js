@@ -1,4 +1,4 @@
-import ErrorBanner from '@/components/basic/ErrorBanner'
+import ErrorBanner from '@/components/basic/ErrorBanner.vue'
 import { componentBuilder } from '@tests/helpers/builderHelpers'
 
 describe('ErrorBanner.vue', () => {

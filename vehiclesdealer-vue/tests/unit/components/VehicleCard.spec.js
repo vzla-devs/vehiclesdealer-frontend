@@ -1,5 +1,5 @@
-import VehicleCard from '@/components/VehicleCard'
-import ImageStub from '@tests/components/stubs/ImageStub'
+import VehicleCard from '@/components/VehicleCard.vue'
+import ImageStub from '@tests/components/stubs/ImageStub.vue'
 import { componentBuilder } from '@tests/helpers/builderHelpers'
 
 describe('VehicleCard.vue', () => {

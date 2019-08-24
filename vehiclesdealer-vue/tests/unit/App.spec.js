@@ -1,6 +1,6 @@
 import { componentBuilder } from '@tests/helpers/builderHelpers'
-import App from '@/App'
-import ApplicationLayout from '@/layouts/ApplicationLayout'
+import App from '@/App.vue'
+import ApplicationLayout from '@/layouts/ApplicationLayout.vue'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { CLEAR_MESSAGE } from '@/store/actions/actionTypes'

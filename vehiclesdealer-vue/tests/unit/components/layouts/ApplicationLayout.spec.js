@@ -1,5 +1,5 @@
 import { componentBuilder } from '@tests/helpers/builderHelpers'
-import ApplicationLayout from '@/layouts/ApplicationLayout'
+import ApplicationLayout from '@/layouts/ApplicationLayout.vue'
 
 describe('ApplicationLayout.vue', () => {
   it('should render the drawer options correctly', () => {

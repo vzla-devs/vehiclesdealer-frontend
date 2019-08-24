@@ -1,5 +1,5 @@
-import VehiclesPage from '@/pages/VehiclesPage'
-import VehiclesContainer from '@/components/VehiclesContainer'
+import VehiclesPage from '@/pages/VehiclesPage.vue'
+import VehiclesContainer from '@/components/VehiclesContainer.vue'
 import { componentBuilder } from '@tests/helpers/builderHelpers'
 
 describe('VehiclesPage.vue', () => {
