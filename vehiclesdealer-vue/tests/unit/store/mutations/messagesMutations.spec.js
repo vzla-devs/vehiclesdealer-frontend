@@ -1,26 +1,27 @@
 import messagesMutations from '@/store/mutations/messagesMutations'
 import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
 import MessageTypes from '@/constants/MessageTypes'
+import { buildState } from '@tests/helpers/builderHelpers'
 
 describe('messagesMutations.js', () => {
   test('should mutate the state with a new error message', () => {
     const type = MessageTypes.ERROR
-    const givenState = { messages: aMessageFromState({ type }) }
+    const givenState = buildState({ messages: aMessageFromState({ type }) })
     const givenMessage = 'anyMessage'
 
     messagesMutations[SET_MESSAGE](givenState, { type, message: givenMessage })
 
     const expectedState = { messages: aMessageFromState({ type, show: true, message: givenMessage }) }
-    expect(givenState).toEqual(expectedState)
+    expect(givenState).toMatchObject(expectedState)
   })
 
   test('should mutate the state resetting an error message', () => {
     const type = MessageTypes.ERROR
-    const givenState = { messages: aMessageFromState({ type, show: true, message: 'anyMessage' }) }
+    const givenState = buildState({ messages: aMessageFromState({ type, show: true, message: 'anyMessage' }) })
 
     messagesMutations[RESET_MESSAGE](givenState, type)
 
-    const expectedState = { messages: aMessageFromState({ type, show: false, message: '' }) }
+    const expectedState = buildState({ messages: aMessageFromState({ type, show: false, message: '' }) })
     expect(givenState).toEqual(expectedState)
   })
 
