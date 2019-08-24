@@ -11,7 +11,7 @@ import { actionToHaveBeenCalledWith } from '@tests/helpers/testHelpers'
 
 describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles', () => {
-    it('should call action to get the vehicles', async () => {
+    it('should get the vehicles correctly', async () => {
       const getters = {
         AVAILABLE_VEHICLES: jest.fn(() => [])
       }
@@ -22,8 +22,8 @@ describe('VehiclesContainer.vue', () => {
       vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
       await flushPromises()
-      expect(actions[GET_VEHICLES]).toHaveBeenCalled()
       expect(getters[AVAILABLE_VEHICLES]).toHaveBeenCalled()
+      expect(actions[GET_VEHICLES]).toHaveBeenCalled()
     })
 
     it('should display an empty view when there are no vehicles', async () => {
@@ -64,10 +64,8 @@ describe('VehiclesContainer.vue', () => {
       verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
       verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
     })
-  })
 
-  describe('when getting the vehicles fails', () => {
-    it('should show an error message', async () => {
+    it('should show an error message when it fails getting the vehicles', async () => {
       const actions = {
         GET_VEHICLES: jest.fn(() => Promise.reject(new Error('anyError'))),
         SHOW_MESSAGE: jest.fn()
@@ -91,7 +89,6 @@ describe('VehiclesContainer.vue', () => {
       GET_VEHICLES: jest.fn(() => Promise.resolve()),
       SHOW_MESSAGE: jest.fn()
     }
-
     return wrapperBuilderFactory(VehiclesContainer).withGetters(getters).withActions(actions)
   }
 
