@@ -1,6 +1,6 @@
 import Getters from '@/store/getters/vehiclesGetters'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
-import { buildState } from '@tests/helpers/builderHelpers'
+import { buildStateWith } from '@tests/helpers/builderHelpers'
 
 describe('vehiclesGetters.js', () => {
   it('should get vehicles from the state', () => {
@@ -9,7 +9,7 @@ describe('vehiclesGetters.js', () => {
       givenAVehicleFromState({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }),
       givenAVehicleFromState({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
     ]
-    const givenState = buildState({ vehicles })
+    const givenState = buildStateWith({ vehicles })
 
     const vehiclesFromGetter = Getters[AVAILABLE_VEHICLES](givenState)
 
