@@ -10,8 +10,10 @@ export function wrapperBuilderFactory (component) {
   let getters
   let actions
 
-  function withRouter (newRouter) {
-    options.router = newRouter
+  function withRouter (newRouter = {}) {
+    const router = new VueRouter()
+    if (newRouter.push) router.push = newRouter.push
+    options.router = router
     return self
   }
 

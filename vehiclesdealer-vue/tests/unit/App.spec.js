@@ -4,7 +4,6 @@ import ApplicationLayout from '@/layouts/ApplicationLayout'
 import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { CLEAR_MESSAGE } from '@/store/actions/actionTypes'
-import VueRouter from 'vue-router'
 import { actionToHaveBeenCalledWith } from '@tests/helpers/testHelpers'
 import MessageTypes from '@/constants/MessageTypes'
 
@@ -62,8 +61,9 @@ describe('App.vue', () => {
   })
 
   it('should navigate to the home page when the corresponding option is clicked', () => {
-    const router = new VueRouter()
-    router.push = jest.fn()
+    const router = {
+      push: jest.fn()
+    }
     const wrapper = wrapperBuilder().withRouter(router).build()
 
     wrapper.find(ApplicationLayout).vm.$emit('onHomePage')
@@ -72,8 +72,9 @@ describe('App.vue', () => {
   })
 
   it('should navigate to the vehicles page when the corresponding option is clicked', () => {
-    const router = new VueRouter()
-    router.push = jest.fn()
+    const router = {
+      push: jest.fn()
+    }
     const wrapper = wrapperBuilder().withRouter(router).build()
 
     wrapper.find(ApplicationLayout).vm.$emit('onVehiclesPage')
@@ -82,13 +83,12 @@ describe('App.vue', () => {
   })
 
   function wrapperBuilder () {
-    const router = new VueRouter()
     const getters = {
       ERROR_MESSAGE: () => ({ show: false, message: '' })
     }
     const actions = {
       CLEAR_MESSAGE: jest.fn()
     }
-    return wrapperBuilderFactory(App).withRouter(router).withGetters(getters).withActions(actions)
+    return wrapperBuilderFactory(App).withRouter().withGetters(getters).withActions(actions)
   }
 })
