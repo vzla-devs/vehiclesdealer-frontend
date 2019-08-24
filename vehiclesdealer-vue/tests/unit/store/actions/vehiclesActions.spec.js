@@ -2,20 +2,15 @@ import Actions from '@/store/actions/vehiclesActions'
 import { GET_VEHICLES } from '@/store/actions/actionTypes'
 import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
 import { GET_VEHICLES_URL } from '@/constants/serverRoutes'
-import { resolvedPromise, rejectedPromise } from '@tests/helpers/testHelpers'
+import { mockedContext, resolvedPromise, rejectedPromise } from '@tests/helpers/testHelpers'
 import axios from 'axios'
 
 jest.mock('axios')
 
 describe('vehiclesActions.js', () => {
-  let context
-
-  beforeEach(() => {
-    context = { 'commit': jest.fn() }
-  })
-
   describe('getting vehicles from the API', () => {
     it('should commit the corresponding mutation after a successful response', async () => {
+      const context = mockedContext()
       const vehicles = [
         givenAVehicleFromAPI({ brand: 'anyBrand', model: 'anyModel', year: 2019, price: 9999, imageUrl: 'anyUrl' })
       ]
@@ -29,6 +24,7 @@ describe('vehiclesActions.js', () => {
     })
 
     it('should not commit the corresponding mutation after a failed response and return the error', async () => {
+      const context = mockedContext()
       const reason = 'error'
       mockGetImplementation(rejectedPromise(reason))
 
