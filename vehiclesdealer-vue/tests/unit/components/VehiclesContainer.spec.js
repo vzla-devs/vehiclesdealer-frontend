@@ -2,12 +2,11 @@ import VehiclesContainer from '@/components/VehiclesContainer'
 import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
-import flushPromises from 'flush-promises'
 import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import MessageTypes from '@/constants/MessageTypes'
-import { actionToHaveBeenCalledWith } from '@tests/helpers/testHelpers'
+import { resolvePromises, actionToHaveBeenCalledWith } from '@tests/helpers/testHelpers'
 
 describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles', () => {
@@ -21,7 +20,7 @@ describe('VehiclesContainer.vue', () => {
 
       vehiclesContainerBuilder().withGetters(getters).withActions(actions).build()
 
-      await flushPromises()
+      await resolvePromises()
       expect(getters[AVAILABLE_VEHICLES]).toHaveBeenCalled()
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
     })
@@ -35,7 +34,7 @@ describe('VehiclesContainer.vue', () => {
 
       expect(wrapper.contains(GridLayout)).toBe(false)
       expect(wrapper.contains(NoData)).toBe(false)
-      await flushPromises()
+      await resolvePromises()
       expect(wrapper.contains(GridLayout)).toBe(false)
       expect(wrapper.contains(NoData)).toBe(true)
       expect(wrapper.find(NoData).props().message).toBe('No hay vehículos disponibles')
@@ -54,7 +53,7 @@ describe('VehiclesContainer.vue', () => {
       const wrapper = vehiclesContainerBuilder().withGetters(getters).build()
 
       expect(wrapper.contains(GridLayout)).toBe(false)
-      await flushPromises()
+      await resolvePromises()
       expect(wrapper.contains(NoData)).toBe(false)
       expect(wrapper.contains(GridLayout)).toBe(true)
       const expectedGrid = wrapper.find(GridLayout)
@@ -73,7 +72,7 @@ describe('VehiclesContainer.vue', () => {
 
       vehiclesContainerBuilder().withActions(actions).build()
 
-      await flushPromises()
+      await resolvePromises()
       actionToHaveBeenCalledWith(actions[SHOW_MESSAGE], {
         type: MessageTypes.ERROR,
         message: 'Ha ocurrido un error'
