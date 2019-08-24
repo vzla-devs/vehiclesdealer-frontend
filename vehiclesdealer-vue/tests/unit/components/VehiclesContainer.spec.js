@@ -7,7 +7,7 @@ import { wrapperBuilderFactory } from '@tests/helpers/factoryHelpers'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
 import MessageTypes from '@/constants/MessageTypes'
-import ExpectHelpers from '@tests/helpers/expectHelpers'
+import { actionToHaveBeenCalledWith } from '@tests/helpers/testHelpers'
 
 describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles', () => {
@@ -76,7 +76,7 @@ describe('VehiclesContainer.vue', () => {
       vehiclesContainerBuilder().withActions(actions).build()
 
       await flushPromises()
-      ExpectHelpers().actionToHaveBeenCalledWith(actions[SHOW_MESSAGE], {
+      actionToHaveBeenCalledWith(actions[SHOW_MESSAGE], {
         type: MessageTypes.ERROR,
         message: 'Ha ocurrido un error'
       })
