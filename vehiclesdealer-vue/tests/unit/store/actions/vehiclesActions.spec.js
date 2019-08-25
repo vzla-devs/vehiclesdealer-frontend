@@ -3,14 +3,13 @@ import { GET_VEHICLES } from '@/store/actions/actionTypes'
 import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
 import { VehiclesClient } from '@/clients/clientsFactory'
 import { mockedContext, resolvedPromise, rejectedPromise } from '@tests/helpers/testHelpers'
+import testValues from '@tests/helpers/testValues'
 
 describe('vehiclesActions.js', () => {
   describe('getting vehicles from the API', () => {
     it('should commit the corresponding mutation after a successful response', async () => {
       const context = mockedContext()
-      const vehicles = [
-        givenAVehicleFromAPI({ brand: 'anyBrand', model: 'anyModel', year: 2019, price: 9999, imageUrl: 'anyUrl' })
-      ]
+      const vehicles = [ testValues.vehicle({ id: '1' }), testValues.vehicle({ id: '2' }) ]
       VehiclesClient.get = jest.fn(() => resolvedPromise({ data: vehicles }))
 
       await Actions[GET_VEHICLES](context)
@@ -31,8 +30,4 @@ describe('vehiclesActions.js', () => {
       expect(response).toBe(reason)
     })
   })
-
-  function givenAVehicleFromAPI ({ brand, model, year, price, imageUrl }) {
-    return { brand, model, year, price, imageUrl }
-  }
 })

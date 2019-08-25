@@ -12,6 +12,7 @@ import {
   resolvedPromise,
   rejectedPromise
 } from '@tests/helpers/testHelpers'
+import testValues from '@tests/helpers/testValues'
 
 describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles', () => {
@@ -47,9 +48,9 @@ describe('VehiclesContainer.vue', () => {
 
     it('should display a grid of vehicles when there are vehicles', async () => {
       const givenVehicles = [
-        givenAVehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
-        givenAVehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }),
-        givenAVehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
+        testValues.vehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
+        testValues.vehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }),
+        testValues.vehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
       const getters = {
         AVAILABLE_VEHICLES: () => givenVehicles
@@ -94,10 +95,6 @@ describe('VehiclesContainer.vue', () => {
       SHOW_MESSAGE: () => {}
     }
     return componentBuilder(VehiclesContainer).withGetters(getters).withActions(actions)
-  }
-
-  function givenAVehicle ({ brand = 'anyBrand', model = 'anyModel', year = 0, price = 0, imageUrl = 'anyUrl' } = {}) {
-    return { brand, model, year, price, imageUrl }
   }
 
   function verifyVehicleProps (vehicleToVerify, expectedVehicle) {
