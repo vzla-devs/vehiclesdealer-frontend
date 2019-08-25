@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="no-data">
+    <div class="no-data">
       {{ message }}
     </div>
   </div>
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style scoped>
-#no-data {
+.no-data {
   height: 50vh;
   display: flex;
   align-items: center;
