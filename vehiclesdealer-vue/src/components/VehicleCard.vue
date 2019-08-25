@@ -1,20 +1,22 @@
 <template>
-  <v-card
-    :hover="true"
-    class="card"
-  >
-    <v-img :src="imageUrl" />
-    <v-card-title primary-title>
-      <div class="description-container">
-        <h3 class="headline description">
-          {{ formattedDescription }}
-        </h3>
-        <div class="price">
-          {{ formattedPrice }}
+  <div>
+    <v-card
+      :hover="true"
+      class="card"
+    >
+      <v-img :src="imageUrl" />
+      <v-card-title primary-title>
+        <div class="description-container">
+          <h3 class="headline description">
+            {{ formattedDescription }}
+          </h3>
+          <div class="price">
+            {{ formattedPrice }}
+          </div>
         </div>
-      </div>
-    </v-card-title>
-  </v-card>
+      </v-card-title>
+    </v-card>
+  </div>
 </template>
 
 <script>
