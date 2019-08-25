@@ -13,7 +13,15 @@ export function rejectedPromise (promiseError) {
 }
 
 export function mockedContext () {
-  return{ 'commit': jest.fn() }
+  return { commit: jest.fn() }
+}
+
+export function mockedRestClient (result = {}) {
+  return {
+    get: jest.fn(() => result),
+    post: jest.fn(() => result),
+    put: jest.fn(() => result)
+  }
 }
 
 export function actionToHaveBeenCalledWith (action, payload) {
