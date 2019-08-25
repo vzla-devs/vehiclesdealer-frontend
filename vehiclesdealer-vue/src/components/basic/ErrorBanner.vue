@@ -5,7 +5,7 @@
       :value="true"
       dismissible
       type="error"
-      @input="onClose"
+      @input="$emit('onClose')"
     >
       {{ message }}
     </v-alert>
@@ -16,20 +16,6 @@
 export default {
   props: {
     message: { type: String, required: true }
-  },
-  methods: {
-    onClose () {
-      this.$emit('onClose')
-    }
   }
 }
 </script>
-
-<style>
-.error-banner {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-</style>
