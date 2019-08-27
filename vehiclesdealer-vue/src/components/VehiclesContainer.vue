@@ -37,7 +37,8 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      vehicles: AVAILABLE_VEHICLES
+      vehicles: AVAILABLE_VEHICLES,
+      isLoading: IS_LOADING // TODO
     }),
     hasVehices () {
       return this.vehicles.length > 0
