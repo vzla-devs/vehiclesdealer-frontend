@@ -12,10 +12,6 @@ export function rejectedPromise (promiseError) {
   return Promise.reject(promiseError)
 }
 
-export function mockedContext () {
-  return { commit: jest.fn() }
-}
-
 export function mockedRestClient (result = {}) {
   return {
     get: jest.fn(() => result),
