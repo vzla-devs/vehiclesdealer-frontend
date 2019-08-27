@@ -73,8 +73,7 @@ describe('VehiclesContainer.vue', () => {
       AVAILABLE_VEHICLES: () => []
     }
     const actions = {
-      GET_VEHICLES: () => resolvedPromise(),
-      SHOW_MESSAGE: () => {}
+      GET_VEHICLES: () => resolvedPromise()
     }
     return componentBuilder(VehiclesContainer).withGetters(getters).withActions(actions)
   }
