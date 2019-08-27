@@ -77,5 +77,5 @@ export function componentBuilder (component) {
 }
 
 export function buildStateWith (newState) {
-  return Object.assign({}, initialState, newState)
+  return { ...initialState, ...newState }
 }
