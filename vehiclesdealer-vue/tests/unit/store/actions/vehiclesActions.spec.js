@@ -26,7 +26,7 @@ describe('vehiclesActions.js', () => {
       const response = await Actions[GET_VEHICLES]({ commit })
 
       expect(VehiclesClient.get).toHaveBeenCalled()
-      expect(commit).not.toHaveBeenCalled()
+      expect(commit).not.toHaveBeenCalledWith(SET_VEHICLES)
       expect(response).toBe(reason)
     })
   })
