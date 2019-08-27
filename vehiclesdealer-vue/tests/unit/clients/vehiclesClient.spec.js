@@ -4,7 +4,7 @@ import { BASE_URL } from '@/constants/serverRoutes'
 import testValues from '@tests/helpers/testValues'
 
 describe('vehiclesClient.js', () => {
-  test('get all the vehicles', () => {
+  it('gets all the vehicles', () => {
     const vehicles = [
       testValues.vehicle({ id: '1', brand: 'audi' }),
       testValues.vehicle({ id: '2', brand: 'volkswagen' })
