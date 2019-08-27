@@ -43,11 +43,6 @@ export function componentBuilder (component) {
     return self
   }
 
-  function withState (newState) {
-    state = { ...state, ...newState }
-    return self
-  }
-
   function build () {
     if (data) {
       options.data = () => ({ ...data })
@@ -70,7 +65,6 @@ export function componentBuilder (component) {
     withRouter,
     withGetters,
     withActions,
-    withState,
     build
   }
   return self
