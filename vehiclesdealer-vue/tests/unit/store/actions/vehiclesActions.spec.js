@@ -1,9 +1,10 @@
 import Actions from '@/store/actions/vehiclesActions'
 import { GET_VEHICLES } from '@/store/actions/actionTypes'
-import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
+import { SET_VEHICLES, SET_MESSAGE } from '@/store/mutations/mutationTypes'
 import { VehiclesClient } from '@/clients/clientsFactory'
 import { resolvedPromise, rejectedPromise } from '@tests/helpers/testHelpers'
 import testValues from '@tests/helpers/testValues'
+import { MESSAGE_TYPES } from '@/constants/enums'
 
 describe('vehiclesActions.js', () => {
   describe('getting vehicles from the API', () => {
@@ -27,6 +28,7 @@ describe('vehiclesActions.js', () => {
 
       expect(VehiclesClient.get).toHaveBeenCalled()
       expect(commit).not.toHaveBeenCalledWith(SET_VEHICLES)
+      expect(commit).toHaveBeenCalledWith(SET_MESSAGE, { type: MESSAGE_TYPES.ERROR, message: 'Ha ocurrido un error' })
       expect(response).toBe(reason)
     })
   })
