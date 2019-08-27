@@ -4,7 +4,7 @@ import { MESSAGE_TYPES } from '@/constants/enums'
 import { buildStateWith } from '@tests/helpers/builderHelpers'
 
 describe('messagesMutations.js', () => {
-  test('should mutate the state with a new error message', () => {
+  it('should mutate the state with a new error message', () => {
     const type = MESSAGE_TYPES.ERROR
     const givenState = buildStateWith({ messages: aMessageFromState({ type }) })
     const givenMessage = 'anyMessage'
@@ -15,7 +15,7 @@ describe('messagesMutations.js', () => {
     expect(givenState).toMatchObject(expectedState)
   })
 
-  test('should mutate the state resetting an error message', () => {
+  it('should mutate the state resetting an error message', () => {
     const type = MESSAGE_TYPES.ERROR
     const givenState = buildStateWith({ messages: aMessageFromState({ type, show: true, message: 'anyMessage' }) })
 

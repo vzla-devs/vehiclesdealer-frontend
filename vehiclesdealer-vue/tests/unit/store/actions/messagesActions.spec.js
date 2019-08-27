@@ -4,7 +4,7 @@ import { SET_MESSAGE, RESET_MESSAGE } from '@/store/mutations/mutationTypes'
 import { MESSAGE_TYPES } from '@/constants/enums'
 
 describe('messagesActions.js', () => {
-  test('should commit the corresponding mutation to show an error message', () => {
+  it('should commit the corresponding mutation to show an error message', () => {
     const commit = jest.fn()
     const payload = {
       type: MESSAGE_TYPES.ERROR,
@@ -16,7 +16,7 @@ describe('messagesActions.js', () => {
     expect(commit).toHaveBeenCalledWith(SET_MESSAGE, payload)
   })
 
-  test('should commit the corresponding mutation to clear an error message', () => {
+  it('should commit the corresponding mutation to clear an error message', () => {
     const commit = jest.fn()
     const type = MESSAGE_TYPES.ERROR
 
