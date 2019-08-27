@@ -13,7 +13,7 @@ import testValues from '@tests/helpers/testValues'
 
 describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles', () => {
-    it('should get the vehicles correctly', async () => {
+    it('gets the vehicles correctly', async () => {
       const getters = {
         AVAILABLE_VEHICLES: jest.fn(() => [])
       }
@@ -28,7 +28,7 @@ describe('VehiclesContainer.vue', () => {
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
     })
 
-    it('should display an empty view when there are no vehicles', async () => {
+    it('displays an empty view when there are no vehicles', async () => {
       const getters = {
         AVAILABLE_VEHICLES: () => []
       }
@@ -43,7 +43,7 @@ describe('VehiclesContainer.vue', () => {
       expect(wrapper.find(NoData).props().message).toBe('No hay vehículos disponibles')
     })
 
-    it('should display a grid of vehicles when there are vehicles', async () => {
+    it('displays a grid of vehicles when there are vehicles', async () => {
       const givenVehicles = [
         testValues.vehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
         testValues.vehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }),

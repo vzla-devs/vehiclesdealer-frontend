@@ -3,7 +3,7 @@ import ImageStub from '@tests/components/stubs/ImageStub.vue'
 import { componentBuilder } from '@tests/helpers/builderHelpers'
 
 describe('VehicleCard.vue', () => {
-  it('should render correctly', () => {
+  it('renders correctly', () => {
     const brand = 'anyBrand'
     const model = 'anyModel'
     const year = 2019

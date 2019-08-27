@@ -8,7 +8,7 @@ import { actionToHaveBeenCalledWith } from '@tests/helpers/testHelpers'
 import { MESSAGE_TYPES } from '@/constants/enums'
 
 describe('App.vue', () => {
-  it('should render correctly', () => {
+  it('renders correctly', () => {
     const getters = {
       ERROR_MESSAGE: jest.fn(() => ({ show: false, message: '' }))
     }
@@ -25,7 +25,7 @@ describe('App.vue', () => {
     expect(wrapper.find(ApplicationLayout).contains('.error-message')).toBe(false)
   })
 
-  it('should not show an error message when there is no error', () => {
+  it('does not show an error message when there is no error', () => {
     const getters = {
       ERROR_MESSAGE: () => ({ show: false, message: '' })
     }
@@ -35,7 +35,7 @@ describe('App.vue', () => {
     expect(wrapper.find('.error-message').exists()).toBe(false)
   })
 
-  it('should show an error message when there is an error', () => {
+  it('shows an error message when there is an error', () => {
     const getters = {
       ERROR_MESSAGE: () => ({ show: true, message: 'anErrorMessage' })
     }
@@ -46,7 +46,7 @@ describe('App.vue', () => {
     expect(wrapper.find('.error-message').props().message).toBe('anErrorMessage')
   })
 
-  it('should clear the error message when its corresponding close button is clicked', () => {
+  it('clears the error message when its corresponding close button is clicked', () => {
     const getters = {
       ERROR_MESSAGE: () => ({ show: true, message: 'anErrorMessage' })
     }
@@ -60,7 +60,7 @@ describe('App.vue', () => {
     actionToHaveBeenCalledWith(actions[CLEAR_MESSAGE], MESSAGE_TYPES.ERROR)
   })
 
-  it('should navigate to the home page when the corresponding option is clicked', () => {
+  it('navigates to the home page when the corresponding option is clicked', () => {
     const router = {
       push: jest.fn()
     }
@@ -71,7 +71,7 @@ describe('App.vue', () => {
     expect(router.push).toHaveBeenCalledWith(HOME_ROUTE)
   })
 
-  it('should navigate to the vehicles page when the corresponding option is clicked', () => {
+  it('navigates to the vehicles page when the corresponding option is clicked', () => {
     const router = {
       push: jest.fn()
     }

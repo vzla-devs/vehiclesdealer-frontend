@@ -7,8 +7,8 @@ import testValues from '@tests/helpers/testValues'
 import { MESSAGE_TYPES } from '@/constants/enums'
 
 describe('vehiclesActions.js', () => {
-  describe('getting vehicles from the API', () => {
-    it('should commit the corresponding mutation after a successful response', async () => {
+  describe('when getting vehicles from the API', () => {
+    it('commits the corresponding mutation after a successful response', async () => {
       const commit = jest.fn()
       const vehicles = [ testValues.vehicle({ id: '1' }), testValues.vehicle({ id: '2' }) ]
       VehiclesClient.get = jest.fn(() => resolvedPromise({ data: vehicles }))
@@ -22,7 +22,7 @@ describe('vehiclesActions.js', () => {
       expect(commit).toHaveBeenCalledWith(SET_VEHICLES, vehicles)
     })
 
-    it('should not commit the corresponding mutation and show an error message after a failed response', async () => {
+    it('does not commit the corresponding mutation and show an error message after a failed response', async () => {
       const commit = jest.fn()
       const dispatch = jest.fn()
       const reason = 'error'

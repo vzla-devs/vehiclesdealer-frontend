@@ -4,7 +4,7 @@ import { buildStateWith } from '@tests/helpers/builderHelpers'
 import testValues from '@tests/helpers/testValues'
 
 describe('vehiclesGetters.js', () => {
-  it('should get vehicles from the state', () => {
+  it('gets the vehicles from the state', () => {
     const vehicles = [
       testValues.vehicle({ id: '1', brand: 'firstBrand', model: 'firstModel' }),
       testValues.vehicle({ id: '2', brand: 'secondBrand', model: 'secondModel' }),

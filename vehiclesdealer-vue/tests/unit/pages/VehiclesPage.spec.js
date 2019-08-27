@@ -3,7 +3,7 @@ import VehiclesContainer from '@/components/VehiclesContainer.vue'
 import { componentBuilder } from '@tests/helpers/builderHelpers'
 
 describe('VehiclesPage.vue', () => {
-  it('should render correctly', () => {
+  it('renders correctly', () => {
     const wrapper = aVehiclesPage().build()
 
     expect(wrapper.find('h1').text()).toBe('Vehículos')

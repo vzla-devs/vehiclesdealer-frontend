@@ -2,7 +2,7 @@ import ErrorBanner from '@/components/basic/ErrorBanner.vue'
 import { componentBuilder } from '@tests/helpers/builderHelpers'
 
 describe('ErrorBanner.vue', () => {
-  it('should show an error message', () => {
+  it('shows an error message', () => {
     const message = 'anyMessage'
 
     const wrapper = anErrorBanner().withProps({ message }).build()
@@ -10,7 +10,7 @@ describe('ErrorBanner.vue', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  it('should emit onClose event when closing the banner', () => {
+  it('emits an event when closing the banner', () => {
     const wrapper = anErrorBanner().build()
 
     wrapper.find('.error-banner').vm.$emit('input')

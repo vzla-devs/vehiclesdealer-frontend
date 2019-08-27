@@ -2,7 +2,7 @@ import { componentBuilder } from '@tests/helpers/builderHelpers'
 import ApplicationLayout from '@/layouts/ApplicationLayout.vue'
 
 describe('ApplicationLayout.vue', () => {
-  it('should render the drawer options correctly', () => {
+  it('renders the drawer options correctly', () => {
     const drawerOptions = [
       { title: 'first option', event: 'firstEvent' },
       { title: 'second option', event: 'secondEvent' }
@@ -16,7 +16,7 @@ describe('ApplicationLayout.vue', () => {
     expect(expectedOptions.at(1).find('.option-title').text()).toBe(drawerOptions[1].title)
   })
 
-  it('should emit event when the corresponding option is clicked', () => {
+  it('emits the corresponding event for the option that is clicked', () => {
     const drawerOptions = [
       { title: 'first option', event: 'firstEvent' },
       { title: 'second option', event: 'secondEvent' }

@@ -4,7 +4,7 @@ import { buildStateWith } from '@tests/helpers/builderHelpers'
 import testValues from '@tests/helpers/testValues'
 
 describe('vehiclesMutations.js', () => {
-  it('should mutate the state with vehicles', () => {
+  it('mutates the state with vehicles', () => {
     const givenState = buildStateWith({ vehicles: [] })
     const givenVehicles = [
       testValues.vehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),

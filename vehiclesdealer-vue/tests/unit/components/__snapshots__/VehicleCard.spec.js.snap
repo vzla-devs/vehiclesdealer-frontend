@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VehicleCard.vue should render correctly 1`] = `
+exports[`VehicleCard.vue renders correctly 1`] = `
 <div>
   <v-card-stub
     class="card"

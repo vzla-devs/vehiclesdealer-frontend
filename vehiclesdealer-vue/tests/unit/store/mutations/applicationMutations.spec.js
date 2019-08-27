@@ -3,7 +3,7 @@ import { SET_LOADING, RESET_LOADING } from '@/store/mutations/mutationTypes'
 import { buildStateWith } from '@tests/helpers/builderHelpers'
 
 describe('applicationMutations.js', () => {
-  it('should set the loading state to true', () => {
+  it('sets the loading state to true', () => {
     const givenState = buildStateWith({ loading: false })
 
     Mutations[SET_LOADING](givenState)
@@ -12,7 +12,7 @@ describe('applicationMutations.js', () => {
     expect(givenState).toEqual(expectedState)
   })
 
-  it('should set the loading state to false', () => {
+  it('sets the loading state to false', () => {
     const givenState = buildStateWith({ loading: true })
 
     Mutations[RESET_LOADING](givenState)

@@ -3,7 +3,7 @@ import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { buildStateWith } from '@tests/helpers/builderHelpers'
 
 describe('messagesGetters.js', () => {
-  it('should get an error message from the state', () => {
+  it('gets an error message from the state', () => {
     const givenState = buildStateWith({ messages: { error: { show: true, message: 'anyMessage' } } })
 
     const result = Getters[ERROR_MESSAGE](givenState)
