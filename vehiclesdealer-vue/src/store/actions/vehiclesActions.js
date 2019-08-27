@@ -10,6 +10,7 @@ export default {
       const response = await VehiclesClient.get()
       commit(SET_VEHICLES, response.data)
     } catch (error) {
+      commit(RESET_LOADING)
       dispatch(SHOW_MESSAGE, { type: MESSAGE_TYPES.ERROR, message: 'Ha ocurrido un error' })
       return error
     }

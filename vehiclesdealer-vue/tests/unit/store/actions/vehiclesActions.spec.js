@@ -28,9 +28,12 @@ describe('vehiclesActions.js', () => {
       const reason = 'error'
       VehiclesClient.get = jest.fn(() => rejectedPromise(reason))
 
-      const response = await Actions[GET_VEHICLES]({ commit, dispatch })
+      const returnedPromise = Actions[GET_VEHICLES]({ commit, dispatch })
 
+      expect(commit).toHaveBeenCalledWith(SET_LOADING)
       expect(VehiclesClient.get).toHaveBeenCalled()
+      const response = await returnedPromise
+      expect(commit).toHaveBeenCalledWith(RESET_LOADING)
       expect(commit).not.toHaveBeenCalledWith(SET_VEHICLES)
       expect(dispatch).toHaveBeenCalledWith(SHOW_MESSAGE, { type: MESSAGE_TYPES.ERROR, message: 'Ha ocurrido un error' })
       expect(response).toBe(reason)
