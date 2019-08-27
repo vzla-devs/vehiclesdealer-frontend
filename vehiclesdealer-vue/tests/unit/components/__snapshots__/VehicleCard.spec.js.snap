@@ -1,36 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`VehicleCard.vue should render correctly 1`] = `
-<v-card-stub
-  class="card"
-  hover="true"
->
-  <img
-    src="anyUrl"
-  />
-   
-  <v-card-title-stub
-    primary-title=""
+<div>
+  <v-card-stub
+    class="card"
+    hover="true"
   >
-    <div
-      class="description-container"
+    <img
+      src="anyUrl"
+    />
+     
+    <v-card-title-stub
+      primary-title=""
     >
-      <h3
-        class="headline description"
-      >
-        
-        anyBrand anyModel - 2019
-      
-      </h3>
-       
       <div
-        class="price"
+        class="description-container"
       >
+        <h3
+          class="headline description"
+        >
+          
+          anyBrand anyModel - 2019
         
-        9999 €
-      
+        </h3>
+         
+        <div
+          class="price"
+        >
+          
+          9999 €
+        
+        </div>
       </div>
-    </div>
-  </v-card-title-stub>
-</v-card-stub>
+    </v-card-title-stub>
+  </v-card-stub>
+</div>
 `;

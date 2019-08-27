@@ -4,10 +4,8 @@ import VueRouter from 'vue-router'
 import initialState from '@/store/initialState'
 
 export function componentBuilder (component) {
-  const localVue = createLocalVue()
   const options = { component }
   let data
-  let state
   let getters
   let actions
 
@@ -44,15 +42,16 @@ export function componentBuilder (component) {
   }
 
   function build () {
+    const localVue = createLocalVue()
     if (data) {
       options.data = () => ({ ...data })
     }
     if (options.router) {
       localVue.use(VueRouter)
     }
-    if (state || getters || actions) {
+    if (getters || actions) {
       localVue.use(Vuex)
-      options.store = new Vuex.Store({ state, getters, actions })
+      options.store = new Vuex.Store({ getters, actions })
     }
     options.localVue = localVue
     return shallowMount(component, options)
