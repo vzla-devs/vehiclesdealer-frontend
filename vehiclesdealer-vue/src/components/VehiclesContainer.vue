@@ -32,11 +32,9 @@ export default {
     VehicleCard,
     NoData
   },
-  data () {
-    return {
-      isDoneLoading: false
-    }
-  },
+  data: () => ({
+    isDoneLoading: false
+  }),
   computed: {
     ...mapGetters({
       vehicles: AVAILABLE_VEHICLES
