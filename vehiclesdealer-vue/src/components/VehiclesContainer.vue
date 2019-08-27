@@ -21,11 +21,10 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
-import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
+import { GET_VEHICLES } from '@/store/actions/actionTypes'
 import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
 import NoData from '@/components/basic/NoData'
-import { MESSAGE_TYPES } from '@/constants/enums'
 
 export default {
   components: {
@@ -54,18 +53,12 @@ export default {
   },
   created () {
     this.getVehicles()
-      .catch(this.showErrorMessage)
       .finally(() => { this.isDoneLoading = true })
   },
   methods: {
     ...mapActions({
-      getVehicles: GET_VEHICLES,
-      showMessage: SHOW_MESSAGE
-    }),
-    showErrorMessage () {
-      const message = 'Ha ocurrido un error'
-      this.showMessage({ message, type: MESSAGE_TYPES.ERROR })
-    }
+      getVehicles: GET_VEHICLES
+    })
   }
 }
 </script>

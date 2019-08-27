@@ -4,13 +4,10 @@ import VehicleCard from '@/components/VehicleCard.vue'
 import NoData from '@/components/basic/NoData.vue'
 import { componentBuilder } from '@tests/helpers/builderHelpers'
 import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
-import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
-import { MESSAGE_TYPES } from '@/constants/enums'
+import { GET_VEHICLES } from '@/store/actions/actionTypes'
 import {
   resolveAllPromises,
-  actionToHaveBeenCalledWith,
-  resolvedPromise,
-  rejectedPromise
+  resolvedPromise
 } from '@tests/helpers/testHelpers'
 import testValues from '@tests/helpers/testValues'
 
@@ -68,21 +65,6 @@ describe('VehiclesContainer.vue', () => {
       verifyVehicleProps(expectedVehicles.at(0), givenVehicles[0])
       verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
       verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
-    })
-
-    it('should show an error message when it fails getting the vehicles', async () => {
-      const actions = {
-        GET_VEHICLES: jest.fn(() => rejectedPromise('anyError')),
-        SHOW_MESSAGE: jest.fn()
-      }
-
-      aVehiclesContainer().withActions(actions).build()
-
-      await resolveAllPromises()
-      actionToHaveBeenCalledWith(actions[SHOW_MESSAGE], {
-        type: MESSAGE_TYPES.ERROR,
-        message: 'Ha ocurrido un error'
-      })
     })
   })
 
