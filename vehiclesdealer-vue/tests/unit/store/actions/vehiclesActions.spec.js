@@ -1,10 +1,9 @@
 import Actions from '@/store/actions/vehiclesActions'
-import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
-import { SET_VEHICLES, SET_LOADING, RESET_LOADING } from '@/store/mutations/mutationTypes'
+import { GET_VEHICLES } from '@/store/actions/actionTypes'
+import { SET_VEHICLES, SET_VEHICLES_SUCCESS, SET_VEHICLES_FAILURE } from '@/store/mutations/mutationTypes'
 import { VehiclesClient } from '@/clients/clientsFactory'
 import { resolvedPromise, rejectedPromise } from '@tests/helpers/testHelpers'
 import testValues from '@tests/helpers/testValues'
-import { MESSAGE_TYPES } from '@/constants/enums'
 
 describe('vehiclesActions.js', () => {
   describe('when getting vehicles from the API', () => {
@@ -15,28 +14,21 @@ describe('vehiclesActions.js', () => {
 
       const returnedPromise = Actions[GET_VEHICLES]({ commit })
 
-      expect(commit).toHaveBeenCalledWith(SET_LOADING)
+      expect(commit).toHaveBeenCalledWith(SET_VEHICLES)
       expect(VehiclesClient.get).toHaveBeenCalled()
       await returnedPromise
-      expect(commit).toHaveBeenCalledWith(RESET_LOADING)
-      expect(commit).toHaveBeenCalledWith(SET_VEHICLES, vehicles)
+      expect(commit).toHaveBeenCalledWith(SET_VEHICLES_SUCCESS, vehicles)
     })
 
     it('does not commit the corresponding mutation and show an error message after a failed response', async () => {
       const commit = jest.fn()
-      const dispatch = jest.fn()
-      const reason = 'error'
-      VehiclesClient.get = jest.fn(() => rejectedPromise(reason))
+      VehiclesClient.get = jest.fn(() => rejectedPromise())
 
-      const returnedPromise = Actions[GET_VEHICLES]({ commit, dispatch })
+      await Actions[GET_VEHICLES]({ commit })
 
-      expect(commit).toHaveBeenCalledWith(SET_LOADING)
+      expect(commit).toHaveBeenCalledWith(SET_VEHICLES)
       expect(VehiclesClient.get).toHaveBeenCalled()
-      const response = await returnedPromise
-      expect(commit).toHaveBeenCalledWith(RESET_LOADING)
-      expect(commit).not.toHaveBeenCalledWith(SET_VEHICLES)
-      expect(dispatch).toHaveBeenCalledWith(SHOW_MESSAGE, { type: MESSAGE_TYPES.ERROR, message: 'Ha ocurrido un error' })
-      expect(response).toBe(reason)
+      expect(commit).toHaveBeenCalledWith(SET_VEHICLES_FAILURE, 'Ha ocurrido un error')
     })
   })
 })
