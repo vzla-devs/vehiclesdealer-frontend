@@ -11,8 +11,7 @@ export default {
     state.vehiclesState.loading = false
   },
   [SET_VEHICLES_FAILURE]: (state, message) => {
-    state.vehiclesState.error.show = true
-    state.vehiclesState.error.message = message
+    state.vehiclesState.error = { show: true, message }
     state.vehiclesState.loading = false
   }
 }
