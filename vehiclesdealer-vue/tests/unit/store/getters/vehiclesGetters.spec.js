@@ -1,5 +1,5 @@
 import Getters from '@/store/getters/vehiclesGetters'
-import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
+import { AVAILABLE_VEHICLES, LOADING_VEHICLES } from '@/store/getters/getterTypes'
 import { buildStateWith } from '@tests/helpers/builderHelpers'
 import testValues from '@tests/helpers/testValues'
 
@@ -15,5 +15,13 @@ describe('vehiclesGetters.js', () => {
     const vehiclesFromGetter = Getters[AVAILABLE_VEHICLES](givenState)
 
     expect(vehiclesFromGetter).toEqual(vehicles)
+  })
+
+  it('gets the vehicles loading state', () => {
+    const givenState = buildStateWith({ vehiclesState: { loading: true } })
+
+    const result = Getters[LOADING_VEHICLES](givenState)
+
+    expect(result).toBe(true)
   })
 })
