@@ -1,7 +1,16 @@
-import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
+import { GET_VEHICLES, GET_VEHICLES_SUCCESS, GET_VEHICLES_FAILURE } from '@/store/mutations/mutationTypes'
 
 export default {
-  [SET_VEHICLES]: (state, vehicles) => {
-    state.vehicles = vehicles
+  [GET_VEHICLES]: (state) => {
+    state.vehiclesState.loading = true
+  },
+  [GET_VEHICLES_SUCCESS]: (state, vehicles) => {
+    state.vehiclesState.vehicles = vehicles
+    state.vehiclesState.loading = false
+  },
+  [GET_VEHICLES_FAILURE]: (state, message) => {
+    state.vehiclesState.error.show = true
+    state.vehiclesState.error.message = message
+    state.vehiclesState.loading = false
   }
 }
