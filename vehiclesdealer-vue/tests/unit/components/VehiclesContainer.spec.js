@@ -3,7 +3,7 @@ import GridLayout from '@/layouts/GridLayout.vue'
 import VehicleCard from '@/components/VehicleCard.vue'
 import NoData from '@/components/basic/NoData.vue'
 import { componentBuilder } from '@tests/helpers/builderHelpers'
-import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
+import { AVAILABLE_VEHICLES, LOADING_VEHICLES } from '@/store/getters/getterTypes'
 import { GET_VEHICLES } from '@/store/actions/actionTypes'
 import {
   resolveAllPromises,
@@ -13,31 +13,35 @@ import testValues from '@tests/helpers/testValues'
 
 describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles', () => {
-    it('gets the vehicles correctly', async () => {
-      const getters = {
-        AVAILABLE_VEHICLES: jest.fn(() => [])
-      }
-      const actions = {
-        GET_VEHICLES: jest.fn(() => resolvedPromise())
-      }
+    it('calls the corresponding action to get the vehicles', async () => {
+      const actions = {}
+      actions[GET_VEHICLES] = jest.fn(() => resolvedPromise())
 
-      aVehiclesContainer().withGetters(getters).withActions(actions).build()
-
+      aVehiclesContainer().withActions(actions).build()
       await resolveAllPromises()
-      expect(getters[AVAILABLE_VEHICLES]).toHaveBeenCalled()
+
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
     })
 
-    it('displays an empty view when there are no vehicles', async () => {
-      const getters = {
-        AVAILABLE_VEHICLES: () => []
-      }
+    it('displays a loading view without vehicles', async () => {
+      const getters = {}
+      getters[AVAILABLE_VEHICLES] = () => []
+      getters[LOADING_VEHICLES] = () => true
 
       const wrapper = aVehiclesContainer().withGetters(getters).build()
 
       expect(wrapper.contains(GridLayout)).toBe(false)
       expect(wrapper.contains(NoData)).toBe(false)
+    })
+
+    it('displays a loaded view without vehicles', async () => {
+      const getters = {}
+      getters[AVAILABLE_VEHICLES] = () => []
+      getters[LOADING_VEHICLES] = () => false
+
+      const wrapper = aVehiclesContainer().withGetters(getters).build()
       await resolveAllPromises()
+
       expect(wrapper.contains(GridLayout)).toBe(false)
       expect(wrapper.contains(NoData)).toBe(true)
       expect(wrapper.find(NoData).props().message).toBe('No hay vehículos disponibles')
@@ -49,14 +53,12 @@ describe('VehiclesContainer.vue', () => {
         testValues.vehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }),
         testValues.vehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
       ]
-      const getters = {
-        AVAILABLE_VEHICLES: () => givenVehicles
-      }
+      const getters = {}
+      getters[AVAILABLE_VEHICLES] = () => givenVehicles
 
       const wrapper = aVehiclesContainer().withGetters(getters).build()
-
-      expect(wrapper.contains(GridLayout)).toBe(false)
       await resolveAllPromises()
+
       expect(wrapper.contains(NoData)).toBe(false)
       expect(wrapper.contains(GridLayout)).toBe(true)
       const expectedGrid = wrapper.find(GridLayout)
@@ -69,12 +71,11 @@ describe('VehiclesContainer.vue', () => {
   })
 
   function aVehiclesContainer () {
-    const getters = {
-      AVAILABLE_VEHICLES: () => []
-    }
-    const actions = {
-      GET_VEHICLES: () => resolvedPromise()
-    }
+    const getters = {}
+    getters[AVAILABLE_VEHICLES] = () => []
+    getters[LOADING_VEHICLES] = () => false
+    const actions = {}
+    actions[GET_VEHICLES] = () => resolvedPromise()
     return componentBuilder(VehiclesContainer).withGetters(getters).withActions(actions)
   }
 

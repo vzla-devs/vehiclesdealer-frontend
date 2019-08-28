@@ -20,7 +20,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
+import { AVAILABLE_VEHICLES, LOADING_VEHICLES } from '@/store/getters/getterTypes'
 import { GET_VEHICLES } from '@/store/actions/actionTypes'
 import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
@@ -32,27 +32,23 @@ export default {
     VehicleCard,
     NoData
   },
-  data: () => ({
-    isDoneLoading: false
-  }),
   computed: {
     ...mapGetters({
       vehicles: AVAILABLE_VEHICLES,
-      isLoading: IS_LOADING // TODO
+      isLoading: LOADING_VEHICLES
     }),
     hasVehices () {
       return this.vehicles.length > 0
     },
     thereAreVehicles () {
-      return this.isDoneLoading && this.hasVehices
+      return !this.isLoading && this.hasVehices
     },
     thereAreNoVehicles () {
-      return this.isDoneLoading && !this.hasVehices
+      return !this.isLoading && !this.hasVehices
     }
   },
   created () {
     this.getVehicles()
-      .finally(() => { this.isDoneLoading = true })
   },
   methods: {
     ...mapActions({
