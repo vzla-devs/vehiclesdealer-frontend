@@ -10,7 +10,7 @@ describe('vehiclesGetters.js', () => {
       testValues.vehicle({ id: '2', brand: 'secondBrand', model: 'secondModel' }),
       testValues.vehicle({ id: '3', brand: 'thirdBrand', model: 'thirdModel' })
     ]
-    const givenState = buildStateWith({ vehicles })
+    const givenState = buildStateWith({ vehiclesState: { vehicles } })
 
     const vehiclesFromGetter = Getters[AVAILABLE_VEHICLES](givenState)
 
