@@ -4,12 +4,12 @@ import { buildStateWith } from '@tests/helpers/builderHelpers'
 import testValues from '@tests/helpers/testValues'
 
 describe('vehiclesMutations.js', () => {
-  it('mutate the loading state of the vehicles', () => {
-    const givenState = buildStateWith({ vehiclesState: { loading: false } })
+  it('reset the vehicles state and set the loading state to true', () => {
+    const givenState = buildStateWith({ vehiclesState: { vehicles: [{ id: 1 }], loading: false, error: { show: true, message: 'anyMessage' } } })
 
     Mutations[GET_VEHICLES](givenState)
 
-    const expectedState = buildStateWith({ vehiclesState: { loading: true } })
+    const expectedState = buildStateWith({ vehiclesState: { vehicles: [], loading: true, error: { show: false, message: '' } } })
     expect(givenState).toEqual(expectedState)
   })
 
@@ -28,11 +28,11 @@ describe('vehiclesMutations.js', () => {
 
   it('mutate the state with the vehicles failure error message', () => {
     const errorMessage = 'anyErrorMessage'
-    const givenState = buildStateWith({ vehiclesState: { vehicles: [], loading: true, error: { show: false, message: '' } } })
+    const givenState = buildStateWith({ vehiclesState: { loading: true, error: { show: false, message: '' } } })
 
     Mutations[GET_VEHICLES_FAILURE](givenState, errorMessage)
 
-    const expectedState = buildStateWith({ vehiclesState: { vehicles: [], loading: false, error: { show: true, message: errorMessage } } })
+    const expectedState = buildStateWith({ vehiclesState: { loading: false, error: { show: true, message: errorMessage } } })
     expect(givenState).toEqual(expectedState)
   })
 })

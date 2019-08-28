@@ -3,6 +3,8 @@ import { GET_VEHICLES, GET_VEHICLES_SUCCESS, GET_VEHICLES_FAILURE } from '@/stor
 export default {
   [GET_VEHICLES]: (state) => {
     state.vehiclesState.loading = true
+    state.vehiclesState.vehicles = []
+    state.vehiclesState.error = { show: false, message: '' }
   },
   [GET_VEHICLES_SUCCESS]: (state, vehicles) => {
     state.vehiclesState.vehicles = vehicles
