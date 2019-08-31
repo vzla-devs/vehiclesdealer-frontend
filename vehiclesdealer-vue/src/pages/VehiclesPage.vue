@@ -16,18 +16,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-#vehicles-view {
-  display: grid;
-  grid-template-rows: 1fr auto;
-  grid-template-columns: 100%;
-  grid-gap: $small-space;
-}
-
-@media (min-width: $medium-breakpoint) {
-  #vehicles-view-container {
-    grid-gap: $medium-space;
-  }
-}
-</style>
