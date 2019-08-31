@@ -1,14 +1,15 @@
 import { componentBuilder } from '@tests/helpers/builderHelpers'
-import ApplicationLayout from '@/layouts/ApplicationLayout.vue'
+import PageLayout from '@/layouts/PageLayout.vue'
+import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
 
 describe('ApplicationLayout.vue', () => {
   it('renders the drawer options correctly', () => {
     const drawerOptions = [
-      { title: 'first option', event: 'firstEvent' },
-      { title: 'second option', event: 'secondEvent' }
+      { title: 'first option', route: 'first route' },
+      { title: 'second option', route: 'second route' }
     ]
 
-    const wrapper = anApplicationLayout().withProps({ drawerOptions }).build()
+    const wrapper = aPageLayout().withData({ drawerOptions }).build()
 
     expect(wrapper.findAll('.option').length).toBe(2)
     const expectedOptions = wrapper.findAll('.option')
@@ -16,19 +17,21 @@ describe('ApplicationLayout.vue', () => {
     expect(expectedOptions.at(1).find('.option-title').text()).toBe(drawerOptions[1].title)
   })
 
-  it('emits the corresponding event for the option that is clicked', () => {
+  it('navigates to a route when the corresponding option is clicked', () => {
     const drawerOptions = [
-      { title: 'first option', event: 'firstEvent' },
-      { title: 'second option', event: 'secondEvent' }
+      { title: 'home option', route: HOME_ROUTE },
+      { title: 'vehicles option', route: VEHICLES_ROUTE }
     ]
-    const wrapper = anApplicationLayout().withProps({ drawerOptions }).build()
+    const router = { push: jest.fn() }
+    const wrapper = aPageLayout().withRouter(router).withData({ drawerOptions }).build()
 
-    wrapper.findAll('.option').at(1).vm.$emit('click')
+    const options = wrapper.findAll('.option')
+    options.at(1).vm.$emit('click')
 
-    expect(wrapper.emitted().secondEvent).toBeTruthy()
+    expect(router.push).toHaveBeenCalledWith(VEHICLES_ROUTE)
   })
 
-  function anApplicationLayout () {
+  function aPageLayout () {
     const stubs = {
       'v-app': true,
       'v-navigation-drawer': true,
@@ -43,6 +46,6 @@ describe('ApplicationLayout.vue', () => {
       'v-list-tile-title': true,
       'v-list-title': true
     }
-    return componentBuilder(ApplicationLayout).withStubs(stubs)
+    return componentBuilder(PageLayout).withStubs(stubs).withRouter()
   }
 })

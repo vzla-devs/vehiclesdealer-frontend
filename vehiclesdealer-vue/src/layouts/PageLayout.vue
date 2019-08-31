@@ -22,7 +22,7 @@
         >
           <v-list-tile
             class="option"
-            @click="$emit(option.event)"
+            @click="onNavigate(option.route)"
           >
             <v-list-tile-content>
               <v-list-tile-title class="option-title">
@@ -49,19 +49,19 @@
 </template>
 
 <script>
+import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
+
 export default {
-  props: {
-    drawerOptions: { type: Array, required: true }
-  },
   data: () => ({
-    drawer: false
+    drawer: false,
+    drawerOptions: [
+      { title: 'Inicio', route: HOME_ROUTE },
+      { title: 'Vehículos', route: VEHICLES_ROUTE }
+    ]
   }),
   methods: {
-    onHomePage () {
-      this.$emit('onHomePage')
-    },
-    onVehiclesPage () {
-      this.$emit('onVehiclesPage')
+    onNavigate (route) {
+      this.$router.push(route)
     }
   }
 }
