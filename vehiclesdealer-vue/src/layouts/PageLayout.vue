@@ -1,51 +1,53 @@
 <template>
-  <v-app id="app">
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-toolbar flat>
-        <v-list>
-          <v-list-tile>
-            <v-list-tile-title>
-              <h1>Opciones</h1>
-            </v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-      </v-toolbar>
-      <v-divider />
-      <v-list dense>
-        <div
-          v-for="(option, index) in drawerOptions"
-          :key="index"
-        >
-          <v-list-tile
-            class="option"
-            @click="onNavigate(option.route)"
-          >
-            <v-list-tile-content>
-              <v-list-tile-title class="option-title">
-                {{ option.title }}
+  <div>
+    <v-app id="app">
+      <v-navigation-drawer
+        v-model="drawer"
+        fixed
+        app
+      >
+        <v-toolbar flat>
+          <v-list>
+            <v-list-tile>
+              <v-list-tile-title>
+                <h1>Opciones</h1>
               </v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </div>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar
-      fixed
-      app
-      color="primary"
-      dark
-    >
-      <v-toolbar-side-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>VehiclesDealer</v-toolbar-title>
-    </v-toolbar>
-    <v-content>
-      <slot />
-    </v-content>
-  </v-app>
+            </v-list-tile>
+          </v-list>
+        </v-toolbar>
+        <v-divider />
+        <v-list dense>
+          <div
+            v-for="(option, index) in drawerOptions"
+            :key="index"
+          >
+            <v-list-tile
+              class="option"
+              @click="onNavigate(option.route)"
+            >
+              <v-list-tile-content>
+                <v-list-tile-title class="option-title">
+                  {{ option.title }}
+                </v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </div>
+        </v-list>
+      </v-navigation-drawer>
+      <v-toolbar
+        fixed
+        app
+        color="primary"
+        dark
+      >
+        <v-toolbar-side-icon @click.stop="drawer = !drawer" />
+        <v-toolbar-title>VehiclesDealer</v-toolbar-title>
+      </v-toolbar>
+      <v-content>
+        <slot />
+      </v-content>
+    </v-app>
+  </div>
 </template>
 
 <script>
