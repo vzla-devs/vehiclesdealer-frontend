@@ -6,6 +6,6 @@ export default {
   vehiclesState: {
     loading: false,
     vehicles: [],
-    error: { show: false, message: '' }
+    error: ''
   }
 }
