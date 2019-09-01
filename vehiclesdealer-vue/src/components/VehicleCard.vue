@@ -7,7 +7,7 @@
       <v-img :src="imageUrl" />
       <v-card-title primary-title>
         <div class="description-container">
-          <h3 class="headline description">
+          <h3 class="headline description new-class">
             {{ formattedDescription }}
           </h3>
           <div class="price">
