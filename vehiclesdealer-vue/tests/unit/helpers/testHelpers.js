@@ -1,7 +1,5 @@
-import flushPromises from 'flush-promises'
-
 export function resolveAllPromises () {
-  return flushPromises()
+  return new Promise(resolve => setImmediate(resolve))
 }
 
 export function resolvedPromise (promiseResult) {
