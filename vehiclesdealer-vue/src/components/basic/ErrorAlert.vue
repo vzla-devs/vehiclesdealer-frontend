@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-alert
-      class="error-banner red"
+      class="error-alert"
       :value="true"
       dismissible
       type="error"

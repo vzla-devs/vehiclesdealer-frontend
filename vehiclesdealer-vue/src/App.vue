@@ -1,7 +1,7 @@
 <template>
   <div>
     <router-view />
-    <error-banner
+    <error-alert
       v-if="showError"
       class="error-message"
       :message="errorMessage"
@@ -15,11 +15,11 @@ import { ERROR_MESSAGE } from '@/store/getters/getterTypes'
 import { CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import { mapGetters, mapActions } from 'vuex'
 import { MESSAGE_TYPES } from '@/constants/enums'
-import ErrorBanner from '@/components/basic/ErrorBanner'
+import ErrorAlert from '@/components/basic/ErrorAlert'
 
 export default {
   components: {
-    ErrorBanner
+    ErrorAlert
   },
   computed: {
     ...mapGetters({
