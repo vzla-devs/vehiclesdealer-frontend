@@ -1,6 +1,6 @@
 using System;
 
-namespace VehiclesDealerApi {
+namespace VehiclesDealer.Api {
     public class WeatherForecast {
         public DateTime Date { get; set; }
 
