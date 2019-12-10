@@ -19,14 +19,14 @@ describe('applicationMutations.js', () => {
   it('sets the error message', () => {
     const type = MESSAGE_TYPES.ERROR
     const givenState = buildStateWith({
-      messages: { [MESSAGE_TYPES.ERROR]: { show: false, message: '' } }
+      messages: { [type]: { show: false, message: '' } }
     })
 
     const message = 'anyMessage'
-    Mutations[SET_APPLICATION_MESSAGE](givenState, { type, message })
+    Mutations[SET_APPLICATION_MESSAGE](givenState, { show: true, type, message })
 
     const expectedState = buildStateWith({
-      messages: { [MESSAGE_TYPES.ERROR]: { show: true, message } }
+      messages: { [type]: { show: true, message } }
     })
     expect(givenState).toMatchObject(expectedState)
   })
