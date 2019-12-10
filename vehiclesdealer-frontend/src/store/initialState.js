@@ -3,9 +3,5 @@ export default {
   messages: {
     error: { show: false, message: '' }
   },
-  vehiclesState: {
-    loading: false,
-    vehicles: [],
-    error: ''
-  }
+  vehicles: []
 }

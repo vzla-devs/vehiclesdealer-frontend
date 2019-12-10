@@ -21,8 +21,8 @@ describe('applicationMutations.js', () => {
     const givenState = buildStateWith({
       messages: { [type]: { show: false, message: '' } }
     })
-
     const message = 'anyMessage'
+
     Mutations[SET_APPLICATION_MESSAGE](givenState, { show: true, type, message })
 
     const expectedState = buildStateWith({
