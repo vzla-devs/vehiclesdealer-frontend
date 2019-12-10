@@ -3,56 +3,31 @@ import { buildStateWith } from '@tests/helpers/builderHelpers'
 import { MESSAGE_TYPES } from '@/constants/enums'
 import {
   SET_APPLICATION_LOADING,
-  RESET_APPLICATION_LOADING,
-  SET_APPLICATION_MESSAGE,
-  RESET_APPLICATION_MESSAGE
+  SET_APPLICATION_MESSAGE
 } from '@/store/mutations/mutationTypes'
 
 describe('applicationMutations.js', () => {
-  describe('when changing the loading state', () => {
-    it('sets the loading state', () => {
-      const givenState = buildStateWith({ loading: false })
+  it('sets the loading state', () => {
+    const givenState = buildStateWith({ loading: false })
 
-      Mutations[SET_APPLICATION_LOADING](givenState)
+    Mutations[SET_APPLICATION_LOADING](givenState, true)
 
-      const expectedState = buildStateWith({ loading: true })
-      expect(givenState).toEqual(expectedState)
-    })
-
-    it('resets the loading state', () => {
-      const givenState = buildStateWith({ loading: true })
-
-      Mutations[RESET_APPLICATION_LOADING](givenState)
-
-      const expectedState = buildStateWith({ loading: false })
-      expect(givenState).toEqual(expectedState)
-    })
+    const expectedState = buildStateWith({ loading: true })
+    expect(givenState).toEqual(expectedState)
   })
 
-  describe('when changing the messages', () => {
-    it('sets the error message', () => {
-      const type = MESSAGE_TYPES.ERROR
-      const givenState = buildStateWith({ messages: aMessageFromState({ type }) })
-      const givenMessage = 'anyMessage'
-
-      Mutations[SET_APPLICATION_MESSAGE](givenState, { type, message: givenMessage })
-
-      const expectedState = { messages: aMessageFromState({ type, show: true, message: givenMessage }) }
-      expect(givenState).toMatchObject(expectedState)
+  it('sets the error message', () => {
+    const type = MESSAGE_TYPES.ERROR
+    const givenState = buildStateWith({
+      messages: { [MESSAGE_TYPES.ERROR]: { show: false, message: '' } }
     })
 
-    it('resets the error message', () => {
-      const type = MESSAGE_TYPES.ERROR
-      const givenState = buildStateWith({ messages: aMessageFromState({ type, show: true, message: 'anyMessage' }) })
+    const message = 'anyMessage'
+    Mutations[SET_APPLICATION_MESSAGE](givenState, { type, message })
 
-      Mutations[RESET_APPLICATION_MESSAGE](givenState, type)
-
-      const expectedState = buildStateWith({ messages: aMessageFromState({ type, show: false, message: '' }) })
-      expect(givenState).toEqual(expectedState)
+    const expectedState = buildStateWith({
+      messages: { [MESSAGE_TYPES.ERROR]: { show: true, message } }
     })
+    expect(givenState).toMatchObject(expectedState)
   })
 })
-
-function aMessageFromState ({ type, show = false, message = '' }) {
-  return { [type]: { show, message } }
-}
