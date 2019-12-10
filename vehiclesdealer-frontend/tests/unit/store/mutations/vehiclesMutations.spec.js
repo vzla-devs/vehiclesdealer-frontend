@@ -1,9 +1,7 @@
 import Mutations from '@/store/mutations/vehiclesMutations'
 import { buildStateWith } from '@tests/helpers/builderHelpers'
 import testValues from '@tests/helpers/testValues'
-import {
-  SET_VEHICLES
-} from '@/store/mutations/mutationTypes'
+import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
 
 describe('vehiclesMutations.js', () => {
   it('sets the vehicles', () => {
