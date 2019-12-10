@@ -1,11 +1,11 @@
 import Mutations from '@/store/mutations/vehiclesMutations'
+import { buildStateWith } from '@tests/helpers/builderHelpers'
+import testValues from '@tests/helpers/testValues'
 import {
   FETCH_VEHICLES_REQUEST,
   FETCH_VEHICLES_SUCCESS,
   FETCH_VEHICLES_FAILURE
 } from '@/store/mutations/mutationTypes'
-import { buildStateWith } from '@tests/helpers/builderHelpers'
-import testValues from '@tests/helpers/testValues'
 
 describe('vehiclesMutations.js', () => {
   it('reset the vehicles state and set the loading state to true', () => {

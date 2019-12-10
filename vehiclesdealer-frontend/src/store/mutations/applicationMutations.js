@@ -1,21 +1,21 @@
 import {
-  SET_LOADING,
-  RESET_LOADING,
-  SET_MESSAGE,
-  RESET_MESSAGE
+  SET_APPLICATION_LOADING,
+  RESET_APPLICATION_LOADING,
+  SET_APPLICATION_MESSAGE,
+  RESET_APPLICATION_MESSAGE
 } from '@/store/mutations/mutationTypes'
 
 export default {
-  [SET_LOADING]: (state) => {
+  [SET_APPLICATION_LOADING]: (state) => {
     state.loading = true
   },
-  [RESET_LOADING]: (state) => {
+  [RESET_APPLICATION_LOADING]: (state) => {
     state.loading = false
   },
-  [SET_MESSAGE]: (state, { type, message }) => {
+  [SET_APPLICATION_MESSAGE]: (state, { type, message }) => {
     state.messages[type] = { show: true, message }
   },
-  [RESET_MESSAGE]: (state, type) => {
+  [RESET_APPLICATION_MESSAGE]: (state, type) => {
     state.messages[type] = { show: false, message: '' }
   }
 }
