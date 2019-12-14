@@ -18,4 +18,12 @@ describe('applicationGetters.js', () => {
 
     expect(result).toBe('anyMessage')
   })
+
+  it('gets a default error message from the state when there are no available messages', () => {
+    const givenState = AState().withValue({ messages: { error: [] } }).build()
+
+    const result = getters[ERROR_MESSAGE](givenState)
+
+    expect(result).toBe('')
+  })
 })

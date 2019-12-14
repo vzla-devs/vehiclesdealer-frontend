@@ -5,6 +5,6 @@ export default {
     return state.loading
   },
   [ERROR_MESSAGE]: (state) => {
-    return state.messages.error[0]
+    return state.messages.error.length > 0 ? state.messages.error[0] : ''
   }
 }
