@@ -11,7 +11,7 @@ describe('applicationGetters.js', () => {
     expect(result).toEqual(true)
   })
 
-  it('gets an error message from the state', () => {
+  it('gets the first available error message from the state', () => {
     const givenState = AState().withValue({ messages: { error: ['anyMessage', 'anyOtherMessage'] } }).build()
 
     const result = getters[ERROR_MESSAGE](givenState)
