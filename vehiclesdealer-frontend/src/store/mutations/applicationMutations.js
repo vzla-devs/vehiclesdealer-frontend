@@ -9,7 +9,7 @@ export default {
     state.loading = loading
   },
   [ADD_APPLICATION_MESSAGE]: (state, { type, message }) => {
-    state.messages[type] = [...state.messages[type], message]
+    state.messages[type].push(message)
   },
   [REMOVE_APPLICATION_MESSAGE]: (state, type) => {
     state.messages[type].pop()
