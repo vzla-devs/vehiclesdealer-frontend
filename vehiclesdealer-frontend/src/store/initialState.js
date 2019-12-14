@@ -1,7 +1,10 @@
+import { MESSAGE_TYPES } from '@/constants/enums'
+
 export default {
   loading: false,
   messages: {
-    error: []
+    [MESSAGE_TYPES.ERROR]: [],
+    [MESSAGE_TYPES.NOTIFICATION]: []
   },
   vehicles: []
 }
