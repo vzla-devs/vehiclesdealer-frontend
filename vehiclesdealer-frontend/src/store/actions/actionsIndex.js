@@ -1,7 +1,7 @@
 import vehiclesActions from './vehiclesActions'
-import messagesActions from './messagesActions'
+import applicationActions from './applicationActions'
 
 export default {
   ...vehiclesActions,
-  ...messagesActions
+  ...applicationActions
 }
