@@ -1,6 +1,7 @@
 import {
   SET_APPLICATION_LOADING,
-  ADD_APPLICATION_MESSAGE
+  ADD_APPLICATION_MESSAGE,
+  REMOVE_APPLICATION_MESSAGE
 } from '@/store/mutations/mutationTypes'
 
 export default {
@@ -9,5 +10,8 @@ export default {
   },
   [ADD_APPLICATION_MESSAGE]: (state, { type, message }) => {
     state.messages[type] = [...state.messages[type], message]
+  },
+  [REMOVE_APPLICATION_MESSAGE]: (state, type) => {
+    state.messages[type].pop()
   }
 }
