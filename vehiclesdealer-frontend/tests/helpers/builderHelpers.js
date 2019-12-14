@@ -69,6 +69,21 @@ export function AComponent (component) {
   return self
 }
 
-export function buildStateWith (newState) {
-  return { ...initialState, ...newState }
+export function AState () {
+  let state = { ...initialState }
+
+  function withValue (newState) {
+    state = { ...state, ...newState }
+    return self
+  }
+
+  function build () {
+    return state
+  }
+
+  const self = {
+    withValue,
+    build
+  }
+  return self
 }

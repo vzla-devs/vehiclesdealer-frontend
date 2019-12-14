@@ -5,6 +5,6 @@ export default {
     return state.loading
   },
   [ERROR_MESSAGE]: (state) => {
-    return state.messages.error
+    return state.messages.error[0]
   }
 }
