@@ -17,32 +17,41 @@ describe('applicationMutations.js', () => {
     expect(givenState).toEqual(expectedState)
   })
 
-  it('adds an error message to the state', () => {
-    const type = MESSAGE_TYPES.ERROR
-    const givenState = buildStateWith({
-      messages: { [type]: ['anyMessage'] }
+  describe('when managing messages', () => [
+    {
+      messageTypeName: 'an error',
+      messageType: MESSAGE_TYPES.ERROR
+    },
+    {
+      messageTypeName: 'a notification',
+      messageType: MESSAGE_TYPES.NOTIFICATION
+    }
+  ].forEach(({ messageTypeName, messageType }) => {
+    it(`adds ${messageTypeName} message to the state`, () => {
+      const givenState = buildStateWith({
+        messages: { [messageType]: ['anyMessage'] }
+      })
+
+      const newMessage = 'anyNewMessage'
+      mutations[ADD_APPLICATION_MESSAGE](givenState, { type: messageType, message: newMessage })
+
+      const expectedState = buildStateWith({
+        messages: { [messageType]: ['anyMessage', newMessage] }
+      })
+      expect(givenState).toMatchObject(expectedState)
     })
 
-    const newMessage = 'anyNewMessage'
-    mutations[ADD_APPLICATION_MESSAGE](givenState, { type, message: newMessage })
+    it(`removes ${messageTypeName} message from the state`, () => {
+      const givenState = buildStateWith({
+        messages: { [messageType]: ['anyMessage', 'anyOtherMessage'] }
+      })
 
-    const expectedState = buildStateWith({
-      messages: { [type]: ['anyMessage', newMessage] }
+      mutations[REMOVE_APPLICATION_MESSAGE](givenState, messageType)
+
+      const expectedState = buildStateWith({
+        messages: { [messageType]: ['anyMessage'] }
+      })
+      expect(givenState).toMatchObject(expectedState)
     })
-    expect(givenState).toMatchObject(expectedState)
-  })
-
-  it('removes an error message to the state', () => {
-    const type = MESSAGE_TYPES.ERROR
-    const givenState = buildStateWith({
-      messages: { [type]: ['anyMessage', 'anyOtherMessage'] }
-    })
-
-    mutations[REMOVE_APPLICATION_MESSAGE](givenState, type)
-
-    const expectedState = buildStateWith({
-      messages: { [type]: ['anyMessage'] }
-    })
-    expect(givenState).toMatchObject(expectedState)
-  })
+  }))
 })

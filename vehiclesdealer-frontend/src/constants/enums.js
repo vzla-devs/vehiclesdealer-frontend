@@ -1,3 +1,4 @@
 export const MESSAGE_TYPES = {
-  ERROR: 'ERROR'
+  ERROR: 'ERROR',
+  NOTIFICATION: 'NOTIFICATION'
 }
