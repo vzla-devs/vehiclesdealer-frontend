@@ -1,4 +1,4 @@
-import Mutations from '@/store/mutations/applicationMutations'
+import mutations from '@/store/mutations/applicationMutations'
 import { buildStateWith } from '@tests/helpers/builderHelpers'
 import { MESSAGE_TYPES } from '@/constants/enums'
 import {
@@ -10,7 +10,7 @@ describe('applicationMutations.js', () => {
   it('sets the loading state', () => {
     const givenState = buildStateWith({ loading: false })
 
-    Mutations[SET_APPLICATION_LOADING](givenState, true)
+    mutations[SET_APPLICATION_LOADING](givenState, true)
 
     const expectedState = buildStateWith({ loading: true })
     expect(givenState).toEqual(expectedState)
@@ -23,7 +23,7 @@ describe('applicationMutations.js', () => {
     })
     const message = 'anyMessage'
 
-    Mutations[SET_APPLICATION_MESSAGE](givenState, { show: true, type, message })
+    mutations[SET_APPLICATION_MESSAGE](givenState, { show: true, type, message })
 
     const expectedState = buildStateWith({
       messages: { [type]: { show: true, message } }
