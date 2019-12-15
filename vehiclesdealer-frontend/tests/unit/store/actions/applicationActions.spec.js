@@ -1,9 +1,9 @@
-import actions from '@/store/actions/messagesActions'
+import actions from '@/store/actions/applicationActions'
 import { SHOW_MESSAGE, CLEAR_MESSAGE } from '@/store/actions/actionTypes'
 import { ADD_APPLICATION_MESSAGE, REMOVE_APPLICATION_MESSAGE } from '@/store/mutations/mutationTypes'
 import { MESSAGE_TYPES } from '@/constants/enums'
 
-describe('messagesActions.js', () => {
+describe('applicationActions.js', () => {
   it('commits the corresponding mutation to show an error message', () => {
     const commit = jest.fn()
     const payload = {

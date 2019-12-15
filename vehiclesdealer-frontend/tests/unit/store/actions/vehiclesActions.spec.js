@@ -1,38 +1,40 @@
-import Actions from '@/store/actions/vehiclesActions'
-import { GET_VEHICLES } from '@/store/actions/actionTypes'
-import {
-  FETCH_VEHICLES_REQUEST,
-  FETCH_VEHICLES_SUCCESS,
-  FETCH_VEHICLES_FAILURE
-} from '@/store/mutations/mutationTypes'
+import actions from '@/store/actions/vehiclesActions'
+import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
+import { SET_VEHICLES, SET_APPLICATION_LOADING } from '@/store/mutations/mutationTypes'
 import { VehiclesClient } from '@/clients/clientsFactory'
 import { resolvedPromise, rejectedPromise } from '@tests/helpers/testHelpers'
 import testValues from '@tests/helpers/testValues'
+import { MESSAGE_TYPES } from '@/constants/enums'
 
 describe('vehiclesActions.js', () => {
   describe('when getting vehicles from the API', () => {
     it('commits the corresponding mutation after a successful response', async () => {
-      const commit = jest.fn()
+      const context = { commit: jest.fn(), dispatch: jest.fn() }
       const vehicles = [ testValues.vehicle({ id: '1' }), testValues.vehicle({ id: '2' }) ]
       VehiclesClient.get = jest.fn(() => resolvedPromise({ data: vehicles }))
 
-      const returnedPromise = Actions[GET_VEHICLES]({ commit })
+      const returnedPromise = actions[GET_VEHICLES](context)
 
-      expect(commit).toHaveBeenCalledWith(FETCH_VEHICLES_REQUEST)
       expect(VehiclesClient.get).toHaveBeenCalled()
+      expect(context.commit).toHaveBeenCalledWith(SET_APPLICATION_LOADING, true)
       await returnedPromise
-      expect(commit).toHaveBeenCalledWith(FETCH_VEHICLES_SUCCESS, vehicles)
+      expect(context.commit).toHaveBeenCalledWith(SET_VEHICLES, vehicles)
+      expect(context.commit).toHaveBeenCalledWith(SET_APPLICATION_LOADING, false)
+      expect(context.dispatch).not.toHaveBeenCalledWith(SHOW_MESSAGE)
     })
 
     it('does not commit the corresponding mutation and show an error message after a failed response', async () => {
-      const commit = jest.fn()
+      const context = { commit: jest.fn(), dispatch: jest.fn() }
       VehiclesClient.get = jest.fn(() => rejectedPromise())
 
-      await Actions[GET_VEHICLES]({ commit })
+      const returnedPromise = actions[GET_VEHICLES](context)
 
-      expect(commit).toHaveBeenCalledWith(FETCH_VEHICLES_REQUEST)
       expect(VehiclesClient.get).toHaveBeenCalled()
-      expect(commit).toHaveBeenCalledWith(FETCH_VEHICLES_FAILURE, 'Ha ocurrido un error')
+      expect(context.commit).toHaveBeenCalledWith(SET_APPLICATION_LOADING, true)
+      await returnedPromise
+      expect(context.commit).toHaveBeenCalledWith(SET_APPLICATION_LOADING, false)
+      expect(context.commit).not.toHaveBeenCalledWith(SET_VEHICLES)
+      expect(context.dispatch).toHaveBeenCalledWith(SHOW_MESSAGE, { type: MESSAGE_TYPES.ERROR, message: 'ha ocurrido un error' })
     })
   })
 })

@@ -1,19 +1,17 @@
-import { GET_VEHICLES } from '@/store/actions/actionTypes'
-import {
-  FETCH_VEHICLES_REQUEST,
-  FETCH_VEHICLES_SUCCESS,
-  FETCH_VEHICLES_FAILURE
-} from '@/store/mutations/mutationTypes'
+import { GET_VEHICLES, SHOW_MESSAGE } from '@/store/actions/actionTypes'
+import { SET_VEHICLES, SET_APPLICATION_LOADING } from '@/store/mutations/mutationTypes'
 import { VehiclesClient } from '@/clients/clientsFactory'
+import { MESSAGE_TYPES } from '@/constants/enums'
 
 export default {
-  [GET_VEHICLES]: async ({ commit }) => {
-    commit(FETCH_VEHICLES_REQUEST)
+  [GET_VEHICLES]: async ({ commit, dispatch }) => {
+    commit(SET_APPLICATION_LOADING, true)
     try {
       const response = await VehiclesClient.get()
-      commit(FETCH_VEHICLES_SUCCESS, response.data)
+      commit(SET_VEHICLES, response.data)
     } catch (error) {
-      commit(FETCH_VEHICLES_FAILURE, 'Ha ocurrido un error')
+      dispatch(SHOW_MESSAGE, { type: MESSAGE_TYPES.ERROR, message: 'ha ocurrido un error' })
     }
+    commit(SET_APPLICATION_LOADING, false)
   }
 }
