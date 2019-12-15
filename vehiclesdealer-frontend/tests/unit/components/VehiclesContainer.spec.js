@@ -3,7 +3,7 @@ import GridLayout from '@/layouts/GridLayout.vue'
 import VehicleCard from '@/components/VehicleCard.vue'
 import NoData from '@/components/basic/NoData.vue'
 import { AComponent } from '@tests/helpers/builderHelpers'
-import { AVAILABLE_VEHICLES, LOADING_VEHICLES } from '@/store/getters/getterTypes'
+import { AVAILABLE_VEHICLES, IS_LOADING } from '@/store/getters/getterTypes'
 import { GET_VEHICLES } from '@/store/actions/actionTypes'
 import {
   resolveAllPromises,
@@ -18,15 +18,15 @@ describe('VehiclesContainer.vue', () => {
       actions[GET_VEHICLES] = jest.fn(() => resolvedPromise())
 
       AVehiclesContainer().withActions(actions).build()
-      await resolveAllPromises()
 
+      await resolveAllPromises()
       expect(actions[GET_VEHICLES]).toHaveBeenCalled()
     })
 
     it('displays a loading view without vehicles', async () => {
       const getters = {}
       getters[AVAILABLE_VEHICLES] = () => []
-      getters[LOADING_VEHICLES] = () => true
+      getters[IS_LOADING] = () => true
 
       const wrapper = AVehiclesContainer().withGetters(getters).build()
 
@@ -37,7 +37,7 @@ describe('VehiclesContainer.vue', () => {
     it('displays a loaded view without vehicles', async () => {
       const getters = {}
       getters[AVAILABLE_VEHICLES] = () => []
-      getters[LOADING_VEHICLES] = () => false
+      getters[IS_LOADING] = () => false
 
       const wrapper = AVehiclesContainer().withGetters(getters).build()
       await resolveAllPromises()
@@ -73,7 +73,7 @@ describe('VehiclesContainer.vue', () => {
   function AVehiclesContainer () {
     const getters = {}
     getters[AVAILABLE_VEHICLES] = () => []
-    getters[LOADING_VEHICLES] = () => false
+    getters[IS_LOADING] = () => false
     const actions = {}
     actions[GET_VEHICLES] = () => resolvedPromise()
     return AComponent(VehiclesContainer).withGetters(getters).withActions(actions)
