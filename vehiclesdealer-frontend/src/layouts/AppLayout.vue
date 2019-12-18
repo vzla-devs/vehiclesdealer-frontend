@@ -10,7 +10,7 @@
           v-for="(option, index) in drawerOptions"
           :key="index"
           class="option"
-            @click="onNavigate(option.route)"
+          @click="onNavigate(option.route)"
         >
           <v-list-item-content>
             <v-list-item-title>{{ option.title }}</v-list-item-title>

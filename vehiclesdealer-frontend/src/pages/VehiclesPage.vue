@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Vehículos</h1>
-    <vehicles-container/>
+    <vehicles-container />
   </div>
 </template>
 
