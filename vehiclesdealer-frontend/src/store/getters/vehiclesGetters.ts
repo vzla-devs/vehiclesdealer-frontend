@@ -1,8 +1,8 @@
-import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import { RootState } from '@/store/interfaces/rootState'
+import { Getter } from '@/store/getters/types'
 
 export default {
-  [AVAILABLE_VEHICLES]: (state: RootState) => {
+  [Getter.AVAILABLE_VEHICLES]: (state: RootState) => {
     return state.vehicles
   }
 }

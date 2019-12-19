@@ -1,5 +1,4 @@
 import getters from '@/store/getters/vehiclesGetters'
-import { AVAILABLE_VEHICLES } from '@/store/getters/getterTypes'
 import { AState } from '@tests/builders/stateBuilder'
 import testValues from '@tests/helpers/testValues'
 
@@ -12,7 +11,7 @@ describe('vehiclesGetters.js', () => {
     ]
     const givenState = new AState().withVehicles(vehicles).build()
 
-    const result = getters[AVAILABLE_VEHICLES](givenState)
+    const result = getters.AVAILABLE_VEHICLES(givenState)
 
     expect(result).toEqual(vehicles)
   })
