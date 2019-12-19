@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-import initialState from '@/store/initialState'
+import initialState from '@/store/models/initialState'
 
 export function AComponent (component) {
   const options = { component }
