@@ -5,7 +5,7 @@ export class ErrorMessage implements ApplicationMessage {
   type: Message
   message: string
 
-  constructor(message: string) {
+  constructor (message: string) {
     this.type = Message.Error
     this.message = message
   }
