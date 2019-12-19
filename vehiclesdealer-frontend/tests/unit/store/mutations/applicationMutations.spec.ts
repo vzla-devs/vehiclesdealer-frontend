@@ -2,7 +2,7 @@ import mutations from '@/store/mutations/applicationMutations'
 import { AState } from '@tests/builders/stateBuilder'
 import { ErrorMessage } from '@/store/models/errorMessage'
 import { Message } from '@/store/types/message'
-import { Mutation } from '@/store/types/mutations'
+import { Mutation } from '@/store/mutations/types'
 
 describe('applicationMutations.js', () => {
   it('sets the loading state to true', () => {
