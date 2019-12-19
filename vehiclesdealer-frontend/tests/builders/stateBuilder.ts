@@ -1,20 +1,19 @@
 import { InitialState } from '@/store/models/initialState'
+import { RootState } from '@/store/interfaces/rootState'
 
-export function AState () {
-  const state = new InitialState()
+export class AState {
+  state: RootState
 
-  function withVehicles (vehicles: Array<any>) {
-    state.vehicles = vehicles
-    return self
+  constructor () {
+    this.state = new InitialState()
   }
 
-  function build () {
-    return state
+  withVehicles (vehicles: Array<any>): AState {
+    this.state.vehicles = vehicles
+    return this
   }
 
-  const self = {
-    withVehicles,
-    build
+  build (): RootState {
+    return this.state
   }
-  return self
 }
