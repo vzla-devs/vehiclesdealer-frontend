@@ -6,8 +6,8 @@ export class InitialState implements RootState {
   loading: boolean
   vehicles: Array<any>
   messages: {
-    error: ErrorMessage[]
-    notification: NotificationMessage[]
+    error: Array<ErrorMessage>
+    notification: Array<NotificationMessage>
   }
 
   constructor () {
