@@ -1,7 +1,7 @@
 import mutations from '@/store/mutations/vehiclesMutations'
 import { AState } from '@tests/builders/stateBuilder'
 import testValues from '@tests/helpers/testValues'
-import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
+import { Mutation } from '@/store/types/mutations'
 
 describe('vehiclesMutations.js', () => {
   it('sets the vehicles', () => {
@@ -11,7 +11,7 @@ describe('vehiclesMutations.js', () => {
       testValues.vehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' })
     ]
 
-    mutations[SET_VEHICLES](givenState, vehicles)
+    mutations[Mutation.SET_VEHICLES](givenState, vehicles)
 
     const expectedState = new AState().withVehicles(vehicles).build()
     expect(givenState).toEqual(expectedState)

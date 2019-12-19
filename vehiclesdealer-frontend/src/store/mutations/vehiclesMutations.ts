@@ -1,8 +1,8 @@
-import { SET_VEHICLES } from '@/store/mutations/mutationTypes'
 import { RootState } from '@/store/interfaces/rootState'
+import { Mutation } from '@/store/types/mutations'
 
 export default {
-  [SET_VEHICLES]: (state: RootState, vehicles: Array<any>) => {
+  [Mutation.SET_VEHICLES]: (state: RootState, vehicles: Array<any>) => {
     state.vehicles = vehicles
   }
 }

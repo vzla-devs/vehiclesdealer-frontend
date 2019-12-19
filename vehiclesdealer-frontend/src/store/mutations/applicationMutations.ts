@@ -1,7 +1,7 @@
 import { RootState } from '@/store/interfaces/rootState'
 import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
 import { Message } from '@/store/types/message'
-import { Mutation } from '../types/mutations'
+import { Mutation } from '@/store/types/mutations'
 
 export default {
   [Mutation.SET_APPLICATION_LOADING]: (state: RootState, loading: boolean) => {
