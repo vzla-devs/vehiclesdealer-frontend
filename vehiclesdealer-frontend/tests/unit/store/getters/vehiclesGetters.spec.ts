@@ -9,9 +9,9 @@ describe('vehiclesGetters.js', () => {
       new Vehicle('2', 'secondBrand', 'secondModel', 2018, 8888, 'secondUrl'),
       new Vehicle('3', 'thirdBrand', 'thirdModel', 2019, 9999, 'thirdUrl')
     ]
-    const givenState = new AState().withVehicles(vehicles).build()
+    const state = new AState().withVehicles(vehicles).build()
 
-    const result = getters.AVAILABLE_VEHICLES(givenState)
+    const result = getters.AVAILABLE_VEHICLES(state)
 
     expect(result).toEqual(vehicles)
   })
