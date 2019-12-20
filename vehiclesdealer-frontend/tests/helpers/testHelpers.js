@@ -13,8 +13,8 @@ export function rejectedPromise (promiseError) {
 export function mockedRestClient (result = {}) {
   return {
     get: jest.fn(() => result),
-    post: jest.fn(() => result),
-    put: jest.fn(() => result)
+    post: jest.fn(),
+    put: jest.fn()
   }
 }
 
