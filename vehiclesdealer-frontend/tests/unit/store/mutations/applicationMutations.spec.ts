@@ -58,5 +58,15 @@ describe('applicationMutations.js', () => {
       const expectedState = new AState().withNotificationMessages(expectedMessages).build()
       expect(givenState).toMatchObject(expectedState)
     })
+
+    it('removes a notification message from the state', () => {
+      const messages = [new NotificationMessage('aMessage'), new NotificationMessage('anotherMessage')]
+      const givenState = new AState().withNotificationMessages(messages).build()
+  
+      mutations[Mutation.REMOVE_APPLICATION_MESSAGE](givenState, Message.Notification)
+  
+      const expectedState = new AState().withNotificationMessages([new NotificationMessage('aMessage')]).build()
+      expect(givenState).toMatchObject(expectedState)
+    })
   })
 })

@@ -15,6 +15,10 @@ export default {
     }
   },
   [Mutation.REMOVE_APPLICATION_MESSAGE]: (state: RootState, messageType: Message) => {
-    state.messages.error.pop()
+    if (messageType === Message.Error) {
+      state.messages.error.pop()
+    } else {
+      state.messages.notification.pop()
+    }
   }
 }
