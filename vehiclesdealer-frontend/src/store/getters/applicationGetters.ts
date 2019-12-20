@@ -12,6 +12,9 @@ export default {
     return ''
   },
   [Getter.NOTIFICATION_MESSAGE]: function (state: RootState): string {
-    return state.messages.notification[0].message
+    if (state.messages.notification.length > 0) {
+      return state.messages.notification[0].message
+    }
+    return ''
   }
 }

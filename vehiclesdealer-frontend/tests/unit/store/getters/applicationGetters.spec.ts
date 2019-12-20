@@ -38,5 +38,13 @@ describe('applicationGetters.js', () => {
   
       expect(result).toBe('anyMessage')
     })
+
+    it('gets a default notification message from the state when there are no available messages', () => {
+      const state = new AState().withNotificationMessages([]).build()
+  
+      const result = getters.NOTIFICATION_MESSAGE(state)
+  
+      expect(result).toBe('')
+    })
   })
 })
