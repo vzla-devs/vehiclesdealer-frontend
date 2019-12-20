@@ -10,19 +10,21 @@ describe('applicationGetters.js', () => {
     expect(result).toEqual(true)
   })
 
-  it('gets the first available error message from the state', () => {
-    const givenState = AState().withValue({ messages: { error: ['anyMessage', 'anyOtherMessage'] } }).build()
-
-    const result = getters.ERROR_MESSAGE(givenState)
-
-    expect(result).toBe('anyMessage')
-  })
-
-  it('gets a default error message from the state when there are no available messages', () => {
-    const givenState = AState().withValue({ messages: { error: [] } }).build()
-
-    const result = getters.ERROR_MESSAGE(givenState)
-
-    expect(result).toBe('')
+  describe('when getting messages', () => {
+    it('gets the first available error message from the state', () => {
+      const givenState = AState().withValue({ messages: { error: ['anyMessage', 'anyOtherMessage'] } }).build()
+  
+      const result = getters.ERROR_MESSAGE(givenState)
+  
+      expect(result).toBe('anyMessage')
+    })
+  
+    it('gets a default error message from the state when there are no available messages', () => {
+      const givenState = AState().withValue({ messages: { error: [] } }).build()
+  
+      const result = getters.ERROR_MESSAGE(givenState)
+  
+      expect(result).toBe('')
+    })
   })
 })
