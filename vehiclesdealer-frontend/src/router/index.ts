@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
 import HomePage from '@/pages/HomePage.vue'
+import { ApplicationRoute } from '@/constants/routes'
 
 Vue.use(VueRouter)
 
@@ -11,12 +12,12 @@ const routes = [
     component: AppLayout,
     children: [
       {
-        path: '/',
+        path: ApplicationRoute.HOME_ROUTE,
         name: 'home',
         component: HomePage
       },
       {
-        path: '/vehiculos',
+        path: ApplicationRoute.VEHICLES_ROUTE,
         name: 'vehicles',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route

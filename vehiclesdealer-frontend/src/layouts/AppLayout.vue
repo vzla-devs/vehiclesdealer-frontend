@@ -33,14 +33,14 @@
 </template>
 
 <script>
-import { HOME_ROUTE, VEHICLES_ROUTE } from '@/constants/routes'
+import { ApplicationRoute } from '@/constants/routes.ts'
 
 export default {
   data: () => ({
     drawer: false,
     drawerOptions: [
-      { title: 'Inicio', route: HOME_ROUTE },
-      { title: 'Vehículos', route: VEHICLES_ROUTE }
+      { title: 'Inicio', route: ApplicationRoute.HOME_ROUTE },
+      { title: 'Vehículos', route: ApplicationRoute.VEHICLES_ROUTE }
     ]
   }),
   methods: {
