@@ -1,7 +1,6 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import VueRouter from 'vue-router'
-import initialState from '@/store/models/initialState'
 
 export function AComponent (component) {
   const options = { component }
@@ -64,25 +63,6 @@ export function AComponent (component) {
     withRouter,
     withGetters,
     withActions,
-    build
-  }
-  return self
-}
-
-export function AState () {
-  let state = { ...initialState }
-
-  function withValue (newState) {
-    state = { ...state, ...newState }
-    return self
-  }
-
-  function build () {
-    return state
-  }
-
-  const self = {
-    withValue,
     build
   }
   return self
