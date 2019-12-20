@@ -6,6 +6,9 @@ export default {
     return state.loading
   },
   [Getter.ERROR_MESSAGE]: (state: RootState) => {
-    return state.messages.error.length > 0 ? state.messages.error[0] : ''
+    if (state.messages.error.length > 0) {
+      return state.messages.error[0].message
+    }
+    return ''
   }
 }
