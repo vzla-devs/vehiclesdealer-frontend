@@ -7,9 +7,9 @@ import {
   resolveAllPromises,
   resolvedPromise
 } from '@tests/helpers/testHelpers'
-import testValues from '@tests/helpers/testValues'
 import { Action } from '@/store/actions/types'
 import { Getter } from '@/store/getters/types'
+import { Vehicle } from '@/store/models/vehicle'
 
 describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles', () => {
@@ -52,9 +52,9 @@ describe('VehiclesContainer.vue', () => {
 
     it('displays a grid of vehicles when there are vehicles', async () => {
       const givenVehicles = [
-        testValues.vehicle({ brand: 'firstBrand', model: 'firstModel', year: 2019, price: 9999, imageUrl: 'firstUrl' }),
-        testValues.vehicle({ brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }),
-        testValues.vehicle({ brand: 'thirdBrand', model: 'thirdModel', year: 2019, price: 9999, imageUrl: 'thirdUrl' })
+        new Vehicle('1', 'firstBrand', 'firstModel', 2019, 9999, 'firstUrl'),
+        new Vehicle('2', 'secondBrand', 'secondModel', 2019, 9999, 'secondUrl'),
+        new Vehicle('3', 'thirdBrand', 'thirdModel', 2019, 9999, 'thirdUrl')
       ]
       const getters = {
         [Getter.AVAILABLE_VEHICLES]: () => givenVehicles

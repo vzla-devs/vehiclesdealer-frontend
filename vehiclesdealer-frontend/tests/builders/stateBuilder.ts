@@ -2,6 +2,7 @@ import { InitialState } from '@/store/models/initialState'
 import { RootState } from '@/store/interfaces/rootState'
 import { ErrorMessage } from '@/store/models/errorMessage'
 import { NotificationMessage } from '@/store/models/notificationMessage'
+import { Vehicle } from '@/store/models/vehicle'
 
 export class AState {
   state: RootState
@@ -15,7 +16,7 @@ export class AState {
     return this
   }
 
-  withVehicles (vehicles: Array<any>): AState {
+  withVehicles (vehicles: Array<Vehicle>): AState {
     this.state.vehicles = vehicles
     return this
   }

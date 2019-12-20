@@ -1,13 +1,13 @@
 import vehiclesClient from '@/clients/vehiclesClient'
 import { mockedRestClient } from '@tests/helpers/testHelpers'
 import { BASE_URL } from '@/constants/serverRoutes'
-import testValues from '@tests/helpers/testValues'
+import { TestValues } from '@tests/helpers/testValues'
 
 describe('vehiclesClient.js', () => {
   it('gets all the vehicles', () => {
     const vehicles = [
-      testValues.vehicle({ id: '1', brand: 'audi' }),
-      testValues.vehicle({ id: '2', brand: 'volkswagen' })
+      TestValues.vehicle('1', 'audi'),
+      TestValues.vehicle('2', 'volkswagen')
     ]
     const restClient = mockedRestClient(vehicles)
 
