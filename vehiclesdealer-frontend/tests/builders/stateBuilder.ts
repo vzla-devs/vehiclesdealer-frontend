@@ -1,6 +1,7 @@
 import { InitialState } from '@/store/models/initialState'
 import { RootState } from '@/store/interfaces/rootState'
 import { ErrorMessage } from '@/store/models/errorMessage'
+import { NotificationMessage } from '@/store/models/notificationMessage'
 
 export class AState {
   state: RootState
@@ -19,8 +20,13 @@ export class AState {
     return this
   }
 
-  withErrorMessages (errorMessages: Array<ErrorMessage>): AState {
-    this.state.messages.error = errorMessages
+  withErrorMessages (messages: Array<ErrorMessage>): AState {
+    this.state.messages.error = messages
+    return this
+  }
+
+  withNotificationMessages (messages: Array<NotificationMessage>): AState {
+    this.state.messages.notification = messages
     return this
   }
 

@@ -3,6 +3,7 @@ import { AState } from '@tests/builders/stateBuilder'
 import { ErrorMessage } from '@/store/models/errorMessage'
 import { Message } from '@/store/types/message'
 import { Mutation } from '@/store/mutations/types'
+import { NotificationMessage } from '@/store/models/notificationMessage'
 
 describe('applicationMutations.js', () => {
   it('sets the loading state to true', () => {
@@ -43,6 +44,18 @@ describe('applicationMutations.js', () => {
       mutations[Mutation.REMOVE_APPLICATION_MESSAGE](givenState, Message.Error)
   
       const expectedState = new AState().withErrorMessages([new ErrorMessage('aMessage')]).build()
+      expect(givenState).toMatchObject(expectedState)
+    })
+
+    it('adds a notification message to the state', () => {
+      const messages = [new NotificationMessage('aMessage')]
+      const givenState = new AState().withNotificationMessages(messages).build()
+  
+      const newMessage = new NotificationMessage('aNewMessage')
+      mutations[Mutation.ADD_APPLICATION_MESSAGE](givenState, newMessage)
+  
+      const expectedMessages = [new NotificationMessage('aMessage'), new NotificationMessage('aNewMessage')]
+      const expectedState = new AState().withNotificationMessages(expectedMessages).build()
       expect(givenState).toMatchObject(expectedState)
     })
   })

@@ -8,7 +8,11 @@ export default {
     state.loading = loading
   },
   [Mutation.ADD_APPLICATION_MESSAGE]: (state: RootState, message: ApplicationMessage) => {
-    state.messages.error.push(message)
+    if (message.type === Message.Error) {
+      state.messages.error.push(message)
+    } else {
+      state.messages.notification.push(message)
+    }
   },
   [Mutation.REMOVE_APPLICATION_MESSAGE]: (state: RootState, messageType: Message) => {
     state.messages.error.pop()
