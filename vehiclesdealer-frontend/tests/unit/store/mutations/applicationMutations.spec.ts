@@ -23,25 +23,27 @@ describe('applicationMutations.js', () => {
     expect(givenState).toEqual(expectedState)
   })
 
-  it('adds an error message to the state', () => {
-    const errorMessages = [new ErrorMessage('aMessage')]
-    const givenState = new AState().withErrorMessages(errorMessages).build()
-
-    const newMessage = new ErrorMessage('aNewMessage')
-    mutations[Mutation.ADD_APPLICATION_MESSAGE](givenState, newMessage)
-
-    const expectedErrorMessages = [new ErrorMessage('aMessage'), new ErrorMessage('aNewMessage')]
-    const expectedState = new AState().withErrorMessages(expectedErrorMessages).build()
-    expect(givenState).toMatchObject(expectedState)
-  })
-
-  it('removes an error message from the state', () => {
-    const errorMessages = [new ErrorMessage('aMessage'), new ErrorMessage('anotherMessage')]
-    const givenState = new AState().withErrorMessages(errorMessages).build()
-
-    mutations[Mutation.REMOVE_APPLICATION_MESSAGE](givenState, Message.Error)
-
-    const expectedState = new AState().withErrorMessages([new ErrorMessage('aMessage')]).build()
-    expect(givenState).toMatchObject(expectedState)
+  describe('when managing messages', () => {
+    it('adds an error message to the state', () => {
+      const errorMessages = [new ErrorMessage('aMessage')]
+      const givenState = new AState().withErrorMessages(errorMessages).build()
+  
+      const newMessage = new ErrorMessage('aNewMessage')
+      mutations[Mutation.ADD_APPLICATION_MESSAGE](givenState, newMessage)
+  
+      const expectedErrorMessages = [new ErrorMessage('aMessage'), new ErrorMessage('aNewMessage')]
+      const expectedState = new AState().withErrorMessages(expectedErrorMessages).build()
+      expect(givenState).toMatchObject(expectedState)
+    })
+  
+    it('removes an error message from the state', () => {
+      const errorMessages = [new ErrorMessage('aMessage'), new ErrorMessage('anotherMessage')]
+      const givenState = new AState().withErrorMessages(errorMessages).build()
+  
+      mutations[Mutation.REMOVE_APPLICATION_MESSAGE](givenState, Message.Error)
+  
+      const expectedState = new AState().withErrorMessages([new ErrorMessage('aMessage')]).build()
+      expect(givenState).toMatchObject(expectedState)
+    })
   })
 })
