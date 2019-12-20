@@ -1,6 +1,7 @@
 import getters from '@/store/getters/applicationGetters'
 import { AState } from '@tests/builders/stateBuilder'
 import { ErrorMessage } from '@/store/models/errorMessage'
+import { NotificationMessage } from '@/store/models/notificationMessage'
 
 describe('applicationGetters.js', () => {
   it('gets the application loading state', () => {
@@ -27,6 +28,15 @@ describe('applicationGetters.js', () => {
       const result = getters.ERROR_MESSAGE(state)
   
       expect(result).toBe('')
+    })
+
+    it('gets the first available notification message from the state', () => {
+      const messages = [new NotificationMessage('anyMessage'), new NotificationMessage('anyOtherMessage')]
+      const state = new AState().withNotificationMessages(messages).build()
+  
+      const result = getters.NOTIFICATION_MESSAGE(state)
+  
+      expect(result).toBe('anyMessage')
     })
   })
 })

@@ -10,5 +10,8 @@ export default {
       return state.messages.error[0].message
     }
     return ''
+  },
+  [Getter.NOTIFICATION_MESSAGE]: function (state: RootState): string {
+    return state.messages.notification[0].message
   }
 }
