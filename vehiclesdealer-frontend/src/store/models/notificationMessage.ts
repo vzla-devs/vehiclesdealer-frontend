@@ -1,4 +1,4 @@
-import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 import { Message } from '@/store/types/message'
 
 export class NotificationMessage implements ApplicationMessage {

@@ -1,4 +1,4 @@
-import { RootState } from '@/store/interfaces/rootState'
+import { RootState } from '@/store/models/rootState'
 import { Getter } from '@/store/getters/types'
 
 export default {

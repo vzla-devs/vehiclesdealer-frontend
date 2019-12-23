@@ -1,4 +1,4 @@
-import { RootState } from '@/store/interfaces/rootState'
+import { RootState } from '@/store/models/rootState'
 import { Mutation } from '@/store/mutations/types'
 import { Vehicle } from '@/store/models/vehicle'
 

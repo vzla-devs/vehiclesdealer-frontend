@@ -1,4 +1,4 @@
-import { RootState } from '@/store/interfaces/rootState'
+import { RootState } from '@/store/models/rootState'
 import { ErrorMessage } from '@/store/models/errorMessage'
 import { NotificationMessage } from '@/store/models/notificationMessage'
 import { Vehicle } from '@/store/models/vehicle'

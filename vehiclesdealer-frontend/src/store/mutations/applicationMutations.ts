@@ -1,5 +1,5 @@
-import { RootState } from '@/store/interfaces/rootState'
-import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
+import { RootState } from '@/store/models/rootState'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 import { Message } from '@/store/types/message'
 import { Mutation } from '@/store/mutations/types'
 
