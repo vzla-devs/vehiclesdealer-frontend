@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VehiclesDealer.Application\VehiclesDealer.Application.csproj" />
+    <ProjectReference Include="..\VehiclesDealer.Infrastructure\VehiclesDealer.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
