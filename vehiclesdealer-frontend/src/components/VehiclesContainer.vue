@@ -4,11 +4,9 @@
       <vehicle-card
         v-for="(vehicle, index) in vehicles"
         :key="index"
-        :brand="vehicle.brand"
-        :model="vehicle.model"
-        :year="vehicle.year"
+        :title="vehicleDescription(vehicle)"
         :price="vehicle.price"
-        :image-url="vehicle.imageUrl"
+        :image="vehicle.imageUrl"
       />
     </grid-layout>
   </div>
@@ -44,7 +42,10 @@ export default {
   methods: {
     ...mapActions({
       getVehicles: Action.GET_VEHICLES
-    })
+    }),
+    vehicleDescription (vehicle) {
+      return `${vehicle.brand} ${vehicle.model} - ${vehicle.year}`
+    }
   }
 }
 </script>

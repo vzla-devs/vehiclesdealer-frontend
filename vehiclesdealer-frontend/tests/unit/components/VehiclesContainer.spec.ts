@@ -82,11 +82,9 @@ describe('VehiclesContainer.vue', () => {
 
   function verifyVehicleProps (vehicleToVerify, expectedVehicle) {
     expect(vehicleToVerify.props()).toEqual({
-      brand: expectedVehicle.brand,
-      model: expectedVehicle.model,
-      year: expectedVehicle.year,
+      title: `${expectedVehicle.brand} ${expectedVehicle.model} - ${expectedVehicle.year}`,
       price: expectedVehicle.price,
-      imageUrl: expectedVehicle.imageUrl
+      image: expectedVehicle.imageUrl
     })
   }
 })

@@ -3,11 +3,11 @@
     hover
     class="card"
   >
-    <v-img :src="imageUrl" />
+    <v-img :src="image" />
     <v-card-title primary-title>
       <div class="description-container">
         <h3 class="headline description">
-          {{ formattedDescription }}
+          {{ formattedTitle }}
         </h3>
         <div class="price">
           {{ formattedPrice }}
@@ -20,14 +20,12 @@
 <script>
 export default {
   props: {
-    brand: { type: String, required: true },
-    model: { type: String, required: true },
-    year: { type: Number, required: true },
-    price: { type: Number, required: true },
-    imageUrl: { type: String, required: true }
+    title: { type: String, required: true },
+    price: { type: Number, default: undefined },
+    image: { type: String, required: true }
   },
   computed: {
-    formattedDescription () { return `${this.brand} ${this.model} - ${this.year}` },
+    formattedTitle () { return this.title.toUpperCase() },
     formattedPrice () { return `${this.price} €` }
   }
 }
@@ -41,7 +39,6 @@ export default {
   width: 100%;
 }
 .description {
-  text-transform: uppercase;
   text-align: justify;
   font-size: 24px;
   font-weight: 400;
