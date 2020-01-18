@@ -1,6 +1,6 @@
 import VehiclesContainer from '@/components/VehiclesContainer.vue'
 import GridLayout from '@/layouts/GridLayout.vue'
-import VehicleCard from '@/components/VehicleCard.vue'
+import Card from '@/components/Card.vue'
 import { AComponent } from '@tests/helpers/builderHelpers'
 import {
   resolveAllPromises,
@@ -61,7 +61,7 @@ describe('VehiclesContainer.vue', () => {
 
       expect(wrapper.contains(GridLayout)).toBe(true)
       const expectedGrid = wrapper.find(GridLayout)
-      const expectedVehicles = expectedGrid.findAll(VehicleCard)
+      const expectedVehicles = expectedGrid.findAll(Card)
       expect(expectedVehicles.length).toBe(3)
       verifyVehicleProps(expectedVehicles.at(0), givenVehicles[0])
       verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
