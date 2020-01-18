@@ -1,7 +1,6 @@
 import VehiclesContainer from '@/components/VehiclesContainer.vue'
 import GridLayout from '@/layouts/GridLayout.vue'
 import VehicleCard from '@/components/VehicleCard.vue'
-import NoData from '@/components/basic/NoData.vue'
 import { AComponent } from '@tests/helpers/builderHelpers'
 import {
   resolveAllPromises,
@@ -33,7 +32,6 @@ describe('VehiclesContainer.vue', () => {
       const wrapper = AVehiclesContainer().withGetters(getters).build()
 
       expect(wrapper.contains(GridLayout)).toBe(false)
-      expect(wrapper.contains(NoData)).toBe(false)
     })
 
     it('displays a loaded view without vehicles', async () => {
@@ -46,8 +44,6 @@ describe('VehiclesContainer.vue', () => {
       await resolveAllPromises()
 
       expect(wrapper.contains(GridLayout)).toBe(false)
-      expect(wrapper.contains(NoData)).toBe(true)
-      expect(wrapper.find(NoData).props().message).toBe('No hay vehículos disponibles')
     })
 
     it('displays a grid of vehicles when there are vehicles', async () => {
@@ -63,7 +59,6 @@ describe('VehiclesContainer.vue', () => {
       const wrapper = AVehiclesContainer().withGetters(getters).build()
       await resolveAllPromises()
 
-      expect(wrapper.contains(NoData)).toBe(false)
       expect(wrapper.contains(GridLayout)).toBe(true)
       const expectedGrid = wrapper.find(GridLayout)
       const expectedVehicles = expectedGrid.findAll(VehicleCard)

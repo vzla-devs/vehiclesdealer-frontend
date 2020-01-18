@@ -11,10 +11,6 @@
         :image-url="vehicle.imageUrl"
       />
     </grid-layout>
-    <no-data
-      v-if="thereAreNoVehicles"
-      message="No hay vehículos disponibles"
-    />
   </div>
 </template>
 
@@ -24,13 +20,11 @@ import { Getter } from '@/store/getters/types'
 import { Action } from '@/store/actions/types'
 import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
-import NoData from '@/components/basic/NoData'
 
 export default {
   components: {
     GridLayout,
-    VehicleCard,
-    NoData
+    VehicleCard
   },
   computed: {
     ...mapGetters({
@@ -42,9 +36,6 @@ export default {
     },
     thereAreVehicles () {
       return !this.isLoading && this.hasVehices
-    },
-    thereAreNoVehicles () {
-      return !this.isLoading && !this.hasVehices
     }
   },
   created () {
