@@ -1,8 +1,8 @@
 import { InitialState } from '@/store/models/initialState'
-import { RootState } from '@/store/interfaces/rootState'
 import { ErrorMessage } from '@/store/models/errorMessage'
 import { NotificationMessage } from '@/store/models/notificationMessage'
 import { Vehicle } from '@/store/models/vehicle'
+import { RootState } from '@/store/models/rootState'
 
 export class AState {
   state: RootState
