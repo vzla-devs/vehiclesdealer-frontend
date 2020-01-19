@@ -1,28 +1,30 @@
 <template>
-  <v-card
-    hover
-    class="card"
-  >
-    <v-img :src="image" />
-    <v-card-title primary-title>
-      <div class="description-container">
-        <h3 class="headline description">
-          {{ formattedTitle }}
-        </h3>
-        <div class="price">
-          {{ formattedPrice }}
+  <div>
+    <v-card
+      hover
+      class="card"
+    >
+      <v-img :src="image" />
+      <v-card-title primary-title>
+        <div class="description-container">
+          <h3 class="headline description">
+            {{ formattedTitle }}
+          </h3>
+          <div class="price">
+            {{ formattedPrice }}
+          </div>
         </div>
-      </div>
-    </v-card-title>
-  </v-card>
+      </v-card-title>
+    </v-card>
+  </div>
 </template>
 
 <script>
 export default {
   props: {
     title: { type: String, required: true },
-    price: { type: Number, default: undefined },
-    image: { type: String, required: true }
+    image: { type: String, required: true },
+    price: { type: Number, default: undefined }
   },
   computed: {
     formattedTitle () { return this.title.toUpperCase() },
