@@ -16,34 +16,34 @@ describe('applicationGetters.js', () => {
     it('gets the first available error message from the state', () => {
       const messages = [new ErrorMessage('anyMessage'), new ErrorMessage('anyOtherMessage')]
       const state = new AState().withErrorMessages(messages).build()
-  
+
       const result = getters.ERROR_MESSAGE(state)
-  
+
       expect(result).toBe('anyMessage')
     })
-  
+
     it('gets a default error message from the state when there are no available messages', () => {
       const state = new AState().withErrorMessages([]).build()
-  
+
       const result = getters.ERROR_MESSAGE(state)
-  
+
       expect(result).toBe('')
     })
 
     it('gets the first available notification message from the state', () => {
       const messages = [new NotificationMessage('anyMessage'), new NotificationMessage('anyOtherMessage')]
       const state = new AState().withNotificationMessages(messages).build()
-  
+
       const result = getters.NOTIFICATION_MESSAGE(state)
-  
+
       expect(result).toBe('anyMessage')
     })
 
     it('gets a default notification message from the state when there are no available messages', () => {
       const state = new AState().withNotificationMessages([]).build()
-  
+
       const result = getters.NOTIFICATION_MESSAGE(state)
-  
+
       expect(result).toBe('')
     })
   })

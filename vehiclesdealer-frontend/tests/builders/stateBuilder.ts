@@ -1,4 +1,4 @@
-import { InitialState } from '@/store/models/initialState'
+import { InitialState } from '@/store/initialState'
 import { ErrorMessage } from '@/store/models/errorMessage'
 import { NotificationMessage } from '@/store/models/notificationMessage'
 import { Vehicle } from '@/store/models/vehicle'
@@ -8,7 +8,7 @@ export class AState {
   state: RootState
 
   constructor () {
-    this.state = new InitialState()
+    this.state = InitialState
   }
 
   withLoading (loading: boolean): AState {
