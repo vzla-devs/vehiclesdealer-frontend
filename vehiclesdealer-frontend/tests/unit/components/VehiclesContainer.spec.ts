@@ -8,7 +8,7 @@ import {
 } from '@tests/helpers/testHelpers'
 import { Action } from '@/store/actions/types'
 import { Getter } from '@/store/getters/types'
-import { Vehicle } from '@/store/models/vehicle'
+import { Vehicle } from '@/store/interfaces/vehicle'
 
 describe('VehiclesContainer.vue', () => {
   describe('when getting the vehicles', () => {

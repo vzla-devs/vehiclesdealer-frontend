@@ -1,6 +1,6 @@
 import actions from '@/store/actions/applicationActions'
 import { Mutation } from '@/store/mutations/types'
-import { ApplicationMessage } from '@/store/models/applicationMessage'
+import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
 
 describe('applicationActions.js', () => {
   it('commits the corresponding mutation to show an error message', () => {

@@ -1,7 +1,7 @@
 import { InitialState } from '@/store/initialState'
-import { ApplicationMessage } from '@/store/models/applicationMessage'
-import { Vehicle } from '@/store/models/vehicle'
-import { RootState } from '@/store/models/rootState'
+import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
+import { Vehicle } from '@/store/interfaces/vehicle'
+import { RootState } from '@/store/interfaces/rootState'
 
 export class AState {
   state: RootState

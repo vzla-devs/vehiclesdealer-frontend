@@ -2,7 +2,7 @@
 import { VehiclesClient } from '@/clients/clientsFactory'
 import { Action } from './types'
 import { Mutation } from '@/store/mutations/types'
-import { ApplicationMessage } from '@/store/models/applicationMessage'
+import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
 
 export default {
   [Action.GET_VEHICLES]: async ({ commit, dispatch }) => {

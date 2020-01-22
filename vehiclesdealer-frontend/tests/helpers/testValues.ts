@@ -1,4 +1,4 @@
-import { Vehicle } from '@/store/models/vehicle'
+import { Vehicle } from '@/store/interfaces/vehicle'
 
 const TestValues = {
   vehicle: function (

@@ -4,7 +4,7 @@ import { resolvedPromise, rejectedPromise } from '@tests/helpers/testHelpers'
 import { TestValues } from '@tests/helpers/testValues'
 import { Action } from '@/store/actions/types'
 import { Mutation } from '@/store/mutations/types'
-import { ApplicationMessage } from '@/store/models/applicationMessage'
+import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
 
 describe('vehiclesActions.js', () => {
   describe('when getting vehicles from the API', () => {

@@ -1,6 +1,6 @@
 import getters from '@/store/getters/vehiclesGetters'
 import { AState } from '@tests/builders/stateBuilder'
-import { Vehicle } from '@/store/models/vehicle'
+import { Vehicle } from '@/store/interfaces/vehicle'
 
 describe('vehiclesGetters.js', () => {
   it('gets the vehicles from the state', () => {

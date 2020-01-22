@@ -1,6 +1,6 @@
-import { RootState } from '@/store/models/rootState'
+import { RootState } from '@/store/interfaces/rootState'
 import { Getter } from '@/store/getters/types'
-import { Vehicle } from '@/store/models/vehicle'
+import { Vehicle } from '@/store/interfaces/vehicle'
 
 export default {
   [Getter.AVAILABLE_VEHICLES]: function (state: RootState): Array<Vehicle> {

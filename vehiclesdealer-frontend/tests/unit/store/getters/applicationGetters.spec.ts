@@ -1,6 +1,6 @@
 import getters from '@/store/getters/applicationGetters'
 import { AState } from '@tests/builders/stateBuilder'
-import { ApplicationMessage } from '@/store/models/applicationMessage'
+import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
 
 describe('applicationGetters.js', () => {
   it('gets the application loading state', () => {

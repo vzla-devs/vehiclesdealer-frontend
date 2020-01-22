@@ -1,7 +1,7 @@
 import mutations from '@/store/mutations/vehiclesMutations'
 import { AState } from '@tests/builders/stateBuilder'
 import { Mutation } from '@/store/mutations/types'
-import { Vehicle } from '@/store/models/vehicle'
+import { Vehicle } from '@/store/interfaces/vehicle'
 
 describe('vehiclesMutations.js', () => {
   it('sets the vehicles', () => {

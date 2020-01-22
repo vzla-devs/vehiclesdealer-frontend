@@ -1,5 +1,5 @@
-import { ApplicationMessage } from '@/store/models/applicationMessage'
-import { Vehicle } from '@/store/models/vehicle'
+import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
+import { Vehicle } from '@/store/interfaces/vehicle'
 
 export interface RootState {
   loading: boolean,
