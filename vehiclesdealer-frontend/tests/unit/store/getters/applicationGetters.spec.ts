@@ -1,7 +1,6 @@
 import getters from '@/store/getters/applicationGetters'
 import { AState } from '@tests/builders/stateBuilder'
-import { ErrorMessage } from '@/store/models/errorMessage'
-import { NotificationMessage } from '@/store/models/notificationMessage'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 
 describe('applicationGetters.js', () => {
   it('gets the application loading state', () => {
@@ -14,12 +13,15 @@ describe('applicationGetters.js', () => {
 
   describe('when getting messages', () => {
     it('gets the first available error message from the state', () => {
-      const messages = [new ErrorMessage('anyMessage'), new ErrorMessage('anyOtherMessage')]
-      const state = new AState().withErrorMessages(messages).build()
+      const givenMessages: Array<ApplicationMessage> = [
+        { type: 'error', message: 'aMessage' },
+        { type: 'error', message: 'anotherMessage' }
+      ]
+      const state = new AState().withErrorMessages(givenMessages).build()
 
       const result = getters.ERROR_MESSAGE(state)
 
-      expect(result).toBe('anyMessage')
+      expect(result).toBe('aMessage')
     })
 
     it('gets a default error message from the state when there are no available messages', () => {
@@ -31,12 +33,15 @@ describe('applicationGetters.js', () => {
     })
 
     it('gets the first available notification message from the state', () => {
-      const messages = [new NotificationMessage('anyMessage'), new NotificationMessage('anyOtherMessage')]
-      const state = new AState().withNotificationMessages(messages).build()
+      const givenMessages: Array<ApplicationMessage> = [
+        { type: 'notification', message: 'aMessage' },
+        { type: 'notification', message: 'anotherMessage' }
+      ]
+      const state = new AState().withNotificationMessages(givenMessages).build()
 
       const result = getters.NOTIFICATION_MESSAGE(state)
 
-      expect(result).toBe('anyMessage')
+      expect(result).toBe('aMessage')
     })
 
     it('gets a default notification message from the state when there are no available messages', () => {

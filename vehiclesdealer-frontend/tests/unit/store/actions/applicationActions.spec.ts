@@ -1,13 +1,11 @@
 import actions from '@/store/actions/applicationActions'
-import { ErrorMessage } from '@/store/models/errorMessage'
 import { Mutation } from '@/store/mutations/types'
-import { Message } from '@/store/types/message'
-import { NotificationMessage } from '@/store/models/notificationMessage'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 
 describe('applicationActions.js', () => {
   it('commits the corresponding mutation to show an error message', () => {
     const commit = jest.fn()
-    const errorMessage = new ErrorMessage('anyMessage')
+    const errorMessage: ApplicationMessage = { type: 'error', message: 'aMessage' }
 
     actions.SHOW_MESSAGE({ commit }, errorMessage)
 
@@ -17,14 +15,14 @@ describe('applicationActions.js', () => {
   it('commits the corresponding mutation to clear an error message', () => {
     const commit = jest.fn()
 
-    actions.CLEAR_MESSAGE ({ commit }, Message.Error)
+    actions.CLEAR_MESSAGE({ commit }, 'error')
 
-    expect(commit).toHaveBeenCalledWith(Mutation.REMOVE_APPLICATION_MESSAGE, Message.Error)
+    expect(commit).toHaveBeenCalledWith(Mutation.REMOVE_APPLICATION_MESSAGE, 'error')
   })
 
   it('commits the corresponding mutation to show a notification message', () => {
     const commit = jest.fn()
-    const message = new NotificationMessage('anyMessage')
+    const message: ApplicationMessage = { type: 'notification', message: 'aMessage' }
 
     actions.SHOW_MESSAGE({ commit }, message)
 
@@ -34,8 +32,8 @@ describe('applicationActions.js', () => {
   it('commits the corresponding mutation to clear a notification message', () => {
     const commit = jest.fn()
 
-    actions.CLEAR_MESSAGE ({ commit }, Message.Notification)
+    actions.CLEAR_MESSAGE({ commit }, 'notification')
 
-    expect(commit).toHaveBeenCalledWith(Mutation.REMOVE_APPLICATION_MESSAGE, Message.Notification)
+    expect(commit).toHaveBeenCalledWith(Mutation.REMOVE_APPLICATION_MESSAGE, 'notification')
   })
 })

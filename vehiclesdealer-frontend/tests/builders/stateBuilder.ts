@@ -1,6 +1,5 @@
 import { InitialState } from '@/store/initialState'
-import { ErrorMessage } from '@/store/models/errorMessage'
-import { NotificationMessage } from '@/store/models/notificationMessage'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 import { Vehicle } from '@/store/models/vehicle'
 import { RootState } from '@/store/models/rootState'
 
@@ -21,12 +20,12 @@ export class AState {
     return this
   }
 
-  withErrorMessages (messages: Array<ErrorMessage>): AState {
+  withErrorMessages (messages: Array<ApplicationMessage>): AState {
     this.state.messages.error = messages
     return this
   }
 
-  withNotificationMessages (messages: Array<NotificationMessage>): AState {
+  withNotificationMessages (messages: Array<ApplicationMessage>): AState {
     this.state.messages.notification = messages
     return this
   }

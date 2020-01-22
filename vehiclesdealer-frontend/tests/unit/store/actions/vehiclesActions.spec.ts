@@ -4,7 +4,7 @@ import { resolvedPromise, rejectedPromise } from '@tests/helpers/testHelpers'
 import { TestValues } from '@tests/helpers/testValues'
 import { Action } from '@/store/actions/types'
 import { Mutation } from '@/store/mutations/types'
-import { ErrorMessage } from '@/store/models/errorMessage'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 
 describe('vehiclesActions.js', () => {
   describe('when getting vehicles from the API', () => {
@@ -34,7 +34,7 @@ describe('vehiclesActions.js', () => {
       await returnedPromise
       expect(context.commit).toHaveBeenCalledWith(Mutation.SET_APPLICATION_LOADING, false)
       expect(context.commit).not.toHaveBeenCalledWith(Mutation.SET_VEHICLES)
-      const expectedErrorMessage = new ErrorMessage('ha ocurrido un error')
+      const expectedErrorMessage: ApplicationMessage = { type: 'error', message: 'ha ocurrido un error' }
       expect(context.dispatch).toHaveBeenCalledWith(Action.SHOW_MESSAGE, expectedErrorMessage)
     })
   })

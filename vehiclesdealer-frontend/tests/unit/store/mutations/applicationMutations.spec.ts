@@ -1,9 +1,7 @@
 import mutations from '@/store/mutations/applicationMutations'
 import { AState } from '@tests/builders/stateBuilder'
-import { ErrorMessage } from '@/store/models/errorMessage'
-import { Message } from '@/store/types/message'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 import { Mutation } from '@/store/mutations/types'
-import { NotificationMessage } from '@/store/models/notificationMessage'
 
 describe('applicationMutations.js', () => {
   it('sets the loading state to true', () => {
@@ -26,46 +24,52 @@ describe('applicationMutations.js', () => {
 
   describe('when managing messages', () => {
     it('adds an error message to the state', () => {
-      const messages = [new ErrorMessage('aMessage')]
-      const state = new AState().withErrorMessages(messages).build()
-  
-      const newMessage = new ErrorMessage('aNewMessage')
+      const givenMessages: Array<ApplicationMessage> = [{ message: 'aMessage', type: 'error' }]
+      const state = new AState().withErrorMessages(givenMessages).build()
+
+      const newMessage: ApplicationMessage = { message: 'aNewMessage', type: 'error' }
       mutations[Mutation.ADD_APPLICATION_MESSAGE](state, newMessage)
-  
-      const expectedMessages = [new ErrorMessage('aMessage'), new ErrorMessage('aNewMessage')]
-      const expectedState = new AState().withErrorMessages(expectedMessages).build()
+
+      const expectedState = new AState().withErrorMessages([ ...givenMessages, newMessage ]).build()
       expect(state).toMatchObject(expectedState)
     })
-  
+
     it('removes an error message from the state', () => {
-      const messages = [new ErrorMessage('aMessage'), new ErrorMessage('anotherMessage')]
-      const state = new AState().withErrorMessages(messages).build()
-  
-      mutations[Mutation.REMOVE_APPLICATION_MESSAGE](state, Message.Error)
-  
-      const expectedState = new AState().withErrorMessages([new ErrorMessage('aMessage')]).build()
+      const givenMessages: Array<ApplicationMessage> = [
+        { type: 'error', message: 'aMessage' },
+        { type: 'error', message: 'anotherMessage' }
+      ]
+      const state = new AState().withErrorMessages(givenMessages).build()
+
+      mutations[Mutation.REMOVE_APPLICATION_MESSAGE](state, 'error')
+
+      const expectedMessages: Array<ApplicationMessage> = [{ type: 'error', message: 'aMessage' }]
+      const expectedState = new AState().withErrorMessages(expectedMessages).build()
       expect(state).toMatchObject(expectedState)
     })
 
     it('adds a notification message to the state', () => {
-      const messages = [new NotificationMessage('aMessage')]
-      const state = new AState().withNotificationMessages(messages).build()
-  
-      const newMessage = new NotificationMessage('aNewMessage')
+      const givenMessages: Array<ApplicationMessage> = [{ type: 'notification', message: 'aMessage' }]
+      const state = new AState().withNotificationMessages(givenMessages).build()
+
+      const newMessage: ApplicationMessage = { type: 'notification', message: 'aNewMessage' }
       mutations[Mutation.ADD_APPLICATION_MESSAGE](state, newMessage)
-  
-      const expectedMessages = [new NotificationMessage('aMessage'), new NotificationMessage('aNewMessage')]
-      const expectedState = new AState().withNotificationMessages(expectedMessages).build()
+
+      const expectedState = new AState().withNotificationMessages([...givenMessages, newMessage]).build()
       expect(state).toMatchObject(expectedState)
     })
 
     it('removes a notification message from the state', () => {
-      const messages = [new NotificationMessage('aMessage'), new NotificationMessage('anotherMessage')]
-      const state = new AState().withNotificationMessages(messages).build()
-  
-      mutations[Mutation.REMOVE_APPLICATION_MESSAGE](state, Message.Notification)
-  
-      const expectedState = new AState().withNotificationMessages([new NotificationMessage('aMessage')]).build()
+      const givenMessages: Array<ApplicationMessage> = [
+        { type: 'error', message: 'aMessage' },
+        { type: 'error', message: 'anotherMessage' }
+      ]
+      const state = new AState().withNotificationMessages(givenMessages).build()
+
+      mutations[Mutation.REMOVE_APPLICATION_MESSAGE](state, 'notification')
+
+      const expectedMessages: Array<ApplicationMessage> = [{ type: 'notification', message: 'aMessage' }]
+      const expectedState = new AState().withNotificationMessages(expectedMessages).build()
       expect(state).toMatchObject(expectedState)
     })
   })
