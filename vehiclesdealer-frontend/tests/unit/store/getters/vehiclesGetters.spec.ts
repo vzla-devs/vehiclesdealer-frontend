@@ -4,11 +4,10 @@ import { Vehicle } from '@/store/models/vehicle'
 
 describe('vehiclesGetters.js', () => {
   it('gets the vehicles from the state', () => {
-    const vehicles = [
-      new Vehicle('1', 'firstBrand', 'firstModel', 2017, 7777, 'firstUrl'),
-      new Vehicle('2', 'secondBrand', 'secondModel', 2018, 8888, 'secondUrl'),
-      new Vehicle('3', 'thirdBrand', 'thirdModel', 2019, 9999, 'thirdUrl')
-    ]
+    const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 7777, imageUrl: 'firstUrl' }
+    const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 8888, imageUrl: 'secondUrl' }
+    const thirdVehicle: Vehicle = { id: '3', brand: 'thirdBrand', model: 'thirdModel', year: 2018, price: 9999, imageUrl: 'thirdUrl' }
+    const vehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
     const state = new AState().withVehicles(vehicles).build()
 
     const result = getters.AVAILABLE_VEHICLES(state)

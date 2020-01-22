@@ -47,18 +47,15 @@ describe('VehiclesContainer.vue', () => {
     })
 
     it('displays a grid of vehicles when there are vehicles', async () => {
-      const givenVehicles = [
-        new Vehicle('1', 'firstBrand', 'firstModel', 2019, 9999, 'firstUrl'),
-        new Vehicle('2', 'secondBrand', 'secondModel', 2019, 9999, 'secondUrl'),
-        new Vehicle('3', 'thirdBrand', 'thirdModel', 2019, 9999, 'thirdUrl')
-      ]
-      const getters = {
-        [Getter.AVAILABLE_VEHICLES]: () => givenVehicles
-      }
+      const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 9999, imageUrl: 'firstUrl' }
+      const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }
+      const thirdVehicle: Vehicle = { id: '3', brand: 'thirdBrand', model: 'thirdModel', year: 2018, price: 9999, imageUrl: 'thirdUrl' }
+      const givenVehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
+      const getters = { [Getter.AVAILABLE_VEHICLES]: () => givenVehicles }
 
       const wrapper = AVehiclesContainer().withGetters(getters).build()
-      await resolveAllPromises()
 
+      await resolveAllPromises()
       expect(wrapper.contains(GridLayout)).toBe(true)
       const expectedGrid = wrapper.find(GridLayout)
       const expectedVehicles = expectedGrid.findAll(Card)

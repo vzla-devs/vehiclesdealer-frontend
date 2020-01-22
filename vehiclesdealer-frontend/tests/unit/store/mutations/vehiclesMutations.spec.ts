@@ -6,10 +6,9 @@ import { Vehicle } from '@/store/models/vehicle'
 describe('vehiclesMutations.js', () => {
   it('sets the vehicles', () => {
     const state = new AState().withVehicles([]).build()
-    const vehicles = [
-      new Vehicle('1', 'firstBrand', 'firstModel', 2019, 9999, 'firstUrl'),
-      new Vehicle('2', 'secondBrand', 'secondModel', 2019, 9999, 'secondUrl')
-    ]
+    const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 9999, imageUrl: 'firstUrl' }
+    const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }
+    const vehicles = [ firstVehicle, secondVehicle ]
 
     mutations[Mutation.SET_VEHICLES](state, vehicles)
 
