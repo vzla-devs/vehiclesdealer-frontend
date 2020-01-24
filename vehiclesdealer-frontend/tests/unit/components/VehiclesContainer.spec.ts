@@ -1,7 +1,7 @@
 import VehiclesContainer from '@/components/VehiclesContainer.vue'
 import GridLayout from '@/layouts/GridLayout.vue'
 import Card from '@/components/Card.vue'
-import { AComponent } from '@tests/helpers/builderHelpers'
+import { AComponent } from '@tests/builders/componentBuilder'
 import {
   resolveAllPromises,
   resolvedPromise
@@ -74,7 +74,7 @@ describe('VehiclesContainer.vue', () => {
     const actions = {
       [Action.GET_VEHICLES]: () => resolvedPromise()
     }
-    return AComponent(VehiclesContainer).withGetters(getters).withActions(actions)
+    return new AComponent(VehiclesContainer).withGetters(getters).withActions(actions)
   }
 
   function verifyVehicleProps (vehicleToVerify, expectedVehicle) {
