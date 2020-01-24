@@ -1,6 +1,4 @@
 import { InitialState } from '@/store/initialState'
-import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
-import { Vehicle } from '@/store/interfaces/vehicle'
 import { RootState } from '@/store/interfaces/rootState'
 
 export class AState {
@@ -10,22 +8,22 @@ export class AState {
     this.state = InitialState
   }
 
-  withLoading (loading: boolean): AState {
+  withLoading (loading: RootState['loading']): AState {
     this.state.loading = loading
     return this
   }
 
-  withVehicles (vehicles: Array<Vehicle>): AState {
+  withVehicles (vehicles: RootState['vehicles']): AState {
     this.state.vehicles = vehicles
     return this
   }
 
-  withErrorMessages (messages: Array<ApplicationMessage>): AState {
+  withErrorMessages (messages: RootState['messages']['error']): AState {
     this.state.messages.error = messages
     return this
   }
 
-  withNotificationMessages (messages: Array<ApplicationMessage>): AState {
+  withNotificationMessages (messages: RootState['messages']['notification']): AState {
     this.state.messages.notification = messages
     return this
   }
