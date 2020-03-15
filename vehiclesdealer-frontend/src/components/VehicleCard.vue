@@ -4,7 +4,9 @@
       hover
       class="card"
     >
-      <v-img :src="image" />
+      <v-img
+        :src="image"
+      />
       <v-card-title primary-title>
         <div class="description-container">
           <h3 class="headline description">
@@ -22,8 +24,8 @@
 <script>
 export default {
   props: {
-    title: { type: String, required: true },
     image: { type: String, required: true },
+    title: { type: String, required: true },
     price: { type: Number, required: true }
   },
   computed: {
