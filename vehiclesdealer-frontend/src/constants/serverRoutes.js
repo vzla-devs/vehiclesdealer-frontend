@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://testapi.io/api/Gabrielnz'
+export const BASE_URL = 'http://localhost:3000'
