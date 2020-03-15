@@ -77,7 +77,7 @@ describe('VehiclesContainer.vue', () => {
     return new AComponent(VehiclesContainer).withGetters(getters).withActions(actions)
   }
 
-  function verifyVehicleProps (vehicleToVerify, expectedVehicle): void {
+  function verifyVehicleProps (vehicleToVerify: any, expectedVehicle: Vehicle): void {
     expect(vehicleToVerify.props()).toEqual({
       title: `${expectedVehicle.brand} ${expectedVehicle.model} - ${expectedVehicle.year}`,
       price: expectedVehicle.price,
