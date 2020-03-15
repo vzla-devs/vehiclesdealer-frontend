@@ -15,8 +15,21 @@ describe('VehicleCard.vue', () => {
     expect(wrapper.find('.price').text()).toBe('5000 €')
   })
 
+  it('should emit an event when the card is clicked', () => {
+    const wrapper = AVehicleCard().build()
+
+    wrapper.find('v-card-stub').vm.$emit('click')
+
+    expect(wrapper.emitted().onClick).toBeTruthy()
+  })
+
   function AVehicleCard (): AComponent {
+    const defaultProps = {
+      image: 'anyDefaultImage',
+      title: 'anyDefaultTitle',
+      price: 9999
+    }
     const stubs = { 'v-img': true, 'v-card': true, 'v-card-title': true }
-    return new AComponent(VehicleCard).withStubs(stubs)
+    return new AComponent(VehicleCard).withStubs(stubs).withProps(defaultProps)
   }
 })

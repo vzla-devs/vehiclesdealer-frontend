@@ -3,6 +3,7 @@
     <v-card
       hover
       class="card"
+      @click="onClick"
     >
       <v-img
         :src="image"
@@ -31,6 +32,11 @@ export default {
   computed: {
     formattedTitle () { return this.title.toUpperCase() },
     formattedPrice () { return `${this.price} €` }
+  },
+  methods: {
+    onClick () {
+      this.$emit('onClick')
+    }
   }
 }
 </script>
