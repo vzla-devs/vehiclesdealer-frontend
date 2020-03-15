@@ -1,7 +1,7 @@
 <template>
   <div>
     <grid-layout v-if="thereAreVehicles">
-      <card
+      <vehicle-card
         v-for="(vehicle, index) in vehicles"
         :key="index"
         :title="vehicleDescription(vehicle)"
@@ -17,12 +17,12 @@ import { mapGetters, mapActions } from 'vuex'
 import { Getter } from '@/store/getters/types'
 import { Action } from '@/store/actions/types'
 import GridLayout from '@/layouts/GridLayout'
-import Card from '@/components/Card'
+import VehicleCard from '@/components/VehicleCard'
 
 export default {
   components: {
     GridLayout,
-    Card
+    VehicleCard
   },
   computed: {
     ...mapGetters({
