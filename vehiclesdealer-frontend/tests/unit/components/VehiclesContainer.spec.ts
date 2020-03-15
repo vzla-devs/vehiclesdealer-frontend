@@ -1,7 +1,7 @@
+import { AComponent } from '@tests/builders/componentBuilder'
 import VehiclesContainer from '@/components/VehiclesContainer.vue'
 import GridLayout from '@/layouts/GridLayout.vue'
 import VehicleCard from '@/components/VehicleCard.vue'
-import { AComponent } from '@tests/builders/componentBuilder'
 import {
   resolveAllPromises,
   resolvedPromise
@@ -66,7 +66,7 @@ describe('VehiclesContainer.vue', () => {
     })
   })
 
-  function AVehiclesContainer () {
+  function AVehiclesContainer (): AComponent {
     const getters = {
       [Getter.AVAILABLE_VEHICLES]: () => [],
       [Getter.IS_LOADING]: () => false
@@ -77,7 +77,7 @@ describe('VehiclesContainer.vue', () => {
     return new AComponent(VehiclesContainer).withGetters(getters).withActions(actions)
   }
 
-  function verifyVehicleProps (vehicleToVerify, expectedVehicle) {
+  function verifyVehicleProps (vehicleToVerify, expectedVehicle): void {
     expect(vehicleToVerify.props()).toEqual({
       title: `${expectedVehicle.brand} ${expectedVehicle.model} - ${expectedVehicle.year}`,
       price: expectedVehicle.price,
