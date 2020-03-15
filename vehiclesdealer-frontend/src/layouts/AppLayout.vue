@@ -40,7 +40,7 @@ export default {
     drawer: false,
     drawerOptions: [
       { title: 'Inicio', route: ApplicationRoute.HOME_ROUTE },
-      { title: 'Vehículos', route: ApplicationRoute.VEHICLES_ROUTE }
+      { title: 'Acerca de', route: ApplicationRoute.ABOUT_ROUTE }
     ]
   }),
   methods: {
