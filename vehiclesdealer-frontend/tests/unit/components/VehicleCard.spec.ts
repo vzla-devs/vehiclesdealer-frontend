@@ -2,7 +2,7 @@ import { AComponent } from '@tests/builders/componentBuilder'
 import VehicleCard from '@/components/VehicleCard.vue'
 
 describe('VehicleCard.vue', () => {
-  it('should show the vehicle card content correctly', () => {
+  it('shows the vehicle content correctly', () => {
     const props = {
       image: 'anyImageURL',
       title: 'anyTitle',
@@ -15,7 +15,7 @@ describe('VehicleCard.vue', () => {
     expect(wrapper.find('.price').text()).toBe('5000 €')
   })
 
-  it('should emit an event when the card is clicked', () => {
+  it('emits an event when the card is clicked', () => {
     const wrapper = AVehicleCard().build()
 
     wrapper.find('v-card-stub').vm.$emit('click')
