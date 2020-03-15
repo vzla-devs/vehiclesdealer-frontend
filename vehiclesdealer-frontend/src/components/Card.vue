@@ -24,7 +24,7 @@ export default {
   props: {
     title: { type: String, required: true },
     image: { type: String, required: true },
-    price: { type: Number, default: undefined }
+    price: { type: Number, required: true }
   },
   computed: {
     formattedTitle () { return this.title.toUpperCase() },
