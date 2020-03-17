@@ -1,5 +1,6 @@
 import { shallowMount, createLocalVue, Wrapper } from '@vue/test-utils'
 import Vuex from 'vuex'
+import VueRouter from 'vue-router'
 
 export class AComponent {
   component: any
@@ -32,11 +33,19 @@ export class AComponent {
     return this
   }
 
+  withRouter (newRouter: VueRouter): AComponent {
+    this.options.router = newRouter
+    return this
+  }
+
   build (): Wrapper<Vue> {
     const localVue = createLocalVue()
     if (this.getters || this.actions) {
       localVue.use(Vuex)
       this.options.store = new Vuex.Store({ getters: this.getters, actions: this.actions })
+    }
+    if (this.options.router) {
+      localVue.use(VueRouter)
     }
     this.options.localVue = localVue
     return shallowMount(this.component, this.options)
