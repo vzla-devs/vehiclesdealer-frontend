@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
-import VehiclesPage from '@/pages/VehiclesPage.vue'
+import VehiclesList from '@/views/VehiclesList.vue'
 import { ApplicationRouteName } from '@/constants/routeNames'
 
 Vue.use(VueRouter)
@@ -14,7 +14,7 @@ const routes = [
       {
         path: '/',
         name: ApplicationRouteName.HOME,
-        component: VehiclesPage
+        component: VehiclesList
       },
       {
         path: '/acerca-de',
@@ -22,7 +22,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '@/pages/AboutPage.vue')
+        component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
       }
     ]
   }
