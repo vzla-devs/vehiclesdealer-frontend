@@ -10,7 +10,7 @@
           v-for="(option, index) in drawerOptions"
           :key="index"
           class="option"
-          @click="onNavigate(option.route)"
+          @click="onNavigate(option.routeName)"
         >
           <v-list-item-content>
             <v-list-item-title>{{ option.title }}</v-list-item-title>
@@ -33,19 +33,19 @@
 </template>
 
 <script>
-import { ApplicationRoute } from '@/constants/routes.ts'
+import { ApplicationRouteName } from '@/constants/routeNames.ts'
 
 export default {
   data: () => ({
     drawer: false,
     drawerOptions: [
-      { title: 'Inicio', route: ApplicationRoute.HOME_ROUTE },
-      { title: 'Acerca de', route: ApplicationRoute.ABOUT_ROUTE }
+      { title: 'Inicio', routeName: ApplicationRouteName.HOME },
+      { title: 'Acerca de', routeName: ApplicationRouteName.ABOUT }
     ]
   }),
   methods: {
-    onNavigate (route) {
-      this.$router.push(route)
+    onNavigate (name) {
+      this.$router.push({ name })
     }
   }
 }
