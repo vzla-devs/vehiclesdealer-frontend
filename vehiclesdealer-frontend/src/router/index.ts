@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
 import VehiclesList from '@/views/VehiclesList.vue'
+import VehicleDetails from '@/views/VehicleDetails.vue'
 import { ApplicationRouteName } from '@/constants/routeNames'
 
 Vue.use(VueRouter)
@@ -15,6 +16,11 @@ const routes = [
         path: '/',
         name: ApplicationRouteName.HOME,
         component: VehiclesList
+      },
+      {
+        path: '/vehicle/:vehicleId',
+        name: ApplicationRouteName.VEHICLE,
+        component: VehicleDetails
       },
       {
         path: '/acerca-de',
