@@ -7,6 +7,7 @@
         :title="vehicleDescription(vehicle)"
         :price="vehicle.price"
         :image="vehicle.imageUrl"
+        @onClick="onVehicleClicked(vehicle.id)"
       />
     </grid-layout>
   </div>
@@ -18,6 +19,7 @@ import { Getter } from '@/store/getters/types'
 import { Action } from '@/store/actions/types'
 import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
+import { ApplicationRouteName } from '@/constants/routeNames'
 
 export default {
   components: {
@@ -45,6 +47,9 @@ export default {
     }),
     vehicleDescription (vehicle) {
       return `${vehicle.brand} ${vehicle.model} - ${vehicle.year}`
+    },
+    onVehicleClicked (vehicleId) {
+      this.$router.push({ name: ApplicationRouteName.VEHICLE, params: { vehicleId } })
     }
   }
 }

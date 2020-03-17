@@ -1,4 +1,5 @@
 export enum ApplicationRouteName {
   HOME = 'home',
-  ABOUT = 'about'
+  ABOUT = 'about',
+  VEHICLE = 'vehicle'
 }
