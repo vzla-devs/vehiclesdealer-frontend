@@ -15,12 +15,19 @@ const routes = [
       {
         path: '/',
         name: ApplicationRouteName.HOME,
-        component: VehiclesList
+        redirect: {
+          name: ApplicationRouteName.VEHICLES
+        }
       },
       {
-        path: '/vehicle/:vehicleId',
+        path: '/vehiculo/:vehicleId',
         name: ApplicationRouteName.VEHICLE,
         component: VehicleDetails
+      },
+      {
+        path: '/vehiculos',
+        name: ApplicationRouteName.VEHICLES,
+        component: VehiclesList
       },
       {
         path: '/acerca-de',
