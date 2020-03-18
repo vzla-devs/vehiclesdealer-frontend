@@ -1,5 +1,5 @@
 import { AComponent } from '@tests/builders/componentBuilder'
-import VehiclesContainer from '@/components/VehiclesContainer.vue'
+import VehiclesListContainer from '@/components/VehiclesContainer.vue'
 import GridLayout from '@/layouts/GridLayout.vue'
 import VehicleCard from '@/components/VehicleCard.vue'
 import {
@@ -12,7 +12,7 @@ import { Vehicle } from '@/store/interfaces/vehicle'
 import VueRouter from 'vue-router'
 import { ApplicationRouteName } from '@/constants/routeNames'
 
-describe('VehiclesContainer.vue', () => {
+describe('VehiclesListContainer.vue', () => {
   describe('when getting the vehicles', () => {
     it('calls the corresponding action to get the vehicles', async () => {
       const actions = {
@@ -91,7 +91,7 @@ describe('VehiclesContainer.vue', () => {
     const actions = {
       [Action.GET_VEHICLES]: () => resolvedPromise()
     }
-    return new AComponent(VehiclesContainer).withGetters(getters).withActions(actions)
+    return new AComponent(VehiclesListContainer).withGetters(getters).withActions(actions)
   }
 
   function verifyVehicleProps (vehicleToVerify: any, expectedVehicle: Vehicle): void {

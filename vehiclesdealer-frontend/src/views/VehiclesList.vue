@@ -1,16 +1,16 @@
 <template>
   <div>
     <h1>Vehículos</h1>
-    <vehicles-container />
+    <vehicles-list-container />
   </div>
 </template>
 
 <script>
-import VehiclesContainer from '@/components/VehiclesContainer'
+import VehiclesListContainer from '@/components/VehiclesListContainer'
 
 export default {
   components: {
-    VehiclesContainer
+    VehiclesListContainer
   }
 }
 </script>
