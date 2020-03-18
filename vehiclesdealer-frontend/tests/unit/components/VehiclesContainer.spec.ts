@@ -79,7 +79,7 @@ describe('VehiclesContainer.vue', () => {
 
       wrapper.findAll(VehicleCard).at(1).vm.$emit('onClick')
 
-      expect(router.push).toHaveBeenCalledWith({ name: ApplicationRouteName.VEHICLE, params: { vehicleId: secondVehicle.id } })
+      expect(router.push).toHaveBeenCalledWith({ name: ApplicationRouteName.VEHICLE, params: { id: secondVehicle.id } })
     })
   })
 

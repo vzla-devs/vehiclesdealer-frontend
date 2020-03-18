@@ -20,9 +20,10 @@ const routes = [
         }
       },
       {
-        path: '/vehiculo/:vehicleId',
+        path: '/vehiculo/:id',
         name: ApplicationRouteName.VEHICLE,
-        component: VehicleDetails
+        component: VehicleDetails,
+        props: true
       },
       {
         path: '/vehiculos',

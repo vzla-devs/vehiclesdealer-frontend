@@ -48,8 +48,8 @@ export default {
     vehicleDescription (vehicle) {
       return `${vehicle.brand} ${vehicle.model} - ${vehicle.year}`
     },
-    onVehicleClicked (vehicleId) {
-      this.$router.push({ name: ApplicationRouteName.VEHICLE, params: { vehicleId } })
+    onVehicleClicked (id) {
+      this.$router.push({ name: ApplicationRouteName.VEHICLE, params: { id } })
     }
   }
 }
