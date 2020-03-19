@@ -1,5 +1,5 @@
 import { AComponent } from '@tests/builders/componentBuilder'
-import VehiclesListContainer from '@/components/VehiclesContainer.vue'
+import VehiclesListContainer from '@/components/VehiclesListContainer.vue'
 import GridLayout from '@/layouts/GridLayout.vue'
 import VehicleCard from '@/components/VehicleCard.vue'
 import {
@@ -96,7 +96,7 @@ describe('VehiclesListContainer.vue', () => {
 
   function verifyVehicleProps (vehicleToVerify: any, expectedVehicle: Vehicle): void {
     expect(vehicleToVerify.props()).toEqual({
-      title: `${expectedVehicle.brand} ${expectedVehicle.model} - ${expectedVehicle.year}`,
+      description: `${expectedVehicle.brand} ${expectedVehicle.model} - ${expectedVehicle.year}`,
       price: expectedVehicle.price,
       image: expectedVehicle.imageUrl
     })

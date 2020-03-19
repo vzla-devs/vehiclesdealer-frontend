@@ -11,7 +11,7 @@
       <v-card-title primary-title>
         <div class="description-container">
           <h3 class="headline description">
-            {{ formattedTitle }}
+            {{ formattedDescription }}
           </h3>
           <div class="price">
             {{ formattedPrice }}
@@ -26,11 +26,11 @@
 export default {
   props: {
     image: { type: String, required: true },
-    title: { type: String, required: true },
+    description: { type: String, required: true },
     price: { type: Number, required: true }
   },
   computed: {
-    formattedTitle () { return this.title.toUpperCase() },
+    formattedDescription () { return this.description.toUpperCase() },
     formattedPrice () { return `${this.price} €` }
   },
   methods: {

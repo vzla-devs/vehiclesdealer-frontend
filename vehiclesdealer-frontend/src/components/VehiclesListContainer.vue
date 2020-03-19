@@ -4,9 +4,9 @@
       <vehicle-card
         v-for="(vehicle, index) in vehicles"
         :key="index"
-        :title="vehicleDescription(vehicle)"
-        :price="vehicle.price"
         :image="vehicle.imageUrl"
+        :description="vehicleDescription(vehicle)"
+        :price="vehicle.price"
         @onClick="onVehicleClicked(vehicle.id)"
       />
     </grid-layout>

@@ -5,7 +5,7 @@ describe('VehicleCard.vue', () => {
   it('shows the vehicle content correctly', () => {
     const props = {
       image: 'anyImageURL',
-      title: 'anyTitle',
+      description: 'anyTitle',
       price: 5000
     }
 
@@ -26,7 +26,7 @@ describe('VehicleCard.vue', () => {
   function AVehicleCard (): AComponent {
     const defaultProps = {
       image: 'anyDefaultImage',
-      title: 'anyDefaultTitle',
+      description: 'anyDefaultTitle',
       price: 9999
     }
     const stubs = { 'v-img': true, 'v-card': true, 'v-card-title': true }
