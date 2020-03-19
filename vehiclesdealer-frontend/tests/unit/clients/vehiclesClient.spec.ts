@@ -1,6 +1,5 @@
 import vehiclesClient from '@/clients/vehiclesClient'
 import { mockedRestClient } from '@tests/helpers/testHelpers'
-import { BASE_URL } from '@/constants/serverRoutes'
 import { TestValues } from '@tests/helpers/testValues'
 
 describe('vehiclesClient.js', () => {
@@ -13,7 +12,7 @@ describe('vehiclesClient.js', () => {
 
     const result = vehiclesClient(restClient).get()
 
-    expect(restClient.get).toHaveBeenCalledWith(`${BASE_URL}/vehicles`)
+    expect(restClient.get).toHaveBeenCalledWith('/vehicles')
     expect(result).toBe(vehicles)
   })
 })
