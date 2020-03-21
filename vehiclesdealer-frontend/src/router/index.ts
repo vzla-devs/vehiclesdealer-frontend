@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
 import VehiclesList from '@/views/VehiclesList.vue'
 import VehicleDetails from '@/views/VehicleDetails.vue'
+import NotFound from '@/views/NotFound.vue'
 import { ROUTES } from '@/constants/applicationRoutes'
 
 Vue.use(VueRouter)
@@ -37,6 +38,10 @@ const routes = [
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "about" */ '@/views/About.vue')
+      },
+      {
+        path: '*',
+        component: NotFound
       }
     ]
   }
