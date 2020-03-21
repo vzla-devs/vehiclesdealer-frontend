@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { BASE_URL } from '@/constants/serverRoutes'
+import { BASE_URL } from '@/constants/apiRoutes'
 import vehiclesClient from '@/clients/vehiclesClient'
 
 const apiClient = axios.create({
