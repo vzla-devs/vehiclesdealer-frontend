@@ -1,6 +1,6 @@
 import actions from '@/store/actions/vehiclesActions'
 import { VehiclesClient } from '@/clients/clientsFactory'
-import { resolvedPromise, rejectedPromise } from '@tests/helpers/testHelpers'
+import { resolvedPromise, rejectedPromise } from '@tests/helpers/promiseHelpers'
 import { TestValues } from '@tests/helpers/testValues'
 import { Action } from '@/store/actions/types'
 import { Mutation } from '@/store/mutations/types'

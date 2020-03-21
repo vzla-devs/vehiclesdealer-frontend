@@ -5,7 +5,7 @@ import VehicleCard from '@/components/VehicleCard.vue'
 import {
   resolveAllPromises,
   resolvedPromise
-} from '@tests/helpers/testHelpers'
+} from '@tests/helpers/promiseHelpers'
 import { Action } from '@/store/actions/types'
 import { Getter } from '@/store/getters/types'
 import { Vehicle } from '@/store/interfaces/vehicle'

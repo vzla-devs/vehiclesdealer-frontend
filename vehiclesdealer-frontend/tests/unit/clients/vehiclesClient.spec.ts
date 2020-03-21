@@ -1,5 +1,5 @@
 import vehiclesClient from '@/clients/vehiclesClient'
-import { mockedRestClient } from '@tests/helpers/testHelpers'
+import { mockedRestClient } from '@tests/helpers/clientHelpers'
 import { TestValues } from '@tests/helpers/testValues'
 
 describe('vehiclesClient.js', () => {
