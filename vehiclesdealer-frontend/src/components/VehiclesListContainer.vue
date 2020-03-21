@@ -19,7 +19,7 @@ import { Getter } from '@/store/getters/types'
 import { Action } from '@/store/actions/types'
 import GridLayout from '@/layouts/GridLayout'
 import VehicleCard from '@/components/VehicleCard'
-import { ApplicationRouteName } from '@/constants/routeNames'
+import { ROUTES } from '@/constants/applicationRoutes'
 
 export default {
   components: {
@@ -49,7 +49,7 @@ export default {
       return `${vehicle.brand} ${vehicle.model} - ${vehicle.year}`
     },
     onVehicleClicked (id) {
-      this.$router.push({ name: ApplicationRouteName.VEHICLE, params: { id } })
+      this.$router.push({ name: ROUTES.VEHICLE, params: { id } })
     }
   }
 }

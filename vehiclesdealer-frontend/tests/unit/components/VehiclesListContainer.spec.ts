@@ -10,7 +10,7 @@ import { Action } from '@/store/actions/types'
 import { Getter } from '@/store/getters/types'
 import { Vehicle } from '@/store/interfaces/vehicle'
 import VueRouter from 'vue-router'
-import { ApplicationRouteName } from '@/constants/routeNames'
+import { ROUTES } from '@/constants/applicationRoutes'
 
 describe('VehiclesListContainer.vue', () => {
   describe('when getting the vehicles', () => {
@@ -79,7 +79,7 @@ describe('VehiclesListContainer.vue', () => {
 
       wrapper.findAll(VehicleCard).at(1).vm.$emit('onClick')
 
-      expect(router.push).toHaveBeenCalledWith({ name: ApplicationRouteName.VEHICLE, params: { id: secondVehicle.id } })
+      expect(router.push).toHaveBeenCalledWith({ name: ROUTES.VEHICLE, params: { id: secondVehicle.id } })
     })
   })
 

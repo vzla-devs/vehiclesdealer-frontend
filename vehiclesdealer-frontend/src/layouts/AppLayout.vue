@@ -33,14 +33,14 @@
 </template>
 
 <script>
-import { ApplicationRouteName } from '@/constants/routeNames.ts'
+import { ROUTES } from '@/constants/applicationRoutes.ts'
 
 export default {
   data: () => ({
     drawer: false,
     drawerOptions: [
-      { title: 'Inicio', routeName: ApplicationRouteName.HOME },
-      { title: 'Acerca de', routeName: ApplicationRouteName.ABOUT }
+      { title: 'Inicio', routeName: ROUTES.HOME },
+      { title: 'Acerca de', routeName: ROUTES.ABOUT }
     ]
   }),
   methods: {

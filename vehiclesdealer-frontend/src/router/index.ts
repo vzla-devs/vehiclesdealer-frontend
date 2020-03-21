@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import AppLayout from '@/layouts/AppLayout.vue'
 import VehiclesList from '@/views/VehiclesList.vue'
 import VehicleDetails from '@/views/VehicleDetails.vue'
-import { ApplicationRouteName } from '@/constants/routeNames'
+import { ROUTES } from '@/constants/applicationRoutes'
 
 Vue.use(VueRouter)
 
@@ -14,25 +14,25 @@ const routes = [
     children: [
       {
         path: '/',
-        name: ApplicationRouteName.HOME,
+        name: ROUTES.HOME,
         redirect: {
-          name: ApplicationRouteName.VEHICLES
+          name: ROUTES.VEHICLES
         }
       },
       {
         path: '/vehiculo/:id',
-        name: ApplicationRouteName.VEHICLE,
+        name: ROUTES.VEHICLE,
         component: VehicleDetails,
         props: true
       },
       {
         path: '/vehiculos',
-        name: ApplicationRouteName.VEHICLES,
+        name: ROUTES.VEHICLES,
         component: VehiclesList
       },
       {
         path: '/acerca-de',
-        name: ApplicationRouteName.ABOUT,
+        name: ROUTES.ABOUT,
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
