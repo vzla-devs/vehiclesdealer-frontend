@@ -22,18 +22,35 @@ describe('vehiclesGetters.ts', () => {
     })
   })
 
-  describe('when getting a vehicle', () => {
-    const firstTestCase: TestCase = { vehicle: firstVehicle, testSuffixName: 'and the id belongs to the first vehicle' }
-    const secondTestCase: TestCase = { vehicle: secondVehicle, testSuffixName: 'and the id belongs to the second vehicle' }
-    const thirdTestCase: TestCase = { vehicle: thirdVehicle, testSuffixName: 'and the id belongs to the third vehicle' }
-    const testCases = [ firstTestCase, secondTestCase, thirdTestCase ]
+  describe('when getting a vehicle from the state', () => {
+    const firstTestCase: TestCase = {
+      name: 'gets the vehicle with the corresponding id and the id belongs to the first vehicle',
+      id: firstVehicle.id,
+      vehicle: firstVehicle
+    }
+    const secondTestCase: TestCase = {
+      name: 'gets the vehicle with the corresponding id and the id belongs to the second vehicle',
+      id: secondVehicle.id,
+      vehicle: secondVehicle
+    }
+    const thirdTestCase: TestCase = {
+      name: 'gets the vehicle with the corresponding id and the id belongs to the third vehicle',
+      id: thirdVehicle.id,
+      vehicle: thirdVehicle
+    }
+    const fourthTestCase: TestCase = {
+      name: 'gets undefined for an id that does not belong to any vehicle',
+      id: 'anyOtherVehicleId',
+      vehicle: undefined
+    }
+    const testCases = [ firstTestCase, secondTestCase, thirdTestCase, fourthTestCase ]
 
     testCases.forEach(testCase => {
-      it(`gets the vehicle with the corresponding id from the state ${testCase.testSuffixName}`, () => {
+      it(testCase.name, () => {
         const vehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
         const state = new AState().withVehicles(vehicles).build()
 
-        const result = getters.VEHICLE(state)(testCase.vehicle.id)
+        const result = getters.VEHICLE(state)(testCase.id)
 
         expect(result).toEqual(testCase.vehicle)
       })

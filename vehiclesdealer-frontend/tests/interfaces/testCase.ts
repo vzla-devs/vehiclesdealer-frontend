@@ -1,4 +1,4 @@
 export interface TestCase {
-  testSuffixName: string,
+  name: string,
   [key: string]: any
 }
