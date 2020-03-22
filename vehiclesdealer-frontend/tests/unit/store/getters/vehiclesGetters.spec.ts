@@ -8,18 +8,16 @@ describe('vehiclesGetters.ts', () => {
   const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 8888, imageUrl: 'secondUrl' }
   const thirdVehicle: Vehicle = { id: '3', brand: 'thirdBrand', model: 'thirdModel', year: 2018, price: 9999, imageUrl: 'thirdUrl' }
 
-  describe('when getting the available vehicles', () => {
-    it('gets the available vehicles from the state', () => {
-      const vehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
-      const state = new AState().withVehicles(vehicles).build()
+  it('gets all the available vehicles', () => {
+    const vehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
+    const state = new AState().withVehicles(vehicles).build()
 
-      const result = getters.AVAILABLE_VEHICLES(state)
+    const result = getters.AVAILABLE_VEHICLES(state)
 
-      expect(result).toEqual(vehicles)
-    })
+    expect(result).toEqual(vehicles)
   })
 
-  describe('when getting a vehicle from the state', () => {
+  describe('when getting a single vehicle', () => {
     const firstTestCase: TestCase = {
       name: 'gets the vehicle with the corresponding id and the id belongs to the first vehicle',
       id: firstVehicle.id,
