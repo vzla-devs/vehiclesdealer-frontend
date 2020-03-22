@@ -10,9 +10,6 @@ describe('vehiclesGetters.ts', () => {
 
   describe('when getting the available vehicles', () => {
     it('gets the available vehicles from the state', () => {
-      const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 7777, imageUrl: 'firstUrl' }
-      const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 8888, imageUrl: 'secondUrl' }
-      const thirdVehicle: Vehicle = { id: '3', brand: 'thirdBrand', model: 'thirdModel', year: 2018, price: 9999, imageUrl: 'thirdUrl' }
       const vehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
       const state = new AState().withVehicles(vehicles).build()
 
