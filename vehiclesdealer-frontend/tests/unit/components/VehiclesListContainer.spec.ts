@@ -49,9 +49,9 @@ describe('VehiclesListContainer.vue', () => {
     })
 
     it('displays a grid of vehicles when there are vehicles', async () => {
-      const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 9999, imageUrl: 'firstUrl' }
-      const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }
-      const thirdVehicle: Vehicle = { id: '3', brand: 'thirdBrand', model: 'thirdModel', year: 2018, price: 9999, imageUrl: 'thirdUrl' }
+      const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 9999, featuredImage: 'firstUrl' }
+      const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, featuredImage: 'secondUrl' }
+      const thirdVehicle: Vehicle = { id: '3', brand: 'thirdBrand', model: 'thirdModel', year: 2018, price: 9999, featuredImage: 'thirdUrl' }
       const givenVehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
       const getters = { [Getter.AVAILABLE_VEHICLES]: () => givenVehicles }
 
@@ -68,9 +68,9 @@ describe('VehiclesListContainer.vue', () => {
     })
 
     it('navigates to a vehicle details view when its corresponding card is clicked', () => {
-      const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 9999, imageUrl: 'firstUrl' }
-      const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, imageUrl: 'secondUrl' }
-      const thirdVehicle: Vehicle = { id: '3', brand: 'thirdBrand', model: 'thirdModel', year: 2018, price: 9999, imageUrl: 'thirdUrl' }
+      const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 9999, featuredImage: 'firstUrl' }
+      const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 9999, featuredImage: 'secondUrl' }
+      const thirdVehicle: Vehicle = { id: '3', brand: 'thirdBrand', model: 'thirdModel', year: 2018, price: 9999, featuredImage: 'thirdUrl' }
       const givenVehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
       const getters = { [Getter.AVAILABLE_VEHICLES]: () => givenVehicles }
       const router = new VueRouter()
@@ -98,7 +98,7 @@ describe('VehiclesListContainer.vue', () => {
     expect(vehicleToVerify.props()).toEqual({
       description: `${expectedVehicle.brand} ${expectedVehicle.model} - ${expectedVehicle.year}`,
       price: expectedVehicle.price,
-      image: expectedVehicle.imageUrl
+      image: expectedVehicle.featuredImage
     })
   }
 })

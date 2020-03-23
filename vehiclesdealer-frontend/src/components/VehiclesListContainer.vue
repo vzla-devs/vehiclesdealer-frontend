@@ -4,7 +4,7 @@
       <vehicle-card
         v-for="(vehicle, index) in vehicles"
         :key="index"
-        :image="vehicle.imageUrl"
+        :image="vehicle.featuredImage"
         :description="vehicleDescription(vehicle)"
         :price="vehicle.price"
         @onClick="onVehicleClicked(vehicle.id)"

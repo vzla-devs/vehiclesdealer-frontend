@@ -7,8 +7,8 @@ const TestValues = {
     model: string = 'anyModel',
     year: number = 2019,
     price: number = 9999,
-    imageUrl: string = 'anyUrl'): Vehicle {
-    const vehicle: Vehicle = { id, brand, model, year, price, imageUrl }
+    featuredImage: string = 'anyUrl'): Vehicle {
+    const vehicle: Vehicle = { id, brand, model, year, price, featuredImage }
     return vehicle
   }
 }
