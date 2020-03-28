@@ -8,7 +8,6 @@
 .grid {
   display: grid;
   grid-gap: $small-space;
-  padding: $small-space;
 }
 
 @media (min-width: $small-breakpoint) {
@@ -21,7 +20,6 @@
   .grid {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: $medium-space;
-    padding: $medium-space;
   }
 }
 

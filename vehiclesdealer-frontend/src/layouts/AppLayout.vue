@@ -27,7 +27,9 @@
       <v-toolbar-title>VehiclesDealer</v-toolbar-title>
     </v-app-bar>
     <v-content>
-      <router-view />
+      <v-container fluid>
+        <router-view />
+      </v-container>
     </v-content>
   </v-app>
 </template>
@@ -61,12 +63,14 @@ body {
   h1 {
     text-align: center;
     margin-top: $small-space;
+    margin-bottom: $small-space;
   }
 }
 
 @media (min-width: $medium-breakpoint) {
   h1 {
     margin-top: $medium-space;
+    margin-bottom: $medium-space;
   }
 }
 </style>
