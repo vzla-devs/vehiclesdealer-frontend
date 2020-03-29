@@ -12,21 +12,14 @@
 
 @media (min-width: $small-breakpoint) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
 }
 
 @media (min-width: $medium-breakpoint) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-gap: $medium-space;
-  }
-}
-
-@media (min-width: $large-breakpoint) {
-  .grid {
-    justify-content: center;
-    grid-template-columns: repeat(4, minmax(400px, 540px));
   }
 }
 </style>
