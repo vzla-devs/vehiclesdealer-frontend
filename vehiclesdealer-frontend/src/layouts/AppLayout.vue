@@ -2,26 +2,36 @@
   <v-app id="app">
     <v-navigation-drawer
       v-model="drawer"
-      fixed
+      absolute
+      temporary
       app
     >
-      <v-list dense>
-        <v-list-item
-          v-for="(option, index) in drawerOptions"
-          :key="index"
-          class="option"
-          @click="onNavigate(option.routeName)"
+      <v-list
+        nav
+        dense
+      >
+        <v-list-item-group
+          active-class="primary--text text--accent-4"
         >
-          <v-list-item-content>
+          <v-list-item
+            v-for="(option, index) in drawerOptions"
+            :key="index"
+            class="option"
+            @click="onNavigate(option.routeName)"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ option.icon }}</v-icon>
+            </v-list-item-icon>
             <v-list-item-title>{{ option.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+          </v-list-item>
+        </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
       app
       color="primary"
       dark
+      dense
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>VehiclesDealer</v-toolbar-title>
@@ -41,8 +51,8 @@ export default {
   data: () => ({
     drawer: false,
     drawerOptions: [
-      { title: 'Inicio', routeName: ROUTES.HOME },
-      { title: 'Acerca de', routeName: ROUTES.ABOUT }
+      { icon: 'mdi-home', title: 'Inicio', routeName: ROUTES.HOME },
+      { icon: 'mdi-help-box', title: 'Acerca de', routeName: ROUTES.ABOUT }
     ]
   }),
   methods: {

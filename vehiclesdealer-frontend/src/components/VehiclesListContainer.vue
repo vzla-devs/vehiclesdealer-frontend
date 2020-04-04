@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <grid-layout v-if="thereAreVehicles">
-      <vehicle-card
-        v-for="(vehicle, index) in vehicles"
-        :key="index"
-        :image="vehicle.featuredImage"
-        :description="vehicleDescription(vehicle)"
-        :price="vehicle.price"
-        @onClick="onVehicleClicked(vehicle.id)"
-      />
-    </grid-layout>
-  </div>
+  <grid-layout v-if="thereAreVehicles">
+    <vehicle-card
+      v-for="(vehicle, index) in vehicles"
+      :key="index"
+      :image="vehicle.featuredImage"
+      :description="vehicleDescription(vehicle)"
+      :price="vehicle.price"
+      @onClick="onVehicleClicked(vehicle.id)"
+    />
+  </grid-layout>
 </template>
 
 <script>
@@ -28,14 +26,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      vehicles: Getter.AVAILABLE_VEHICLES,
-      isLoading: Getter.IS_LOADING
+      vehicles: Getter.AVAILABLE_VEHICLES
     }),
-    hasVehices () {
-      return this.vehicles.length > 0
-    },
     thereAreVehicles () {
-      return !this.isLoading && this.hasVehices
+      return this.vehicles.length > 0
     }
   },
   created () {
