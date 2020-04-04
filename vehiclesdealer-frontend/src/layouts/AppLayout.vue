@@ -38,7 +38,6 @@
         indeterminate
         absolute
         bottom
-        color="primary accent-4"
       />
     </v-app-bar>
     <v-content>
