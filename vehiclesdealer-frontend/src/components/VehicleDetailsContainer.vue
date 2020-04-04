@@ -4,7 +4,9 @@
       <v-card class="card">
         <v-list-item>
           <v-list-item-content>
-            <v-list-item-title class="headline">AUDI R8 COUPE</v-list-item-title>
+            <v-list-item-title class="headline">
+              AUDI R8 COUPE
+            </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
         <v-img
@@ -35,20 +37,17 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-      <v-card class="card">
-      </v-card>
+      <v-card class="card" />
     </list-layout>
   </div>
 </template>
 
 <script>
-import GridLayout from '@/layouts/GridLayout.vue'
 import ListLayout from '@/layouts/ListLayout.vue'
 import VehicleCard from '@/components/VehicleCard.vue'
 
 export default {
   components: {
-    GridLayout,
     ListLayout
   },
   props: {
