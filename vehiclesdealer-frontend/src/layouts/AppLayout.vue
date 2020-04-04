@@ -29,12 +29,17 @@
     </v-navigation-drawer>
     <v-app-bar
       app
-      color="primary"
-      dark
       dense
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>VehiclesDealer</v-toolbar-title>
+      <v-progress-linear
+        :active="isLoading"
+        indeterminate
+        absolute
+        bottom
+        color="primary accent-4"
+      />
     </v-app-bar>
     <v-content>
       <v-container fluid>
@@ -46,6 +51,8 @@
 
 <script>
 import { ROUTES } from '@/constants/applicationRoutes.ts'
+import { mapGetters } from 'vuex'
+import { Getter } from '@/store/getters/types'
 
 export default {
   data: () => ({
@@ -55,6 +62,11 @@ export default {
       { icon: 'mdi-help-box', title: 'Acerca de', routeName: ROUTES.ABOUT }
     ]
   }),
+  computed: {
+    ...mapGetters({
+      isLoading: Getter.IS_LOADING
+    })
+  },
   methods: {
     onNavigate (name) {
       this.$router.push({ name })
