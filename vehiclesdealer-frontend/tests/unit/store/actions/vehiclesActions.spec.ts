@@ -14,9 +14,9 @@ describe('vehiclesActions.js', () => {
 
     const returnedPromise = actions[Action.GET_VEHICLES](givenContext)
 
-    expect(VehiclesClient.get).toHaveBeenCalled()
     expect(givenContext.commit).toHaveBeenCalledWith(Mutation.SET_APPLICATION_LOADING, true)
     await returnedPromise
+    expect(VehiclesClient.get).toHaveBeenCalled()
     expect(givenContext.commit).toHaveBeenCalledWith(Mutation.SET_VEHICLES, givenVehicles)
     expect(givenContext.commit).toHaveBeenCalledWith(Mutation.SET_APPLICATION_LOADING, false)
     expect(givenContext.dispatch).not.toHaveBeenCalledWith(Action.SHOW_MESSAGE)
