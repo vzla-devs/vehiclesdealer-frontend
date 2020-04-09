@@ -8,7 +8,7 @@ import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
 
 describe('vehiclesActions.js', () => {
   it('calls the client to get the vehicles, stores them and returns them', async () => {
-    const givenContext = { commit: jest.fn(), dispatch: jest.fn() }
+    const givenContext = getMockedContext()
     const givenVehicles = [ TestValues.vehicle('1'), TestValues.vehicle('2') ]
     mockClientGetWith(resolvedPromise({ data: givenVehicles }))
 
@@ -23,7 +23,7 @@ describe('vehiclesActions.js', () => {
   })
 
   it('shows an error message after getting the vehicles fails', async () => {
-    const givenContext = { commit: jest.fn(), dispatch: jest.fn() }
+    const givenContext = getMockedContext()
     mockClientGetWith(rejectedPromise())
 
     const returnedPromise = actions[Action.GET_VEHICLES](givenContext)
@@ -37,6 +37,9 @@ describe('vehiclesActions.js', () => {
     expect(givenContext.dispatch).toHaveBeenCalledWith(Action.SHOW_MESSAGE, expectedErrorMessage)
   })
 
+  function getMockedContext (): any {
+    return { commit: jest.fn(), dispatch: jest.fn() }
+  }
   function mockClientGetWith (promise: Promise<any>): void {
     VehiclesClient.get = jest.fn(() => promise)
   }
