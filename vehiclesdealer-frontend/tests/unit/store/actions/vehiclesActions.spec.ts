@@ -7,7 +7,7 @@ import { Mutation } from '@/store/mutations/types'
 import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
 
 describe('vehiclesActions.js', () => {
-  it('commits the corresponding mutation after a successful response', async () => {
+  it('calls the client to get the vehicles, stores them and returns them', async () => {
     const context = { commit: jest.fn(), dispatch: jest.fn() }
     const vehicles = [ TestValues.vehicle('1'), TestValues.vehicle('2') ]
     VehiclesClient.get = jest.fn(() => resolvedPromise({ data: vehicles }))
@@ -22,7 +22,7 @@ describe('vehiclesActions.js', () => {
     expect(context.dispatch).not.toHaveBeenCalledWith(Action.SHOW_MESSAGE)
   })
 
-  it('does not commit the corresponding mutation and show an error message after a failed response', async () => {
+  it('shows an error message after getting the vehicles fails', async () => {
     const context = { commit: jest.fn(), dispatch: jest.fn() }
     VehiclesClient.get = jest.fn(() => rejectedPromise())
 
