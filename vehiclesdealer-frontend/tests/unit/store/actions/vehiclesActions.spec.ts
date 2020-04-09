@@ -10,8 +10,7 @@ describe('vehiclesActions.js', () => {
   it('calls the client to get the vehicles, stores them and returns them', async () => {
     const givenContext = { commit: jest.fn(), dispatch: jest.fn() }
     const givenVehicles = [ TestValues.vehicle('1'), TestValues.vehicle('2') ]
-    const givenClientPromise = resolvedPromise({ data: givenVehicles })
-    mockClientGetWith(givenClientPromise)
+    mockClientGetWith(resolvedPromise({ data: givenVehicles }))
 
     const returnedPromise = actions[Action.GET_VEHICLES](givenContext)
 
