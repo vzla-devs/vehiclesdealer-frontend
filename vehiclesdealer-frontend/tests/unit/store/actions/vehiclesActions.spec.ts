@@ -10,7 +10,8 @@ describe('vehiclesActions.js', () => {
   it('calls the client to get the vehicles, stores them and returns them', async () => {
     const givenContext = { commit: jest.fn(), dispatch: jest.fn() }
     const givenVehicles = [ TestValues.vehicle('1'), TestValues.vehicle('2') ]
-    VehiclesClient.get = jest.fn(() => resolvedPromise({ data: givenVehicles }))
+    const givenClientPromise = resolvedPromise({ data: givenVehicles })
+    mockClientGetWith(givenClientPromise)
 
     const returnedPromise = actions[Action.GET_VEHICLES](givenContext)
 
@@ -24,7 +25,7 @@ describe('vehiclesActions.js', () => {
 
   it('shows an error message after getting the vehicles fails', async () => {
     const givenContext = { commit: jest.fn(), dispatch: jest.fn() }
-    VehiclesClient.get = jest.fn(() => rejectedPromise())
+    mockClientGetWith(rejectedPromise())
 
     const returnedPromise = actions[Action.GET_VEHICLES](givenContext)
 
@@ -36,4 +37,8 @@ describe('vehiclesActions.js', () => {
     const expectedErrorMessage: ApplicationMessage = { type: 'error', message: 'ha ocurrido un error' }
     expect(givenContext.dispatch).toHaveBeenCalledWith(Action.SHOW_MESSAGE, expectedErrorMessage)
   })
+
+  function mockClientGetWith (promise: Promise<any>): void {
+    VehiclesClient.get = jest.fn(() => promise)
+  }
 })
