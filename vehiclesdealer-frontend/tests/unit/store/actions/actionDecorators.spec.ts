@@ -3,7 +3,7 @@ import { resolvedPromise, rejectedPromise } from '@tests/helpers/promiseHelpers'
 import { Mutation } from '@/store/mutations/types'
 
 describe('actionDecorators.ts', () => {
-  it('calls the passed in action and changes the application loading state correctly', async () => {
+  it('calls the corresponding action and changes the application loading state correctly', async () => {
     const givenContext = getMockedContext()
     const givenAction = (givenContext) => resolvedPromise()
 
