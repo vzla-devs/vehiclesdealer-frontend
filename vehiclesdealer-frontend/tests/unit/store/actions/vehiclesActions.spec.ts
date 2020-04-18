@@ -32,7 +32,7 @@ describe('vehiclesActions.js', () => {
   function getMockedContext (): any {
     return { commit: jest.fn(), dispatch: jest.fn() }
   }
-  
+
   function mockClientGetWith (promise: Promise<any>): void {
     VehiclesClient.get = jest.fn(() => promise)
   }

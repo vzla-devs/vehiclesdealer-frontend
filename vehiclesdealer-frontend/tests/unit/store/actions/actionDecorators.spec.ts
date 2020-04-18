@@ -7,7 +7,7 @@ import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
 describe('actionDecorators.ts', () => {
   it('calls the corresponding action and changes the application loading state correctly', async () => {
     const givenContext = getMockedContext()
-    const givenAction = (givenContext) => resolvedPromise()
+    const givenAction = () => resolvedPromise()
 
     const returnedPromise = TryThisAction(givenAction)(givenContext)
 
@@ -18,7 +18,7 @@ describe('actionDecorators.ts', () => {
 
   it('calls the corresponding action and shows an error message when it fails', async () => {
     const givenContext = getMockedContext()
-    const givenAction = (givenContext) => rejectedPromise()
+    const givenAction = () => rejectedPromise()
 
     const returnedPromise = TryThisAction(givenAction)(givenContext)
 
