@@ -7,7 +7,6 @@ describe('vehiclesGetters.ts', () => {
   const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 7777, featuredImage: 'firstUrl' }
   const secondVehicle: Vehicle = { id: '2', brand: 'secondBrand', model: 'secondModel', year: 2019, price: 8888, featuredImage: 'secondUrl' }
   const thirdVehicle: Vehicle = { id: '3', brand: 'thirdBrand', model: 'thirdModel', year: 2018, price: 9999, featuredImage: 'thirdUrl' }
-  const noVehicle = new NoVehicle()
 
   it('gets all the available vehicles', () => {
     const vehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
@@ -34,12 +33,7 @@ describe('vehiclesGetters.ts', () => {
       id: thirdVehicle.id,
       vehicle: thirdVehicle
     }
-    const fourthTestCase: TestCase = {
-      name: 'gets no vehicle for an id that does not belong to any vehicle',
-      id: 'anyOtherVehicleId',
-      vehicle: noVehicle
-    }
-    const testCases = [ firstTestCase, secondTestCase, thirdTestCase, fourthTestCase ]
+    const testCases = [ firstTestCase, secondTestCase, thirdTestCase ]
 
     testCases.forEach(testCase => {
       it(testCase.name, () => {
@@ -50,6 +44,16 @@ describe('vehiclesGetters.ts', () => {
 
         expect(result).toEqual(testCase.vehicle)
       })
+    })
+
+    it('gets no vehicle for an id that does not belong to any vehicle', () => {
+      const vehicles = [ firstVehicle, secondVehicle, thirdVehicle ]
+      const state = new AState().withVehicles(vehicles).build()
+
+      const result = getters.VEHICLE(state)('anyOtherVehicleId')
+
+      const expectedVehicle = new NoVehicle()
+      expect(result).toEqual(expectedVehicle)
     })
   })
 })
