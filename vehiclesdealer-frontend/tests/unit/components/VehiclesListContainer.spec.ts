@@ -62,9 +62,9 @@ describe('VehiclesListContainer.vue', () => {
       const expectedGrid = wrapper.find(GridLayout)
       const expectedVehicles = expectedGrid.findAll(VehicleCard)
       expect(expectedVehicles.length).toBe(3)
-      verifyVehicleProps(expectedVehicles.at(0), givenVehicles[0])
-      verifyVehicleProps(expectedVehicles.at(1), givenVehicles[1])
-      verifyVehicleProps(expectedVehicles.at(2), givenVehicles[2])
+      verifyVehicle(expectedVehicles.at(0), givenVehicles[0])
+      verifyVehicle(expectedVehicles.at(1), givenVehicles[1])
+      verifyVehicle(expectedVehicles.at(2), givenVehicles[2])
     })
 
     it('navigates to a vehicle details view when its corresponding card is clicked', () => {
@@ -94,7 +94,7 @@ describe('VehiclesListContainer.vue', () => {
     return new AComponent(VehiclesListContainer).withGetters(getters).withActions(actions)
   }
 
-  function verifyVehicleProps (vehicleToVerify: any, expectedVehicle: Vehicle): void {
+  function verifyVehicle (vehicleToVerify: any, expectedVehicle: Vehicle): void {
     expect(vehicleToVerify.props()).toEqual({
       description: `${expectedVehicle.brand} ${expectedVehicle.model} - ${expectedVehicle.year}`,
       price: expectedVehicle.price,
