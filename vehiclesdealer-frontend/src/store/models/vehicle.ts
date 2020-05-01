@@ -8,12 +8,12 @@ export interface Vehicle {
 }
 
 export class NoVehicle implements Vehicle {
-  id: string
-  brand: string
-  model: string
-  year: number
-  price: number
-  featuredImage: string
+  readonly id: string
+  readonly brand: string
+  readonly model: string
+  readonly year: number
+  readonly price: number
+  readonly featuredImage: string
 
   constructor () {
     this.id = ''
