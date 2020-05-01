@@ -1,6 +1,6 @@
-import { RootState } from '@/store/interfaces/rootState'
+import { RootState } from '@/store/models/rootState'
 import { Mutation } from '@/store/mutations/types'
-import { Vehicle } from '@/store/interfaces/vehicle'
+import { Vehicle } from '@/store/models/vehicle'
 
 export default {
   [Mutation.SET_VEHICLES]: function (state: RootState, vehicles: Array<Vehicle>): void {

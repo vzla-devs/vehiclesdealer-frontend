@@ -1,6 +1,6 @@
 import { Action } from './types'
 import { Mutation } from '@/store/mutations/types'
-import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 
 export default {
   [Action.SHOW_MESSAGE]: ({ commit }, message: ApplicationMessage) => {

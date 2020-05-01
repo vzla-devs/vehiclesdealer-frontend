@@ -1,7 +1,7 @@
 import getters from '@/store/getters/vehiclesGetters'
 import { AState } from '@tests/builders/stateBuilder'
-import { Vehicle, NoVehicle } from '@/store/interfaces/vehicle'
-import { TestCase } from '@tests/interfaces/testCase'
+import { Vehicle, NoVehicle } from '@/store/models/vehicle'
+import { TestCase } from '@tests/models/testCase'
 
 describe('vehiclesGetters.ts', () => {
   const firstVehicle: Vehicle = { id: '1', brand: 'firstBrand', model: 'firstModel', year: 2020, price: 7777, featuredImage: 'firstUrl' }

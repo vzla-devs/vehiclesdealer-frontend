@@ -1,5 +1,5 @@
 import { InitialState } from '@/store/initialState'
-import { RootState } from '@/store/interfaces/rootState'
+import { RootState } from '@/store/models/rootState'
 
 export class AState {
   state: RootState

@@ -1,4 +1,4 @@
-import { RootState } from '@/store/interfaces/rootState'
+import { RootState } from '@/store/models/rootState'
 
 export const InitialState: RootState = {
   loading: false,

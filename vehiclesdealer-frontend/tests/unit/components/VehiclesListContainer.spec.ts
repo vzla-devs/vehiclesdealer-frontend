@@ -8,7 +8,7 @@ import {
 } from '@tests/helpers/promiseHelpers'
 import { Action } from '@/store/actions/types'
 import { Getter } from '@/store/getters/types'
-import { Vehicle } from '@/store/interfaces/vehicle'
+import { Vehicle } from '@/store/models/vehicle'
 import VueRouter from 'vue-router'
 import { ROUTES } from '@/constants/applicationRoutes'
 

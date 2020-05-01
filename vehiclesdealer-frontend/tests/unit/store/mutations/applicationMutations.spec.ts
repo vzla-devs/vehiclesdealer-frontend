@@ -1,6 +1,6 @@
 import mutations from '@/store/mutations/applicationMutations'
 import { AState } from '@tests/builders/stateBuilder'
-import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 import { Mutation } from '@/store/mutations/types'
 
 describe('applicationMutations.js', () => {

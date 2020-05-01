@@ -1,5 +1,5 @@
 import { Mutation } from '@/store/mutations/types'
-import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 import { Action } from './types'
 
 export function TryThisAction (targetAction: Function) {

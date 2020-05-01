@@ -2,7 +2,7 @@ import { TryThisAction } from '@/store/actions/actionDecorators'
 import { resolvedPromise, rejectedPromise } from '@tests/helpers/promiseHelpers'
 import { Action } from '@/store/actions/types'
 import { Mutation } from '@/store/mutations/types'
-import { ApplicationMessage } from '@/store/interfaces/applicationMessage'
+import { ApplicationMessage } from '@/store/models/applicationMessage'
 
 describe('actionDecorators.ts', () => {
   it('calls the corresponding action and changes the application loading state correctly', async () => {
