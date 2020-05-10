@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import { InitialState } from './initialState'
-import { RootState } from './interfaces/rootState'
+import { RootState } from './models/rootState'
 import mutations from './mutations'
 import actions from './actions'
 import getters from './getters'
