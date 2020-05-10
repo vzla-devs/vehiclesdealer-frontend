@@ -41,7 +41,10 @@
       />
     </v-app-bar>
     <v-content>
-      <v-container fluid>
+      <v-container
+        fluid
+        @click="drawer = false"
+      >
         <transition
           name="slide-fade"
           mode="out-in"
