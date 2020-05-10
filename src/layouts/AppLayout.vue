@@ -42,7 +42,12 @@
     </v-app-bar>
     <v-content>
       <v-container fluid>
-        <router-view />
+        <transition
+          name="slide-fade"
+          mode="out-in"
+        >
+          <router-view />
+        </transition>
       </v-container>
     </v-content>
   </v-app>
@@ -88,6 +93,21 @@ body {
     margin-top: $small-space;
     margin-bottom: $small-space;
   }
+}
+
+.slide-fade-enter {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.5s;
+}
+
+.slide-fade-leave-to {
+  transform: translateX(-10px);
+  opacity: 0;
 }
 
 @media (min-width: $medium-breakpoint) {
