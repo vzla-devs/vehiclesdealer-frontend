@@ -57,7 +57,7 @@ export default {
   data: () => ({
     drawer: false,
     drawerOptions: [
-      { icon: 'mdi-home', title: 'Inicio', routeName: ROUTES.HOME },
+      { icon: 'mdi-home', title: 'Inicio', routeName: ROUTES.VEHICLES },
       { icon: 'mdi-help-box', title: 'Acerca de', routeName: ROUTES.ABOUT }
     ]
   }),
@@ -68,7 +68,9 @@ export default {
   },
   methods: {
     onNavigate (name) {
-      this.$router.push({ name })
+      if (this.$route.name !== name) {
+        this.$router.push({ name })
+      }
     }
   }
 }
