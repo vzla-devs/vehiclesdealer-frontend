@@ -102,7 +102,7 @@ body {
 
 .slide-fade-enter-active,
 .slide-fade-leave-active {
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 
 .slide-fade-leave-to {
