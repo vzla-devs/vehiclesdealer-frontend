@@ -2,7 +2,6 @@
   <v-app id="app">
     <v-navigation-drawer
       v-model="drawer"
-      absolute
       temporary
       app
     >
@@ -53,6 +52,13 @@
         </transition>
       </v-container>
     </v-content>
+    <v-footer
+      color="primary"
+      app
+      absolute
+    >
+      <span class="white--text">&copy; 2020</span>
+    </v-footer>
   </v-app>
 </template>
 
