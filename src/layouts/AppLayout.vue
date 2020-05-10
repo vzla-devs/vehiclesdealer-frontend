@@ -31,7 +31,7 @@
       app
       dense
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="drawer = true" />
       <v-toolbar-title>VehiclesDealer</v-toolbar-title>
       <v-progress-linear
         :active="isLoading"
