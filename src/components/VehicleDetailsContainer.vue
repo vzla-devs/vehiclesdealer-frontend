@@ -62,7 +62,6 @@
 
 <script>
 import GridLayout from '@/layouts/GridLayout.vue'
-import VehicleCard from '@/components/VehicleCard.vue'
 
 export default {
   components: {
